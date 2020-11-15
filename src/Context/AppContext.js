@@ -9,7 +9,8 @@ const AppContext = React.createContext({
     password: '',
     setPassword: () => {},
     setUsername: () => {},
-    authenticateUser: () => {}
+    authenticateUser: () => {},
+    isUserLoggedIn: () => {}
 })
 
 export default AppContext

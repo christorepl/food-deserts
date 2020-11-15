@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import Header from './Header/Header'
 import About from './About/About'
 import Footer from './Footer/Footer'
@@ -30,6 +30,40 @@ export default class App extends React.Component{
     this.setState({isLoggedIn: loggedInStatus, states, users, username, password})
   }
 
+  isUserLoggedIn = (isLoggedIn) => {
+    if(isLoggedIn === false) {
+        return (
+            <>
+                <Link to='/login'>
+                    <span className="sign-in-out">
+                    Login
+                    </span>
+                </Link>
+                <Link to='/create-account'>
+                    <span className="sign-up-saved">
+                    Create Account
+                    </span>
+                </Link>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <Link to="/">
+                    <span className="sign-in-out" onClick={() => this.setState({isLogged: false})}>
+                        Logout
+                    </span>
+                </Link>
+                <Link>
+                    <span className="sign-up-saved">
+                        View Saved Searches
+                    </span>
+                </Link>
+            </>
+        )
+    }
+  }
+
   setUsername = username => {
     this.setState({username})
   }
@@ -45,7 +79,7 @@ export default class App extends React.Component{
     if (enteredUsername === "christopher416" && enteredPassword === "password") {
       console.log('authenticated')
       this.setState({isLoggedIn: true})
-      console.log(this.state)
+      console.log(this.state.isLoggedIn)
     } else if (enteredUsername !== "christopher416" || enteredPassword !== "password" ) {
       alert('invalid username or password')
     }
@@ -70,7 +104,8 @@ export default class App extends React.Component{
       states: this.state.states,
       setPassword: this.setPassword,
       setUsername: this.setUsername,
-      authenticateUser: this.authenticateUser
+      authenticateUser: this.authenticateUser,
+      isUserLoggedIn: this.isUserLoggedIn
     }
 
     return(

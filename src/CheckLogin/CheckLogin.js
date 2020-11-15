@@ -7,44 +7,44 @@ export default class CheckLogin extends React.Component {
 
     isLoggedIn = this.context.isLoggedIn
 
-    isUserLoggedIn = (isLoggedIn) => {
-        if(isLoggedIn === false) {
-            return (
-                <>
-                    <Link to='/login'>
-                        <span className="sign-in-out">
-                        Login
-                        </span>
-                    </Link>
-                    <Link to='/create-account'>
-                        <span className="sign-up-saved">
-                        Create Account
-                        </span>
-                    </Link>
-                </>
-            )
-        } else {
-            return (
-                <>
-                    <Link to="/">
-                        <span className="sign-in-out" onClick={() => this.setState({isLogged: false})}>
-                            Logout
-                        </span>
-                    </Link>
-                    <Link>
-                        <span className="sign-up-saved">
-                            View Saved Searches
-                        </span>
-                    </Link>
-                </>
-            )
-        }
+    // isUserLoggedIn = (isLoggedIn) => {
+    //     if(isLoggedIn === false) {
+    //         return (
+    //             <>
+    //                 <Link to='/login'>
+    //                     <span className="sign-in-out">
+    //                     Login
+    //                     </span>
+    //                 </Link>
+    //                 <Link to='/create-account'>
+    //                     <span className="sign-up-saved">
+    //                     Create Account
+    //                     </span>
+    //                 </Link>
+    //             </>
+    //         )
+    //     } else {
+    //         return (
+    //             <>
+    //                 <Link to="/">
+    //                     <span className="sign-in-out" onClick={() => this.setState({isLogged: false})}>
+    //                         Logout
+    //                     </span>
+    //                 </Link>
+    //                 <Link>
+    //                     <span className="sign-up-saved">
+    //                         View Saved Searches
+    //                     </span>
+    //                 </Link>
+    //             </>
+    //         )
+    //     }
 
-    }
+    // }
     render() {
         return (
             <>
-            {this.isUserLoggedIn(this.isLoggedIn)}
+            {this.context.isUserLoggedIn(this.isLoggedIn)}
             </>
         )
     }
