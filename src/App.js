@@ -22,12 +22,12 @@ export default class App extends React.Component{
   }
 
   async componentDidMount () {
-    const loggedInStatus = this.context.isLoggedIn
+    const isLoggedIn = this.context.isLoggedIn
     const states = this.context.states
     const users = this.context.users
     const username = this.context.username
     const password = this.context.password
-    this.setState({isLoggedIn: loggedInStatus, states, users, username, password})
+    this.setState({isLoggedIn, states, users, username, password})
   }
 
   isUserLoggedIn = (isLoggedIn) => {
@@ -77,9 +77,8 @@ export default class App extends React.Component{
     const enteredUsername = this.state.username
     const enteredPassword = this.state.password
     if (enteredUsername === "christopher416" && enteredPassword === "password") {
-      console.log('authenticated')
       this.setState({isLoggedIn: true})
-      console.log(this.state.isLoggedIn)
+      console.log('authenticated: ', this.state.isLoggedIn)
     } else if (enteredUsername !== "christopher416" || enteredPassword !== "password" ) {
       alert('invalid username or password')
     }
