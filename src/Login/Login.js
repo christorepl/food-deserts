@@ -20,7 +20,7 @@ export default class Login extends React.Component {
                <br/>
                <br/>
                <button type="submit" className="submit">Login</button>
-               <p>For purposes of this static app, username MUST BE "christopher416" and password MUST BE "password"</p>
+               <p>For purposes of this static app, username MUST BE "christopher416" and password MUST BE "password". My fullstack app will use jwt for authentication and user account creation.</p>
             </form>
         )
     }

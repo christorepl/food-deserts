@@ -90,8 +90,8 @@ header {
 .stateContainer {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
-  width: 50%;
-  flex-flow: column nowrap;
+  width: 100%;
+  flex-flow: row;
   justify-items: center;
   justify-content: center;
   align-content: center;
@@ -231,10 +231,6 @@ li {
 .list-info{
   color: black;
   font-weight: 400;
-}
-
-.hidden {
-  display: none;
 }
 
 h2 {

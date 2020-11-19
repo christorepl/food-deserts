@@ -1,15 +1,16 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Redirect } from 'react-router-dom'
 import Header from './Header/Header'
 import About from './About/About'
 import Footer from './Footer/Footer'
-import HowTo from './HowTo/HowTo'
 import AdditionalResources from './AdditionalResources/AdditionalResources'
 import Contact from './Contact/Contact'
 import CreateAccount from './CreateAccount/CreateAccount'
 import Login from './Login/Login'
 import AppContext from './Context/AppContext'
 import Search from './Search/Search'
+import Home from './Home/Home'
+import Charts from './Charts/Charts'
 
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY - next to each data point, it will say "ranked 16 of 51" - write seeds/ organize tables to make this value equal to the id column
 //IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react]
@@ -39,35 +40,14 @@ export default class App extends React.Component{
     const username = this.context.username
     const password = this.context.password
     this.setState({isLoggedIn, users, username, password, statesData, stateResults, selectedStates, usernames})
-
   }
 
-  addRemoveStates = (e) => {
-    //placeholder function for adding or remove states to this.state.selectedStates. selectedStates will be the query that is searched on the backend.
-    // console.log('REFACTOR ME')
-    // this.setState({selectedStates: [1, 2, 15, 26, 31, 40, 49, 50, 55] })
-    // this.searchSelectedStates(this.state.selectedStates)
-  }
-
-  // addSelectedStates = (selectedState) => {
-  //   const chosenStates = []
-  //   chosenStates.push(selectedState)
-  //   console.log('chosen ', chosenStates)
-  //   console.log('selected ', selectedState)
-  //   this.setState({selectedStates: chosenStates})
-  // }
-
-  // removeState = (state) => {
-  //   const chosenStates = this.state.selectedStates
-  //   const newChosenStates = chosenStates.filter(states => states !== state )
-  //   this.setState({selectedStates: newChosenStates})
-  // }
-
+  
   isUserLoggedIn = (loginState) => {
     //conditional rendering for if the user is logged in or not. logged in users see a logout/ saved searches button and users not logged in see login/ create account buttons.
     if(!loginState) {
-        return (
-            <>
+      return (
+        <>
                 <Link to='/login'>
                     <span className="sign-in-out">
                     Login
@@ -80,9 +60,9 @@ export default class App extends React.Component{
                 </Link>
             </>
         )
-    } else {
+      } else {
         return (
-            <>
+          <>
                 <Link to="/">
                     <span className="sign-in-out" onClick={() => this.setState({isLoggedIn: false})}>
                         Logout
@@ -95,41 +75,33 @@ export default class App extends React.Component{
                 </Link>
             </>
         )
+      }
     }
-  }
-
-  setUsername = username => {
-    //updates state to reflect username written in the login field
-    this.setState({username})
-  }
-
-  setPassword = password => {
-    //updates state to reflect the password written in the login field
-    this.setState({password})
-  }
-
+    
+    setUsername = username => {
+      //updates state to reflect username written in the login field
+      this.setState({username})
+    }
+    
+    setPassword = password => {
+      //updates state to reflect the password written in the login field
+      this.setState({password})
+    }
+    
+    handleStateSelection = (selectedStates) => {
+      console.log(selectedStates)
+      this.setState({
+        selectedStates
+      })
+      const statesToSearch = this.state.selectedStates.map(state => state.value)
+      console.log(statesToSearch)
+    }
+    
   searchStates = (e) => {
-    e.preventDefault()
-    //this.setState({selectedStates: [e.target.value]})
-    // this.setState({selectedStates})
-    // console.log('searching ', this.state.selectedStates, this.state.statesData)
-    const statesToSearch = this.state.selectedStates
-    const statesData = this.state.statesData
-    let stateResults = []
-
-    const filterStates = stateToSearch => {
-      stateResults.push(statesData.filter(state => state.stateId === stateToSearch))
-      this.setState({stateResults})
-    }
-    statesToSearch.forEach(filterStates)
-
-    // for (let i = 0; i > statesData.length; i++) {
-    // const stateResults = statesData.filter(state=> state.stateId === statesToSearch[i])
-    // console.log('hiya', stateResults)
-    // }
-
-    // this.setState({stateResults})
-    // console.log(stateResults)
+  e.preventDefault()
+  const statesToSearch = this.state.selectedStates.map(state => state.value)
+  const statesData = this.state.statesData
+  this.setState({stateResults: statesData.filter(state => statesToSearch.includes(state.stateId))})
   }
 
   authenticateUser = (e) => {
@@ -174,9 +146,7 @@ export default class App extends React.Component{
       selectedStates: this.state.selectedStates,
       stateResults: this.state.stateResults,
       searchStates: this.searchStates,
-      addRemoveStates: this.addRemoveStates,
-      // removeState: this.removeState,
-      // addSelectedStates: this.addSelectedStates,
+      handleStateSelection: this.handleStateSelection,
       setPassword: this.setPassword,
       setUsername: this.setUsername,
       authenticateUser: this.authenticateUser,
@@ -185,10 +155,16 @@ export default class App extends React.Component{
     return(
       <div>
       <AppContext.Provider value={value}>
+      <Route exact path="/"><Redirect to="/home" /></Route>
       <Route
         path="/"
         component={Header}
       />
+      <Route path="/charts" component={Charts}/>
+      <Route
+        exact path="/home"
+        component={Home}
+        />
       <Route
         exacth path="/search"
         component={Search}
@@ -196,10 +172,6 @@ export default class App extends React.Component{
       <Route
         exact path="/about"
         component={About}
-      />
-      <Route
-        exact path="/how-to"
-        component={HowTo}
       />
       <Route
         exact path="/addtl"
@@ -217,8 +189,8 @@ export default class App extends React.Component{
         exact path="/login"
         component={Login}
       />
-      <Footer />
       </AppContext.Provider>
+      <Footer />
       </div>
     )
   }
