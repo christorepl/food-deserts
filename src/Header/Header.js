@@ -13,15 +13,19 @@ export default class Header extends React.Component {
         return (
             <header>
             <div className="background">
-              <span className="title">Food Security, Race, Poverty and Voting Tendencies</span>
+              <span className="title">Food Security, Race, Poverty and Voting Tendencies in the U.S.</span>
               <nav className="help-menu">
               <Link to='/'>
               <div className="help-item">Home</div>
               </Link>
               |
               <Link to='/how-to'>
-              <div className="help-item">How to use this tool</div>
+              <div className="help-item">How to Use This Tool</div>
               </Link> 
+              |
+              <Link to="/search">
+              <div className="help-item">Search</div>
+              </Link>
               |
               <Link to='/addtl'>
               <div className="help-item">Additional Resources</div>
