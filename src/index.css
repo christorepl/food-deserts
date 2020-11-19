@@ -95,7 +95,6 @@ header {
   justify-items: center;
   justify-content: center;
   align-content: center;
-  margin: 15px;
   padding-bottom: 10px;
   align-items: center;
   border-style: inset;
@@ -167,18 +166,54 @@ h3 {
 .stateContainer {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
-  width: 50%;
-  flex-flow: column nowrap;
-  justify-items: center;
-  justify-content: center;
-  align-content: center;
-  margin: 15px;
+  list-style: none;
+  flex-flow: row nowrap;
+  margin-bottom: 15px;
   padding-bottom: 10px;
-  align-items: center;
   border-style: inset;
   border-radius: 5px;
   border-color: gray;
-  flex: 1 0 50%
+  /* flex: 1 0 50% */
+}
+
+.raceContainer {
+  margin: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.electionContainer {
+  margin: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.povertyContainer {
+  margin: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.foodInsecurityContainer {
+  margin: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 ul {
@@ -218,7 +253,7 @@ footer {
   .stateContainer {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
-  width: 150%;
+  width: 100%;
   flex-flow: column nowrap;
   flex: 1 0 45%
 }
