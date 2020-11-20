@@ -1,6 +1,7 @@
 import React from 'react'
 import AppContext from '../Context/AppContext'
-import { Bar, Pie } from 'react-chartjs-2'
+import { Bar, defaults } from 'react-chartjs-2'
+
 
 export default class Charts extends React.Component {
     static contextType = AppContext
@@ -8,15 +9,20 @@ export default class Charts extends React.Component {
         const labels = this.context.stateResults.map(state => state.abbrev)
         const trumpData = this.context.stateResults.map(state => state.Trump)
         const bidenData = this.context.stateResults.map(state => state.Biden)
+        console.log(this.context.stateResults)
         
+
+
 
         const chartData = {
             labels: labels,
+            yAxisId: 'Stateaaaaaaaaaas',
             datasets: [
                 {
                     label: '% of votes for Trump',
                     data: trumpData,
-                    backgroundColor: 'red'
+                    backgroundColor: 'red',
+                    xAxisId: 'Percentage of Votes'
                 },
                 {
                     label: '% of votes for Biden',
