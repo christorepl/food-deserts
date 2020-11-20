@@ -1,6 +1,6 @@
 import React from 'react'
 import AppContext from '../Context/AppContext'
-import { Bar, Line } from 'react-chartjs-2'
+import { Bar, Line, Radar, PolarArea } from 'react-chartjs-2'
 
 
 export default class Charts extends React.Component {
@@ -153,7 +153,7 @@ export default class Charts extends React.Component {
                     options={{ maintainAspectRatio: false }}
                 />
                 </div>
-                <Line
+                <Bar
                     data={raceVsElectionChartData}
                     height={300}
                     options={{ maintainAspectRatio: true }}
