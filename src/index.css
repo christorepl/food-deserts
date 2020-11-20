@@ -130,7 +130,7 @@ button:hover {
   cursor: pointer;
 }
 
-.statePageContainer {
+/* .statePageContainer {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
   list-style: none;
@@ -159,7 +159,7 @@ canvas {
 .stateChartContainer {
   display: flex;
   height: 100%
-}
+} */
 
 .container {
   max-width: 600px;
