@@ -9,12 +9,10 @@ export default class Charts extends React.Component {
         const labels = this.context.stateResults.map(state => state.abbrev)
         const trump = this.context.stateResults.map(state => state.Trump)
         const biden = this.context.stateResults.map(state => state.Biden)
-        console.log(this.context.stateResults)
         const black = this.context.stateResults.map(state => state.black)
         const white = this.context.stateResults.map(state => state.white)
         const hispanic = this.context.stateResults.map(state => state.hispanic)        
         const asian = this.context.stateResults.map(state => state.asian) 
-        console.log(asian)
 
         const electionChartData = {
             labels,
