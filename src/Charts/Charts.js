@@ -12,27 +12,46 @@ export default class Charts extends React.Component {
         const black = this.context.stateResults.map(state => state.black)
         const white = this.context.stateResults.map(state => state.white)
         const hispanic = this.context.stateResults.map(state => state.hispanic)        
-        const asian = this.context.stateResults.map(state => state.asian) 
+        const asian = this.context.stateResults.map(state => state.asian)
+        const foodInsecurity = this.context.stateResults.map(state => state.foodInsecurity)
+        const poverty = this.context.stateResults.map(state => state.povertyRate)
+
+        const foodChartData = {
+            labels,
+            datasets: [
+                {
+                    label: 'Rate of food insecure households',
+                    data: foodInsecurity,
+                    backgroundColor: 'green'
+                }
+            ]
+        }
+
+        const povertyChartData = {
+            labels,
+            datasets: [
+                {
+                    label: 'Rate of Poverty',
+                    data: poverty,
+                    backgroundColor: 'orange'
+                }
+            ]
+        }
 
         const electionChartData = {
             labels,
             datasets: [
                 {
-                    label: '% of votes for Trump',
+                    label: 'Rate of votes for Trump',
                     data: trump,
                     backgroundColor: 'red',
                 },
                 {
-                    label: '% of votes for Biden',
+                    label: 'Rate of votes for Biden',
                     data: biden,
                     backgroundColor: 'blue'
                 }
-            ],
-            options: {
-                legend: {
-                    postion: 'left'
-                }
-            }
+            ]
         }
 
         
@@ -71,7 +90,7 @@ export default class Charts extends React.Component {
                 <Bar
                     data={electionChartData}
                     width={100}
-                    height={500}
+                    height={200}
                     options={{ maintainAspectRatio: false }}
                 />
                 </div>
@@ -79,10 +98,20 @@ export default class Charts extends React.Component {
                 <Bar 
                     data={raceChartData}
                     width={50}
-                    height={500}
+                    height={200}
                     options={{ maintainAspectRatio: false }}
                 />
                 </div>
+                <Bar
+                    data={povertyChartData}
+                    height={200}
+                    options={{ maintAspectRatio: false }}
+                />
+                <Bar
+                    data={foodChartData}
+                    height={200}
+                    options={{ maintAspectRatio: false }}
+                />
             </div>
 
         )
