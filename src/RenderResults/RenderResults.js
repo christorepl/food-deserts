@@ -7,7 +7,6 @@ export default class RenderResults extends React.Component {
 
     render() {
         const { stateResults } = this.context
-        console.log(stateResults.length)
 
         let statesResults = stateResults.map(state => {
             return (
@@ -15,23 +14,23 @@ export default class RenderResults extends React.Component {
                 <div className="stateContainer">
                     <h1>{state.stateName}</h1>
                     <div className="raceContainer">
-                        <h3>Racial Data:</h3>
-                        <li key={`black${state.stateId}`}>Black: {state.black}%</li>
-                        <li key={`white${state.stateId}`}>White: {state.white}%</li>
-                        <li key={`asian${state.stateId}`}>Asian: {state.asian}%</li>
-                        <li key={`hispanic${state.stateId}`}>Hispanic: {state.hispanic}%</li>
+                        <h3>Racial Demographics:</h3>
+                        <li key={`black${state.stateId}`}>Black: {state.raceData.black}%</li>
+                        <li key={`white${state.stateId}`}>White: {state.raceData.white}%</li>
+                        <li key={`asian${state.stateId}`}>Asian: {state.raceData.asian}%</li>
+                        <li key={`hispanic${state.stateId}`}>Hispanic: {state.raceData.hispanic}%</li>
                     </div>
                     <div className="electionContainer">
-                        <h3>Election Results Data:</h3>
-                        <li key={`trump${state.stateId}`}>Donald Trump: {state.Trump}%</li>
-                        <li key={`biden${state.stateId}`}>Joe Biden: {state.Biden}%</li>
+                        <h3>Election Results:</h3>
+                        <li key={`trump${state.stateId}`}>Donald Trump: {state.electionData.Trump}%</li>
+                        <li key={`biden${state.stateId}`}>Joe Biden: {state.electionData.Biden}%</li>
                     </div>
                     <div className="povertyContainer">
-                        <h3>Poverty Data:</h3>
+                        <h3>Poverty Rate:</h3>
                         <li key={`poverty${state.stateId}`}>Poverty Rate: {state.povertyRate}%</li>
                     </div>
                     <div className="foodInsecurityContainer">
-                        <h3>Food Insecurity Data:</h3>
+                        <h3>Food Insecurity Rate:</h3>
                         <li key={`foodInsecurity${state.stateId}`}>Household Food Insecurity Rate: {state.foodInsecurity}%</li>
                     </div>
                 </div>

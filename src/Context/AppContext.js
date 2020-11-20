@@ -14,7 +14,6 @@ const AppContext = React.createContext({
     username: '',
     password: '',
     selectedStates: [],
-    renderChartsButton: () => {},
     searchStates: () => {},
     handleStateSelection: () => {},
     setPassword: () => {},
