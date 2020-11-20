@@ -91,12 +91,10 @@ export default class App extends React.Component{
     }
     
     handleStateSelection = (selectedStates) => {
-      console.log(selectedStates)
       this.setState({
         selectedStates
       })
       const statesToSearch = this.state.selectedStates.map(state => state.value)
-      console.log(statesToSearch)
     }
     
   searchStates = (e) => {

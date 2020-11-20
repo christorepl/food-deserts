@@ -7,6 +7,7 @@ export default class RenderResults extends React.Component {
 
     render() {
         const { stateResults } = this.context
+        console.log(stateResults.length)
 
         let statesResults = stateResults.map(state => {
             return (
@@ -37,10 +38,11 @@ export default class RenderResults extends React.Component {
                 </>
             )
         })
+        
        return (
            <>
-            <Link to="/charts">go to charts</Link>
-           {statesResults}
+            {statesResults.length ? <Link to="/charts"><button type="button">Go to Charts</button></Link> : <></>}
+            {statesResults}
            </>
        )
     }
