@@ -167,13 +167,14 @@ h3 {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
   list-style: none;
-  flex-flow: row nowrap;
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-style: inset;
   border-radius: 5px;
   border-color: gray;
-  /* flex: 1 0 50% */
+  width: 100%;
+  flex-flow: column nowrap;
+  flex: 1 0 45%
 }
 
 .raceContainer {
