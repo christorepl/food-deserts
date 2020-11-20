@@ -115,23 +115,8 @@ li {
   text-align: center;
 }
 
-.chart {
-}
-
-.povertyChart {
-  display: flex;
-}
-
-.raceChart {
-
-}
-
-.electionChart {
-
-}
-
-.foodChart {
-
+.stateData {
+  list-style: none;
 }
 
 

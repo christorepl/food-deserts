@@ -1,6 +1,6 @@
 import React from 'react'
-import AppContext from '../Context/AppContext'
 import { Bar, Doughnut, Pie } from 'react-chartjs-2'
+import AppContext from '../Context/AppContext'
 
 
 export default class Charts extends React.Component {
@@ -19,7 +19,6 @@ export default class Charts extends React.Component {
         
         const newElection = electionResults.map(state => Object.values(state))
         console.log(newElection)
-
 
         const foodChartData = {
             labels,

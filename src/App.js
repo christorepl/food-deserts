@@ -11,6 +11,8 @@ import AppContext from './Context/AppContext'
 import Search from './Search/Search'
 import Home from './Home/Home'
 import Charts from './Charts/Charts'
+import State from './State/State'
+import StatePage from './StatePage/StatePage'
 
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY - next to each data point, it will say "ranked 16 of 51" - write seeds/ organize tables to make this value equal to the id column
 //IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react]
@@ -94,7 +96,7 @@ export default class App extends React.Component{
       this.setState({
         selectedStates
       })
-      const statesToSearch = this.state.selectedStates.map(state => state.value)
+      // const statesToSearch = this.state.selectedStates.map(state => state.value)
     }
     
   searchStates = (e) => {
@@ -152,6 +154,7 @@ export default class App extends React.Component{
       authenticateUser: this.authenticateUser,
       isUserLoggedIn: this.isUserLoggedIn
     }
+    console.log('app', this.context.statesData)
     return(
       <div>
       <AppContext.Provider value={value}>
@@ -160,7 +163,18 @@ export default class App extends React.Component{
         path="/"
         component={Header}
       />
-      <Route path="/charts" component={Charts}/>
+      <Route 
+        path="/charts"
+        component={Charts}
+      />
+      <Route
+        path="/states"
+        component={State}
+      />
+      <Route 
+        path="/state/:stateId"
+        component={StatePage}
+      />
       <Route
         exact path="/home"
         component={Home}
