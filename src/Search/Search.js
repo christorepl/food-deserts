@@ -11,13 +11,12 @@ export default class StateSelection extends React.Component {
         return(
             <>
                 <form className="ui-form" onSubmit={(e) => this.context.searchStates(e)}>
-                    <h1>Select one or more US States: </h1>
+                    <h1>Select one or more US States </h1>  <button type="submit">Perform search</button>
                     <ReactMultiSelectCheckboxes
                         options={MenuOptions}
                         value={this.context.selectedStates}
                         onChange={this.context.handleStateSelection}
                     />
-                    <button type="submit">Perform search</button>
                 </form>
                 <RenderResults />
             </>

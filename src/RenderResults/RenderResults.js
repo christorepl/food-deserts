@@ -10,8 +10,9 @@ export default class RenderResults extends React.Component {
 
         let statesResults = stateResults.map(state => {
             return (
-                <div className="stateContainer">
+                <>
                 <Link to="/charts">go to charts</Link>
+                <div className="stateContainer">
                     <h1>{state.stateName}</h1>
                     <div className="raceContainer">
                         <h3>Racial Data:</h3>
@@ -34,6 +35,7 @@ export default class RenderResults extends React.Component {
                         <li key={`foodInsecurity${state.stateId}`}>Household Food Insecurity Rate: {state.foodInsecurity}%</li>
                     </div>
                 </div>
+                </>
             )
         })
        return (
