@@ -1,6 +1,6 @@
 import React from 'react'
 import AppContext from '../Context/AppContext'
-import { Bar, Line, Radar, PolarArea } from 'react-chartjs-2'
+import { Bar, Line, Radar, PolarArea, Doughnut, Pie } from 'react-chartjs-2'
 
 
 export default class Charts extends React.Component {
@@ -34,6 +34,22 @@ export default class Charts extends React.Component {
                     label: 'Rate of Poverty',
                     data: poverty,
                     backgroundColor: 'orange'
+                }
+            ]
+        }
+
+        const povertyVsFoodChartData = {
+            labels,
+            datasets: [
+                {
+                    label: 'Rate of Poverty',
+                    data: poverty,
+                    backgroundColor: 'purple'
+                },
+                {
+                    label: 'Rate of food insecure Households',
+                    data: foodInsecurity,
+                    backgroundColor: 'black'
                 }
             ]
         }
@@ -155,7 +171,12 @@ export default class Charts extends React.Component {
                 </div>
                 <Bar
                     data={raceVsElectionChartData}
-                    height={300}
+                    height={200}
+                    options={{ maintainAspectRatio: true }}
+                />
+                <Bar
+                    data={povertyVsFoodChartData}
+                    height={200}
                     options={{ maintainAspectRatio: true }}
                 />
             </div>
