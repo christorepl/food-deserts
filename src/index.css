@@ -115,6 +115,25 @@ li {
   text-align: center;
 }
 
+.chart {
+}
+
+.povertyChart {
+  display: flex;
+}
+
+.raceChart {
+
+}
+
+.electionChart {
+
+}
+
+.foodChart {
+
+}
+
 
 /* here*/
 body{

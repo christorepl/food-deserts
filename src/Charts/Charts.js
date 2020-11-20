@@ -1,6 +1,6 @@
 import React from 'react'
 import AppContext from '../Context/AppContext'
-import { Bar, defaults } from 'react-chartjs-2'
+import { Bar, Line } from 'react-chartjs-2'
 
 
 export default class Charts extends React.Component {
@@ -42,12 +42,12 @@ export default class Charts extends React.Component {
             labels,
             datasets: [
                 {
-                    label: 'Rate of votes for Trump',
+                    label: 'Trump vote Rate',
                     data: trump,
                     backgroundColor: 'red',
                 },
                 {
-                    label: 'Rate of votes for Biden',
+                    label: 'Biden vote Rate',
                     data: biden,
                     backgroundColor: 'blue'
                 }
@@ -81,6 +81,41 @@ export default class Charts extends React.Component {
             ]
         }
 
+        const raceVsElectionChartData = {
+            labels,
+            datasets: [
+                {
+                    label: 'Trump vote Rate',
+                    data: trump,
+                    backgroundColor: 'red',
+                },
+                {
+                    label: 'Biden vote Rate',
+                    data: biden,
+                    backgroundColor: 'blue'
+                },
+                {
+                    label: 'Black',
+                    data: black,
+                    backgroundColor: 'purple',
+                },
+                {
+                    label: 'White',
+                    data: white,
+                    backgroundColor: 'orange'
+                },
+                {
+                    label: 'Hispanic',
+                    data: hispanic,
+                    backgroundColor: 'gray'
+                },
+                {
+                    label: 'Asian',
+                    data: asian,
+                    backgroundColor: 'darkblue'
+                }
+            ]
+        }
         
 
 
@@ -90,7 +125,7 @@ export default class Charts extends React.Component {
                 <Bar
                     data={electionChartData}
                     width={100}
-                    height={200}
+                    height={400}
                     options={{ maintainAspectRatio: false }}
                 />
                 </div>
@@ -98,19 +133,30 @@ export default class Charts extends React.Component {
                 <Bar 
                     data={raceChartData}
                     width={50}
-                    height={200}
+                    height={400}
                     options={{ maintainAspectRatio: false }}
                 />
                 </div>
+                <div className="povertyChart">
                 <Bar
                     data={povertyChartData}
-                    height={200}
-                    options={{ maintAspectRatio: false }}
+                    width={500}
+                    height={300}
+                    options={{ maintainAspectRatio: false }}
                 />
+                </div>
+                <div className="foodChart">
                 <Bar
                     data={foodChartData}
-                    height={200}
-                    options={{ maintAspectRatio: false }}
+                    width={500}
+                    height={300}
+                    options={{ maintainAspectRatio: false }}
+                />
+                </div>
+                <Line
+                    data={raceVsElectionChartData}
+                    height={300}
+                    options={{ maintainAspectRatio: true }}
                 />
             </div>
 
