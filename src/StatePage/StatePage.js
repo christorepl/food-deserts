@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bar, Doughnut, Pie } from 'react-chartjs-2'
+import { Bar, Pie } from 'react-chartjs-2'
 import AppContext from '../Context/AppContext'
 
 export default class StatePage extends React.Component {
@@ -38,7 +38,7 @@ export default class StatePage extends React.Component {
 
         return(
             <div className="statePage">
-                <div className="stateContainer">
+                <div className="statePageContainer">
                     <h1>{state.stateName}</h1>
                     <div className="raceContainer">
                         <h3>Racial Demographics:</h3>
@@ -61,18 +61,22 @@ export default class StatePage extends React.Component {
                         <li key={`foodInsecurity${state.stateId}`}>Household Food Insecurity Rate: {state.foodInsecurity}%</li>
                     </div>
                 </div>
-                <Pie
-                    data={electionChartData}
-                    width={100}
-                    height={100}
-                    options={{ maintainAspectRatio: true }}
-                />
-                <Pie
-                    data={raceChartData}
-                    width={50}
-                    height={50}
-                    options={{ maintainAspectRatio: true }}
-                />
+                <div className="stateChartContainer">
+                    <Pie
+                        data={electionChartData}
+                        // width={10}
+                        // height={10}
+                        options={{ maintainAspectRatio: false, responsive: true }}
+                    />
+                </div>
+                <div className="stateChartContainer">
+                    <Pie
+                        data={raceChartData}
+                        // width={10}
+                        // height={10}
+                        options={{ maintainAspectRatio: false, responsive: true }}
+                    />
+                </div>
             </div>
         )
     }

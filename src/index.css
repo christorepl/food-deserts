@@ -130,6 +130,37 @@ button:hover {
   cursor: pointer;
 }
 
+.statePageContainer {
+  background-color: rgba(110, 107, 107, 0.354);
+  display: flex;
+  list-style: none;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-style: inset;
+  border-radius: 5px;
+  border-color: gray;
+  width: 100%;
+  flex-flow: column wrap;
+  flex: 1 0 45%
+}
+
+.statePage {
+  display: flex;
+  flex: row wrap;
+}
+
+canvas {
+  flex: 1 !important;
+  display: flex !important;
+  width: 100% !important;
+  height: 80% !important;
+}
+
+.stateChartContainer {
+  display: flex;
+  height: 100%
+}
+
 .container {
   max-width: 600px;
   margin: 0 auto;
