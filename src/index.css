@@ -91,7 +91,7 @@ header {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
   width: 100%;
-  flex-flow: row;
+  flex-flow: column nowrap;
   justify-items: center;
   justify-content: center;
   align-content: center;
@@ -100,7 +100,7 @@ header {
   border-style: inset;
   border-radius: 5px;
   border-color: gray;
-  flex: 1 0 50%
+  flex: 1 0 45%
 }
 
 ul {
@@ -245,7 +245,7 @@ footer {
   padding-bottom: 10px;
   text-align: center;
 }
-
+/* 
 @media only screen and (min-width: 600px) {
   .stateContainer {
   background-color: rgba(110, 107, 107, 0.354);
@@ -254,7 +254,7 @@ footer {
   flex-flow: column nowrap;
   flex: 1 0 45%
 }
-}
+} */
 
 
 /* @media all and (min-width: 800px) {
