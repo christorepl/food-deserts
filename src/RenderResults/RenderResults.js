@@ -11,7 +11,6 @@ export default class RenderResults extends React.Component {
         let statesResults = stateResults.map(state => {
             return (
                 <>
-                <Link to="/charts">go to charts</Link>
                 <div className="stateContainer">
                     <h1>{state.stateName}</h1>
                     <div className="raceContainer">
@@ -40,6 +39,7 @@ export default class RenderResults extends React.Component {
         })
        return (
            <>
+            <Link to="/charts">go to charts</Link>
            {statesResults}
            </>
        )

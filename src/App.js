@@ -15,6 +15,7 @@ import Charts from './Charts/Charts'
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY - next to each data point, it will say "ranked 16 of 51" - write seeds/ organize tables to make this value equal to the id column
 //IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react]
 //render a component for each state so users can browse all the data at once
+//IMPLEMENT A FEATURE so that you can see the charts of just your search results, and make each stateContainer link to the chart page of the respective state
 
 export default class App extends React.Component{
   static contextType = AppContext;
