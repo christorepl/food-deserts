@@ -1,1 +1,1 @@
-Food Scarcity, Race, Poverty, and Voting Tendencies
+Exploring correlations between factors of poverty, race, voting tendencies

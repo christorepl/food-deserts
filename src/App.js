@@ -16,7 +16,6 @@ import StatePage from './StatePage/StatePage'
 
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY - next to each data point, it will say "ranked 16 of 51" - write seeds/ organize tables to make this value equal to the id column
 //IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react]
-//render a component for each state so users can browse all the data at once
 //IMPLEMENT A FEATURE so that you can see the charts of just your search results, and make each stateContainer link to the chart page of the respective state
 //IMPLEMENT A FEATURE so that in the chart view of the search results, the charts initially are smaller but each section'd off chart contains a link to view a bigger version of that chart. should be pretty easy to do!
 
@@ -80,24 +79,24 @@ export default class App extends React.Component{
             </>
         )
       }
-    }
+  }
     
-    setUsername = username => {
-      //updates state to reflect username written in the login field
-      this.setState({username})
-    }
-    
-    setPassword = password => {
-      //updates state to reflect the password written in the login field
-      this.setState({password})
-    }
-    
-    handleStateSelection = (selectedStates) => {
-      this.setState({
-        selectedStates
-      })
-      // const statesToSearch = this.state.selectedStates.map(state => state.value)
-    }
+  setUsername = username => {
+    //updates state to reflect username written in the login field
+    this.setState({username})
+  }
+  
+  setPassword = password => {
+    //updates state to reflect the password written in the login field
+    this.setState({password})
+  }
+  
+  handleStateSelection = (selectedStates) => {
+    this.setState({
+      selectedStates
+    })
+    // const statesToSearch = this.state.selectedStates.map(state => state.value)
+  }
     
   searchStates = (e) => {
   e.preventDefault()

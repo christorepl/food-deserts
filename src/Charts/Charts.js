@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bar, Doughnut, Pie } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 import AppContext from '../Context/AppContext'
 
 
@@ -14,6 +14,9 @@ export default class Charts extends React.Component {
         const white = this.context.stateResults.map(state => state.raceData.white)
         const hispanic = this.context.stateResults.map(state => state.raceData.hispanic)        
         const asian = this.context.stateResults.map(state => state.raceData.asian)
+        const other = this.context.stateResults.map(state => state.raceData.other)        
+        const mixed = this.context.stateResults.map(state => state.raceData.mixed)        
+
         const foodInsecurity = this.context.stateResults.map(state => state.foodInsecurity)
         const poverty = this.context.stateResults.map(state => state.povertyRate)
         
@@ -97,6 +100,16 @@ export default class Charts extends React.Component {
                     label: 'Asian',
                     data: asian,
                     backgroundColor: 'darkblue'
+                },
+                {
+                    label: 'Mixed Race',
+                    data: mixed,
+                    backgroundColor: 'green'
+                },
+                {
+                    label: 'Other',
+                    data: other,
+                    backgroundColor: 'magenta'
                 }
             ]
         }

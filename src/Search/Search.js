@@ -8,6 +8,10 @@ export default class StateSelection extends React.Component {
     static contextType = AppContext;
 
     render() {
+        const povertyRates = this.context.statesData.map(state => state.raceData)
+        console.log(povertyRates)
+        const nums = Object.values(povertyRates)
+        console.log(nums)
         return(
             <>
                 <form className="ui-form" onSubmit={(e) => this.context.searchStates(e)}>

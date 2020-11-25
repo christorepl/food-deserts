@@ -19,6 +19,8 @@ export default class RenderResults extends React.Component {
                         <li key={`white${state.stateId}`}>White: {state.raceData.white}%</li>
                         <li key={`asian${state.stateId}`}>Asian: {state.raceData.asian}%</li>
                         <li key={`hispanic${state.stateId}`}>Hispanic: {state.raceData.hispanic}%</li>
+                        <li key={`other${state.stateId}`}>Hispanic: {state.raceData.other}%</li>
+                        <li key={`mixed${state.stateId}`}>Hispanic: {state.raceData.mixed}%</li>
                     </div>
                     <div className="electionContainer">
                         <h3>Election Results:</h3>
