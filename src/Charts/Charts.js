@@ -20,8 +20,7 @@ export default class Charts extends React.Component {
         const foodInsecurity = this.context.stateResults.map(state => state.foodInsecurity)
         const poverty = this.context.stateResults.map(state => state.povertyRate)
         
-        const newElection = electionResults.map(state => Object.values(state))
-        console.log(newElection)
+        // const newElection = electionResults.map(state => Object.values(state))
 
         const foodChartData = {
             labels,

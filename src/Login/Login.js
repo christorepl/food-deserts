@@ -1,27 +1,50 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
 
 export default class Login extends React.Component {
     static contextType = AppContext;
 
-    static defaultProps = {
-        setUsername: () => {},
+    onSubmitLogin = async(e) => {
+        e.preventDefault()
+        try {
+
+            const { email, password } = this.context
+            const body = { email, password }
+            const response = await fetch("http://localhost:8001/auth/login", {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(body)
+            })
+
+            const parseRes = await response.json()
+
+            localStorage.setItem("jwt_token", parseRes.jwt_token)
+
+            this.context.loginUser()
+
+        } catch (err){
+            console.error(err.message)
+        }
     }
 
     render() {
         return (
-            <form className="login" onSubmit={e => this.context.authenticateUser(e)}>
-            <label htmlFor="username">Username:</label>
-               <input type="text" name="username" id="username" required onChange={e => this.context.setUsername(e.target.value)}/>
-               <br />
-               <br />
+            <>
+            {!this.context.isAuthenticated
+            ?
+            <form className="forms" onSubmit={e => this.onSubmitLogin(e)}>
+            <label htmlFor="email">E-mail Address:</label>
+               <input type="email" name="email" required onChange={e => this.context.setEmail(e.target.value)}/>
                <label htmlFor="password">Password:</label>
-               <input type="password" name="password" id="password" required onChange={e => this.context.setPassword(e.target.value)}/>
-               <br/>
-               <br/>
-               <button type="submit" className="submit">Login</button>
-               <p>For purposes of this static app, username MUST BE "christopher416" and password MUST BE "password". My fullstack app will use jwt for authentication and user account creation.</p>
+               <input type="password" name="password" required onChange={e => this.context.setPassword(e.target.value)}/>
+               <button type="submit" className="buttons">Login</button>
+               <p>For purposes of this static app, email MUST BE "christopher416@gmail.com" and password MUST BE "password". My fullstack app will use jwt for authentication and user account creation.</p>
             </form>
+            :
+            <Redirect to="/"/>
+            }
+            </>
         )
     }
 }

@@ -1,25 +1,24 @@
 import React from 'react'
 import STORE from '../data/STORE'
 
-// const statesNames = STORE.statesIds.map(state => state.stateName)
-// const statesIds = STORE.statesIds.map(state => state.stateId)
-const usernames = STORE.users.map(user => user.username)
-
 const AppContext = React.createContext({
     statesData: STORE.statesData,
     stateResults: [],
     users: STORE.users,
-    usernames: usernames,
-    isLoggedIn: false,
-    username: '',
+    isAuthenticated: false,
+    email:'',
+    user_name: '',
     password: '',
     selectedStates: [],
+    loginUser: () => {},
+    createAccount: () => {},
     searchStates: () => {},
     handleStateSelection: () => {},
+    setName: () => {},
     setPassword: () => {},
-    setUsername: () => {},
+    setEmail: () => {},
     authenticateUser: () => {},
-    isUserLoggedIn: () => {}
+    logout: () => {}
 })
 
 export default AppContext

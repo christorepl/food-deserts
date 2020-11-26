@@ -1,8 +1,6 @@
 const STORE = {
     "users" : [
-        {"username" : "christopher416", "password": "password"},
-        {"username" : "thinkfuladmin", "password" : "password2"},
-        {"username" : "thinkfuladmin2", "password" : "password23"}
+        {"username" : "christopher416@gmail.com", "password": "password"}
     ], 
     "statesData" : [
         {"stateName" : "Alabama", "abbrev" : "AL", "stateId" : 1, "electionData": {Trump : 62.3, Biden : 36.3}, "raceData" : {white : 66.2, black : 26.5, hispanic : 3.9, asian :  1.3, other: 0.6, mixed: 1.6  }, "povertyRate": 16.8, "foodInsecurity" : 13.9},

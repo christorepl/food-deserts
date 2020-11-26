@@ -6,7 +6,6 @@ export default class State extends React.Component {
     static contextType = AppContext
     
     render() {
-        console.log('state', this.context.statesData)
         const statesData = this.context.statesData.map(state => {
             return (
                 <li key={state.stateId}>

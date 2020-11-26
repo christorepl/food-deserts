@@ -89,6 +89,10 @@ header {
   padding: 0;
 }
 
+h1 {
+  color: purple;
+}
+
 .stateContainer {
   background-color: rgba(110, 107, 107, 0.354);
   display: flex;
@@ -182,7 +186,12 @@ canvas {
   font-size: 12px;
 }
 
-.submitButton{
+.forms {
+  border-style: solid;
+  text-align: center;
+}
+
+.buttons{
   text-align: center;
   margin-top: 15px;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link, Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import Header from './Header/Header'
 import About from './About/About'
 import Footer from './Footer/Footer'
@@ -13,6 +13,7 @@ import Home from './Home/Home'
 import Charts from './Charts/Charts'
 import State from './State/State'
 import StatePage from './StatePage/StatePage'
+import Saved from './Saved/Saved'
 
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY - next to each data point, it will say "ranked 16 of 51" - write seeds/ organize tables to make this value equal to the id column
 //IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react]
@@ -26,134 +27,121 @@ export default class App extends React.Component{
     statesData: {},
     selectedStates: [],
     stateResults: [],
-    isLoggedIn: false,
+    isAuthenticated: false,
     users: {},
-    usernames: [],
-    username: null,
+    user_name: null,
+    email: null,
     password: null
   }
 
   async componentDidMount () {
-    const isLoggedIn = this.context.isLoggedIn
+    const isAuthenticated = this.context.isAuthenticated
     const statesData = this.context.statesData
     const selectedStates = this.context.selectedStates
     const stateResults = this.context.stateResults
     const users = this.context.users
-    const usernames = this.context.usernames
-    const username = this.context.username
+    const user_name = this.context.user_name
+    const email = this.context.email
     const password = this.context.password
-    this.setState({isLoggedIn, users, username, password, statesData, stateResults, selectedStates, usernames})
-  }
-
-  
-  isUserLoggedIn = (loginState) => {
-    //conditional rendering for if the user is logged in or not. logged in users see a logout/ saved searches button and users not logged in see login/ create account buttons.
-    if(!loginState) {
-      return (
-        <>
-                <Link to='/login'>
-                    <span className="sign-in-out">
-                    Login
-                    </span>
-                </Link>
-                <Link to='/create-account'>
-                    <span className="sign-up-saved">
-                    Create Account
-                    </span>
-                </Link>
-            </>
-        )
-      } else {
-        return (
-          <>
-                <Link to="/">
-                    <span className="sign-in-out" onClick={() => this.setState({isLoggedIn: false})}>
-                        Logout
-                    </span>
-                </Link>
-                <Link to="/saved-searches">
-                    <span className="sign-up-saved">
-                        View Saved Searches
-                    </span>
-                </Link>
-            </>
-        )
-      }
+    this.setState({isAuthenticated, users, user_name, email, password, statesData, stateResults, selectedStates})
   }
     
-  setUsername = username => {
-    //updates state to reflect username written in the login field
-    this.setState({username})
+  setEmail = email => {
+    //updates state to reflect name written in the login field or create account field
+    this.setState({email})
   }
   
+  setName = user_name => {
+    //update state to reflect name in respective forms
+    this.setState({user_name})
+  }
+
   setPassword = password => {
-    //updates state to reflect the password written in the login field
+    //updates state to reflect the password written in the login field or create account field
     this.setState({password})
   }
   
-  handleStateSelection = (selectedStates) => {
+  handleStateSelection = selectedStates => {
     this.setState({
       selectedStates
     })
     // const statesToSearch = this.state.selectedStates.map(state => state.value)
   }
+
+  // async createAccount (e) {
+  //   e.preventDefault()
+
+  //   try {
+  //     console.log(this.context)
+  //     console.log(this.state)
+  //     const { email, name, password } = this.context
+  //     const body = { email, name, password }
+
+  //     console.log(body)
+
+  //     const response = await fetch("http://localhost:8001/auth/register", {
+  //       method: "POST",
+  //       headers: {"Content-Type": "application/json"},
+  //       body: JSON.stringify(body)
+  //     })
+
+  //     const parseRes = await response.json()
+
+  //     console.log(parseRes)
+
+  //   } catch(err) {
+  //     console.error(err.message)
+  //   }
+  // }
     
-  searchStates = (e) => {
-  e.preventDefault()
-  const statesToSearch = this.state.selectedStates.map(state => state.value)
-  const statesData = this.state.statesData
-  this.setState({stateResults: statesData.filter(state => statesToSearch.includes(state.stateId))})
+  searchStates = e => {
+    e.preventDefault()
+    const statesToSearch = this.state.selectedStates.map(state => state.value)
+    const statesData = this.state.statesData
+    this.setState({stateResults: statesData.filter(state => statesToSearch.includes(state.stateId))})
   }
 
-  authenticateUser = (e) => {
+  authenticateUser = e => {
     e.preventDefault();
-    const enteredUsername = this.state.username
+    const enteredEmail = this.state.email
     const enteredPassword = this.state.password
-    if (enteredUsername === "christopher416" && enteredPassword === "password") {
+    if (enteredEmail === "christopher416@gmail.com" && enteredPassword === "password") {
       console.log('logging in')
       this.loginUser(true)
-    } else if (enteredUsername !== "christopher416" || enteredPassword !== "password" ) {
-      alert('invalid username or password')
+    } else {
+      alert('invalid name or password')
     }
-    // const usernames = this.state.users.map(users => users)
-    // console.log(usernames)
-    // const passwords = this.state.users.map(users => users[1])
-    // const authenticatedUsername = usernames.map(users => users[enteredUsername])
-    // console.log(authenticatedUsername)
-
-    
-    // if(authenticatedUsername.length === 0) {
-    //   return alert('Invalid username')
-    // } else {
-    //   console.log('hey')
-    // }
-
   }
 
   loginUser = () => {
-    //authenticateUser calls this function if a users passes authentication. resets the username/ password fields and logins the user.
-    this.setState({password: '', username: '', isLoggedIn: true})
-    console.log(this.props.history)
+    //authenticateUser calls this function if a users passes authentication. resets the name/ password fields and logins the user.
+    this.setState({password: null, name: null, isAuthenticated: true})
+  }
+
+  logout = () => {
+    this.setState({isAuthenticated: false})
   }
 
   render() {
     const value = {
-      isLoggedIn: this.state.isLoggedIn,
+      isAuthenticated: this.state.isAuthenticated,
       statesData: this.state.statesData,
       users: this.state.users,
-      usernames: this.state.usernames,
-      username: this.state.username,
+      user_name: this.state.user_name,
+      email: this.state.email,
       password: this.state.password,
       selectedStates: this.state.selectedStates,
       stateResults: this.state.stateResults,
+      createAccount: this.createAccount,
+      loginUser: this.loginUser,
       searchStates: this.searchStates,
       handleStateSelection: this.handleStateSelection,
       setPassword: this.setPassword,
-      setUsername: this.setUsername,
+      setName: this.setName,
+      setEmail: this.setEmail,
       authenticateUser: this.authenticateUser,
-      isUserLoggedIn: this.isUserLoggedIn
+      logout: this.logout
     }
-    console.log('app', this.context.statesData)
     return(
       <div>
       <AppContext.Provider value={value}>
@@ -201,6 +189,10 @@ export default class App extends React.Component{
       <Route
         exact path="/login"
         component={Login}
+      />
+      <Route 
+        exact path="/saved-searches"
+        component={Saved}
       />
       </AppContext.Provider>
       <Footer />

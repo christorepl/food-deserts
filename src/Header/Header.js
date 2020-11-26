@@ -1,17 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
-import CheckLogin from '../CheckLogin/CheckLogin'
+import UserUI from '../UserUI/UserUI'
 
 export default class Header extends React.Component {
     static contextType = AppContext
-    isLoggedIn = this.context.isLoggedIn
+    isAuthenticated = this.context.isAuthenticated
 
 
     render() {
     
         return (
             <header>
+            <Link to="/create-account">
+              create account
+            </Link>
+            <Link to="/saved-searches">
+              saved
+            </Link>
+            <Link to="/login">
+              login
+            </Link>
             <div className="background">
               <span className="title">Food Security, Race, Poverty and Voting Tendencies in the U.S.</span>
               <nav className="help-menu">
@@ -39,7 +48,7 @@ export default class Header extends React.Component {
                   <div className="help-item">Contact</div>
                 </Link>
               </nav>
-              <nav className="membership"><CheckLogin /></nav>
+              <nav className="membership"><UserUI /></nav>
             </div>
           </header>      
         )
