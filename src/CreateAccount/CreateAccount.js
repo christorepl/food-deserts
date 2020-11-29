@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
-
+import API_ENDPOINT from '../config'
 
 export default class CreateAccount extends React.Component {
     static contextType = AppContext
@@ -13,7 +13,7 @@ export default class CreateAccount extends React.Component {
           const { email, user_name, password } = this.context
           const body = { email, user_name, password }
         
-          const response = await fetch("http://localhost:8001/auth/register", {
+          const response = await fetch(API_ENDPOINT + "/auth/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)
@@ -21,9 +21,15 @@ export default class CreateAccount extends React.Component {
     
           const parseRes = await response.json()
     
-          localStorage.setItem("jwt_token", parseRes.jwt_token)
-    
-          this.context.loginUser()
+          // localStorage.setItem("jwt_token", parseRes.jwt_token)
+          
+          if(parseRes.jwt_token) {
+            localStorage.setItem("jwt_token", parseRes.jwt_token)
+            this.context.loginUser('create')
+        }  else {
+            this.context.loginUser(parseRes)
+        }
+
 
         } catch(err) {
           console.error(err.message)
@@ -59,7 +65,7 @@ export default class CreateAccount extends React.Component {
 
                 </>
                 : 
-                <Redirect to="/"/>}
+                <Redirect to="/saved-searches"/>}
             </div>
         )
     }

@@ -2,22 +2,25 @@ import React from 'react'
 import STORE from '../data/STORE'
 
 const AppContext = React.createContext({
-    statesData: STORE.statesData,
+    statesData: [],
+    saveData: [],
     stateResults: [],
     users: STORE.users,
     isAuthenticated: false,
-    email:'',
-    user_name: '',
-    password: '',
+    saveName: null,
+    email: null,
+    user_name: null,
+    password: null,
     selectedStates: [],
+    saveSearch: () => {},
+    setSaveName: () => {},
     loginUser: () => {},
     createAccount: () => {},
-    searchStates: () => {},
+    fetchFips: () => {},
     handleStateSelection: () => {},
     setName: () => {},
     setPassword: () => {},
     setEmail: () => {},
-    authenticateUser: () => {},
     logout: () => {}
 })
 

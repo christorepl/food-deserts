@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
+import API_ENDPOINT from '../config'
 
 export default class Login extends React.Component {
     static contextType = AppContext;
@@ -11,17 +12,20 @@ export default class Login extends React.Component {
 
             const { email, password } = this.context
             const body = { email, password }
-            const response = await fetch("http://localhost:8001/auth/login", {
+            const response = await fetch(API_ENDPOINT + "auth/login", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)
             })
 
             const parseRes = await response.json()
-
-            localStorage.setItem("jwt_token", parseRes.jwt_token)
-
-            this.context.loginUser()
+            
+            if(parseRes.jwt_token) {
+                localStorage.setItem("jwt_token", parseRes.jwt_token)
+                this.context.loginUser('login')
+            }  else {
+                this.context.loginUser(parseRes)
+            }
 
         } catch (err){
             console.error(err.message)
@@ -42,7 +46,7 @@ export default class Login extends React.Component {
                <p>For purposes of this static app, email MUST BE "christopher416@gmail.com" and password MUST BE "password". My fullstack app will use jwt for authentication and user account creation.</p>
             </form>
             :
-            <Redirect to="/"/>
+            <Redirect to="/saved-searches"/>
             }
             </>
         )

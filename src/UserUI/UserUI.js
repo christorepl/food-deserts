@@ -25,7 +25,7 @@ export default class CheckLogin extends React.Component {
           :
           <>
                 <Link to="/">
-                    <span className="sign-in-out" onClick={() => this.context.logout()}>
+                    <span className="sign-in-out" onClick={(e) => this.context.logout(e)}>
                         Logout
                     </span>
                 </Link>

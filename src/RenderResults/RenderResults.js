@@ -42,7 +42,26 @@ export default class RenderResults extends React.Component {
         
        return (
            <>
-            {statesResults.length ? <Link to="/charts"><button type="button">Go to Charts</button></Link> : <></>}
+            {statesResults.length 
+            ?
+            <>
+            <Link to="/charts">
+            <button type="button">
+            Go to Charts
+            </button>
+            </Link>
+            <form className="save-search" onSubmit={e => this.conext.saveSearch(e)}>
+            <label htmlFor="save-name">Name of Save:</label>
+            <input type="text" name="save-name" onChange={e => this.context.setSaveName(e.target.value)} required/>
+            <button type="button">
+                Save this Search
+            </button>
+            </form>
+            </>
+            :
+            <>
+            </>
+            }
             {statesResults}
            </>
        )

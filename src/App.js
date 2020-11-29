@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import API_ENDPOINT from './config'
 import Header from './Header/Header'
 import About from './About/About'
 import Footer from './Footer/Footer'
@@ -13,39 +15,68 @@ import Home from './Home/Home'
 import Charts from './Charts/Charts'
 import State from './State/State'
 import StatePage from './StatePage/StatePage'
-import Saved from './Saved/Saved'
+import Saved from './SavedList/SavedList'
+import 'react-toastify/dist/ReactToastify.css'
 
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY - next to each data point, it will say "ranked 16 of 51" - write seeds/ organize tables to make this value equal to the id column
 //IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react]
 //IMPLEMENT A FEATURE so that you can see the charts of just your search results, and make each stateContainer link to the chart page of the respective state
 //IMPLEMENT A FEATURE so that in the chart view of the search results, the charts initially are smaller but each section'd off chart contains a link to view a bigger version of that chart. should be pretty easy to do!
 
+toast.configure()
+
 export default class App extends React.Component{
   static contextType = AppContext;
 
   state = {
-    statesData: {},
+    statesData: [],
+    saveData: [],
     selectedStates: [],
     stateResults: [],
     isAuthenticated: false,
-    users: {},
+    saveName: null,
     user_name: null,
     email: null,
     password: null
   }
 
+  toastifyParams = {autoClose: 2000, hideProgressBar: true, position: "bottom-left", pauseOnHover: false, pauseOnFocusLoss: false}
+
+  async checkAuth () {
+    try {
+      const response = await fetch(API_ENDPOINT + "auth/verify", {
+        method: "GET",
+        headers: {jwt_token: localStorage.jwt_token}
+      })
+      const parseRes = await response.json()
+      parseRes === true ? this.setState({isAuthenticated: true}) : this.setState({isAuthenticated: false})
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
   async componentDidMount () {
     const isAuthenticated = this.context.isAuthenticated
     const statesData = this.context.statesData
+    const saveData = this.context.saveData
     const selectedStates = this.context.selectedStates
     const stateResults = this.context.stateResults
-    const users = this.context.users
+    const saveName = this.context.saveName
     const user_name = this.context.user_name
     const email = this.context.email
     const password = this.context.password
-    this.setState({isAuthenticated, users, user_name, email, password, statesData, stateResults, selectedStates})
+    this.setState({isAuthenticated, user_name, saveName, email, password, statesData, saveData, stateResults, selectedStates})
+    this.checkAuth()
   }
-    
+  
+  saveSearch = results => {
+
+  }
+  
+  setSaveName = saveName => {
+    this.setState({saveName})
+  }
+
   setEmail = email => {
     //updates state to reflect name written in the login field or create account field
     this.setState({email})
@@ -65,81 +96,62 @@ export default class App extends React.Component{
     this.setState({
       selectedStates
     })
-    // const statesToSearch = this.state.selectedStates.map(state => state.value)
   }
-
-  // async createAccount (e) {
-  //   e.preventDefault()
-
-  //   try {
-  //     console.log(this.context)
-  //     console.log(this.state)
-  //     const { email, name, password } = this.context
-  //     const body = { email, name, password }
-
-  //     console.log(body)
-
-  //     const response = await fetch("http://localhost:8001/auth/register", {
-  //       method: "POST",
-  //       headers: {"Content-Type": "application/json"},
-  //       body: JSON.stringify(body)
-  //     })
-
-  //     const parseRes = await response.json()
-
-  //     console.log(parseRes)
-
-  //   } catch(err) {
-  //     console.error(err.message)
-  //   }
-  // }
-    
-  searchStates = e => {
+  
+  fetchFips = (e) => {
+    console.log('fetching')
     e.preventDefault()
+    // const mappedFips = this.state.selectedStates.map(state => {
+    //   return {"fips": state.value}
+    // })
+    // console.log(mappedFips)
     const statesToSearch = this.state.selectedStates.map(state => state.value)
-    const statesData = this.state.statesData
-    this.setState({stateResults: statesData.filter(state => statesToSearch.includes(state.stateId))})
+    console.log(statesToSearch)
+    // const headers = statesToSearch.
   }
 
-  authenticateUser = e => {
-    e.preventDefault();
-    const enteredEmail = this.state.email
-    const enteredPassword = this.state.password
-    if (enteredEmail === "christopher416@gmail.com" && enteredPassword === "password") {
-      console.log('logging in')
-      this.loginUser(true)
+  loginUser = (attempt) => {
+    // logs in the user
+    if (attempt === 'login'){
+      toast.success('Login successful', this.toastifyParams)
+      this.setState({ isAuthenticated: true })
+    } else if (attempt === 'create') {
+      toast.success('Account creation successful! You are now logged in.', this.toastifyParams)
+      this.setState({ isAuthenticated: true})
     } else {
-      alert('invalid name or password')
+      toast.info(attempt, this.toastifyParams)
+      this.setState({ isAuthenticated: false })
     }
   }
 
-  loginUser = () => {
-    //authenticateUser calls this function if a users passes authentication. resets the name/ password fields and logins the user.
-    this.setState({password: null, name: null, isAuthenticated: true})
-  }
-
-  logout = () => {
-    this.setState({isAuthenticated: false})
+  logout = (e) => {
+    e.preventDefault()
+    localStorage.removeItem("jwt_token")
+    toast.info('Logout successful', this.toastifyParams)
+    this.setState({ isAuthenticated: false })
   }
 
   render() {
     const value = {
       isAuthenticated: this.state.isAuthenticated,
       statesData: this.state.statesData,
-      users: this.state.users,
+      saveData: this.state.saveData,
       user_name: this.state.user_name,
+      saveName: this.state.saveName,
       email: this.state.email,
       password: this.state.password,
       selectedStates: this.state.selectedStates,
       stateResults: this.state.stateResults,
       createAccount: this.createAccount,
+      toastNotifications: this.toastNotifications,
+      saveSearch: this.saveSearch,
+      setSaveName: this.setSaveName,
       loginUser: this.loginUser,
-      searchStates: this.searchStates,
+      fetchFips: this.fetchFips,
       handleStateSelection: this.handleStateSelection,
       setPassword: this.setPassword,
       setName: this.setName,
       setEmail: this.setEmail,
-      authenticateUser: this.authenticateUser,
       logout: this.logout
     }
     return(
