@@ -1,11 +1,10 @@
 import React from 'react'
-import STORE from '../data/STORE'
 
 const AppContext = React.createContext({
     statesData: [],
+    allStates: [],
     saveData: [],
     stateResults: [],
-    users: STORE.users,
     isAuthenticated: false,
     saveName: null,
     email: null,

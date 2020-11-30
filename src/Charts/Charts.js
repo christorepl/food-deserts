@@ -6,20 +6,47 @@ import AppContext from '../Context/AppContext'
 export default class Charts extends React.Component {
     static contextType = AppContext
     render() {
-        const labels = this.context.stateResults.map(state => state.abbrev)
-        const electionResults = this.context.stateResults.map(state => state.electionData)
-        const trump = this.context.stateResults.map(state => state.electionData.Trump)
-        const biden = this.context.stateResults.map(state => state.electionData.Biden)
-        const black = this.context.stateResults.map(state => state.raceData.black)
-        const white = this.context.stateResults.map(state => state.raceData.white)
-        const hispanic = this.context.stateResults.map(state => state.raceData.hispanic)        
-        const asian = this.context.stateResults.map(state => state.raceData.asian)
-        const other = this.context.stateResults.map(state => state.raceData.other)        
-        const mixed = this.context.stateResults.map(state => state.raceData.mixed)        
+        const labels = this.context.stateResults.map(state => state[0].state_abbrev)
+        // const electionResults = this.context.stateResults.map(state => state[0].trump && state[0].biden)
+        const trump = this.context.stateResults.map(state => state[0].trump)
+        const biden = this.context.stateResults.map(state => state[0].biden)
+        const black = this.context.stateResults.map(state => state[0].black)
+        const white = this.context.stateResults.map(state => state[0].white)
+        const hispanic = this.context.stateResults.map(state => state[0].hispanic)        
+        const asian = this.context.stateResults.map(state => state[0].asian)
+        const other = this.context.stateResults.map(state => state[0].other)        
+        const mixed = this.context.stateResults.map(state => state[0].mixed_race)        
+        const foodInsecurity = this.context.stateResults.map(state => state[0].food_insecurity_rate)
+        const poverty = this.context.stateResults.map(state => state[0].poverty_rate)
+        // const covidInfectionRate = (new Intl.NumberFormat().format((this.context.stateResults.map(state => (state[0].covid_infections/state[0].pop)*100))))
+        // const covidDeathRate = (new Intl.NumberFormat().format((this.context.stateResults.map(state => (state[0].covid_deaths/state[0].covid_infections)*100))))
+        const covidInfections = this.context.stateResults.map(state => state[0].covid_infections)
+        const population = this.context.stateResults.map(state => state[0].pop)
+        const covidDeaths = this.context.stateResults.map(state => state[0].covid_deaths)
+        let covidRates = []
+        for (let i = 0; i < covidInfections.length; i++) {
+            covidRates.push(new Intl.NumberFormat().format(covidInfections[i]/population[i] * 100))
+        }
+        let covidDeathRate = []
+        for (let i =0; i < covidInfections.length; i++) {
+            covidDeathRate.push(new Intl.NumberFormat().format(covidDeaths[i]/covidInfections[i] * 100))
+        }
 
-        const foodInsecurity = this.context.stateResults.map(state => state.foodInsecurity)
-        const poverty = this.context.stateResults.map(state => state.povertyRate)
-        
+        const covidChartData = {
+            labels,
+            datasets: [
+                {
+                    label: 'Rate of C19 Infection',
+                    data: covidRates,
+                    backgroundColor: 'yellow'
+                },
+                {
+                    label: 'Fatality Rate of C19 Infection',
+                    data: covidDeathRate,
+                    backgroundColor: 'green'
+                }
+            ]
+        }
         // const newElection = electionResults.map(state => Object.values(state))
 
         const foodChartData = {
@@ -168,6 +195,14 @@ export default class Charts extends React.Component {
                     height={20}
                     options={{ maintainAspectRatio: true }}
                 />
+                </div>
+                <div className="covidChart">
+                    <Bar
+                        data={covidChartData}
+                        width={1}
+                        height={1}
+                        options={{ maintainAspectRatio: true }}
+                    />
                 </div>
                 <div className="povertyChart">
                 <Bar

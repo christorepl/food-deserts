@@ -12,15 +12,6 @@ export default class Header extends React.Component {
     
         return (
             <header>
-            <Link to="/create-account">
-              create account
-            </Link>
-            <Link to="/saved-searches">
-              saved
-            </Link>
-            <Link to="/login">
-              login
-            </Link>
             <div className="background">
               <span className="title">Food Security, Race, Poverty and Voting Tendencies in the U.S.</span>
               <nav className="help-menu">

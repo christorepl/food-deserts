@@ -30,6 +30,7 @@ export default class App extends React.Component{
 
   state = {
     statesData: [],
+    allStates: [],
     saveData: [],
     selectedStates: [],
     stateResults: [],
@@ -56,16 +57,15 @@ export default class App extends React.Component{
   }
 
   async componentDidMount () {
-    const isAuthenticated = this.context.isAuthenticated
-    const statesData = this.context.statesData
-    const saveData = this.context.saveData
-    const selectedStates = this.context.selectedStates
-    const stateResults = this.context.stateResults
-    const saveName = this.context.saveName
-    const user_name = this.context.user_name
-    const email = this.context.email
-    const password = this.context.password
-    this.setState({isAuthenticated, user_name, saveName, email, password, statesData, saveData, stateResults, selectedStates})
+    const { password, email, user_name, saveName, stateResults, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
+    this.setState({isAuthenticated, user_name, saveName, email, password, allStates, statesData, saveData, stateResults, selectedStates})
+    try {
+      const response = await fetch(API_ENDPOINT + 'api/state/all')
+      const stateResults = await response.json()
+      this.context.allStates = stateResults
+  } catch (error) {
+      console.error(error.message)
+  }
     this.checkAuth()
   }
   
@@ -98,17 +98,31 @@ export default class App extends React.Component{
     })
   }
   
-  fetchFips = (e) => {
-    console.log('fetching')
+  fetchFips = async(e) => {
     e.preventDefault()
-    // const mappedFips = this.state.selectedStates.map(state => {
-    //   return {"fips": state.value}
-    // })
-    // console.log(mappedFips)
+    //create an array that contains the fips code for each state the user wants to search
     const statesToSearch = this.state.selectedStates.map(state => state.value)
-    console.log(statesToSearch)
-    // const headers = statesToSearch.
+
+    //this function will build the query string for the actual fetch
+    function encodeQueryData(data) {
+      const query = []
+      for (let d in data)
+        query.push('fips=' + data[d])
+     return query.join('&')
+   }
+
+   const query = encodeQueryData(statesToSearch)
+   const queryURL = API_ENDPOINT + "api/state/search?" + query
+
+    try {
+      const response = await fetch(queryURL)
+      const stateResults = await response.json()
+      this.setState({stateResults})
+    } catch (error) {
+      console.error(error.message)
+    }
   }
+
 
   loginUser = (attempt) => {
     // logs in the user
