@@ -10,11 +10,12 @@ export default class State extends React.Component {
     static contextType = AppContext
 
     render() {
-        const statesData = this.context.statesData.map(state => {
+        console.log('poop', this.context.allStates)
+        const statesData = this.context.allStates.map(state => {
             return (
-                <li key={state[0].fips}>
-                    <Link to={`/state/${state[0].fips}`}>
-                        {state[0].state_name}
+                <li key={state.fips}>
+                    <Link to={`/state/${state.fips}`}>
+                        {state.state_name}
                     </Link>
                 </li>
             )

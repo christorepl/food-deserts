@@ -56,17 +56,22 @@ export default class App extends React.Component{
     }
   }
 
-  async componentDidMount () {
-    const { password, email, user_name, saveName, stateResults, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
-    this.setState({isAuthenticated, user_name, saveName, email, password, allStates, statesData, saveData, stateResults, selectedStates})
+  async updateCovidData () {
     try {
       const response = await fetch(API_ENDPOINT + 'api/state/all')
-      const stateResults = await response.json()
-      this.context.allStates = stateResults
+      const allStates = await response.json()
+      this.setState({allStates})
   } catch (error) {
       console.error(error.message)
   }
+
+  }
+
+  async componentDidMount () {
+    const { password, email, user_name, saveName, stateResults, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
+    this.setState({isAuthenticated, user_name, saveName, email, password, allStates, statesData, saveData, stateResults, selectedStates})
     this.checkAuth()
+    this.updateCovidData()
   }
   
   saveSearch = results => {
@@ -148,6 +153,7 @@ export default class App extends React.Component{
   render() {
     const value = {
       isAuthenticated: this.state.isAuthenticated,
+      allStates: this.state.allStates,
       statesData: this.state.statesData,
       saveData: this.state.saveData,
       user_name: this.state.user_name,

@@ -3,7 +3,6 @@ import AppContext from '../Context/AppContext'
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes'
 import MenuOptions from '../MenuOptions/MenuOptions'
 import RenderResults from '../RenderResults/RenderResults'
-import API_ENDPOINT from '../config'
 
 export default class StateSelection extends React.Component {
     static contextType = AppContext;
