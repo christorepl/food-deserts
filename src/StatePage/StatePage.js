@@ -102,6 +102,19 @@ export default class StatePage extends React.Component {
             ]
         }
 
+        const povertyData = [currentState.poverty_rate, 100 - currentState.poverty_rate]
+
+        const povertyChartData = {
+            labels: ['Poverty', 'Not Poverty'],
+            datasets: [
+                {
+                    label: 'Poverty Rate',
+                    data: povertyData,
+                    backgroundColor: ['brown', 'green']
+                }
+            ]
+        }
+
         return (
             <>
             {currentState
@@ -159,6 +172,11 @@ export default class StatePage extends React.Component {
                     />
                     <Pie
                         data={raceChartData}
+                        width={50}
+                        options={{ maintainAspectRatio: true }}
+                    />
+                    <Pie
+                        data={povertyChartData}
                         width={50}
                         options={{ maintainAspectRatio: true }}
                     />
