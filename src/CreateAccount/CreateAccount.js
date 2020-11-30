@@ -13,7 +13,7 @@ export default class CreateAccount extends React.Component {
           const { email, user_name, password } = this.context
           const body = { email, user_name, password }
         
-          const response = await fetch(API_ENDPOINT + "/auth/register", {
+          const response = await fetch(API_ENDPOINT + "auth/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)

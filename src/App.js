@@ -191,7 +191,7 @@ export default class App extends React.Component{
         component={State}
       />
       <Route 
-        path="/state/:stateId"
+        path="/state/:fips"
         component={StatePage}
       />
       <Route
