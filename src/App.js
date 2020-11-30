@@ -41,7 +41,7 @@ export default class App extends React.Component{
     password: null
   }
 
-  toastifyParams = {autoClose: 2000, hideProgressBar: true, position: "bottom-left", pauseOnHover: false, pauseOnFocusLoss: false}
+  toastifyParams = {autoClose: 2500, hideProgressBar: true, position: "bottom-left", pauseOnHover: false, pauseOnFocusLoss: false}
 
   async checkAuth () {
     try {
@@ -187,7 +187,7 @@ export default class App extends React.Component{
         component={Charts}
       />
       <Route
-        path="/states"
+        path="/state-selection"
         component={State}
       />
       <Route 

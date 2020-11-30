@@ -10,7 +10,6 @@ export default class State extends React.Component {
     static contextType = AppContext
 
     render() {
-        console.log('poop', this.context.allStates)
         const statesData = this.context.allStates.map(state => {
             return (
                 <li key={state.fips}>
@@ -23,7 +22,6 @@ export default class State extends React.Component {
     
         return(
             <div className="stateData">
-            'hiya'
                 {statesData}
             </div>
         )

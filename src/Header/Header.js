@@ -23,7 +23,7 @@ export default class Header extends React.Component {
                   <div className="help-item">Search</div>
                 </Link>
                 |
-                <Link to="/states">
+                <Link to="/state-selection">
                   <div className="help-item">Inspect Individual States</div>
                 </Link>
                 |
