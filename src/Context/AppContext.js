@@ -2,6 +2,7 @@ import React from 'react'
 
 const AppContext = React.createContext({
     statesData: [],
+    userSaves: [],
     allStates: [],
     saveData: [],
     stateResults: [],
@@ -11,6 +12,7 @@ const AppContext = React.createContext({
     user_name: null,
     password: null,
     selectedStates: [],
+    setUserSaves: () => {},
     saveSearch: () => {},
     setSaveName: () => {},
     loginUser: () => {},

@@ -34,21 +34,16 @@ export default class CreateAccount extends React.Component {
         } catch(err) {
           console.error(err.message)
         }
-      }
+    }
     
 
     render() {
-
-        // let {name, email, password} = this.context
-
-
         return(
             <div className="ui-info">
                 {!this.context.isAuthenticated 
                 ?
                 <>
                 <p>point of making an account? create account page here....</p> 
-
                 <h1>Create Account</h1>
                 <form className="create-account" onSubmit={e => this.createAccount(e)}>
                     <label htmlFor="user_name">Name:</label>
@@ -59,10 +54,6 @@ export default class CreateAccount extends React.Component {
                     <input type="password" name="password" onChange={e => this.context.setPassword(e.target.value)}required/>
                     <button className="buttons" type="submit">Create Account</button>
                 </form>
-
-
-
-
                 </>
                 : 
                 <Redirect to="/saved-searches"/>}

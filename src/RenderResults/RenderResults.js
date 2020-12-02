@@ -14,6 +14,9 @@ export default class RenderResults extends React.Component {
                 <>
                 <div className="stateContainer">
                     <h1>{state[0].state_name}</h1>
+                    <Link to={`/state/${state[0].fips}`}>
+                    <p>Inspect this state's data closer</p>
+                    </Link>
                     <h2>Total population: {new Intl.NumberFormat().format(state[0].pop)}</h2>
                     <div className="raceContainer">
                         <h3>Racial Demographics:</h3>
@@ -59,13 +62,6 @@ export default class RenderResults extends React.Component {
             Go to Charts
             </button>
             </Link>
-            <form className="save-search" onSubmit={e => this.conext.saveSearch(e)}>
-            <label htmlFor="save-name">Name of Save:</label>
-            <input type="text" name="save-name" onChange={e => this.context.setSaveName(e.target.value)} required/>
-            <button type="button">
-                Save this Search
-            </button>
-            </form>
             </>
             :
             <>
