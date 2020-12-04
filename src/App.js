@@ -53,10 +53,10 @@ export default class App extends React.Component{
       })
       
       const parseRes = await response.json()
-      // console.log(parseRes)
-      this.setUserSaves(parseRes)
       this.setName(parseRes[0].user_name)
-      // console.log('userSaves:', this.context.userSaves)
+      if (parseRes[0].save_name) {
+      this.setState({userSaves: parseRes})
+      }
   } catch (err) {
       console.error(err.message)
   }}
@@ -112,7 +112,7 @@ export default class App extends React.Component{
       
       const parseRes = await response.json()
       /////toastify response\\\\\\\\\\\\\\\\\\\\\\\\
-      this.context.setUserSaves(parseRes)
+      this.setState({userSaves: parseRes})
   } catch (err) {
       console.error(err.message)
   }
@@ -139,19 +139,15 @@ export default class App extends React.Component{
           },
           body: body
       })
-      
+      /////////FIX ME???\\\\\\\\\\\\\
       const parseRes = await response.json()
       console.log(parseRes)
       /////toastify response\\\\\\\\\\\\\\\\\\\\\\\\
-      // this.context.setUserSaves(parseRes)
+      this.setState({userSaves: parseRes})
     } catch (err) {
         console.error(err.message)
     }
 
-  }
-
-  setUserSaves = (userSaves) => {
-    this.setState({userSaves})
   }
 
   saveSearch = async(e) => {
@@ -176,7 +172,8 @@ export default class App extends React.Component{
 
       const parseRes = await response.json()
       console.log(parseRes)
-      //toastify with parseRes\\\\\\\\\\\\\\\\\\\\\\\\\
+      this.populateUserSaves()
+      //toastify with success notification\\\\\\\\\\\\\\\\\\\\\\\\\
       
     } catch(err) {
       console.error(err.message)
@@ -281,7 +278,6 @@ export default class App extends React.Component{
       updateSaveName: this.updateSaveName,
       deleteSave: this.deleteSave,
       handleSavedSearch: this.handleSavedSearch,
-      setUserSaves: this.setUserSaves,
       saveSearch: this.saveSearch,
       setSaveName: this.setSaveName,
       loginUser: this.loginUser,

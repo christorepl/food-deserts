@@ -5,10 +5,22 @@ import AppContext from '../Context/AppContext'
 export default class UserSaves extends React.Component {
     static contextType = AppContext
 
-    async componentDidMount() {
+    async componentDidMount () {
         console.log('saves did mount')
-        console.log(this.context.user_name)
         console.log(this.context.userSaves.length)
+        try {
+            const response = await fetch(API_ENDPOINT + "api/save/user_save/", {
+                method: "GET",
+                headers: {jwt_token: localStorage.jwt_token},
+            })
+            
+            const parseRes = await response.json()
+            this.context.setUserSaves(parseRes)
+            this.context.setName(parseRes[0].user_name)
+        } catch (err) {
+            console.error(err.message)
+        }
+
     }
 
     runSearch = async(fips, e) => {
@@ -22,19 +34,14 @@ export default class UserSaves extends React.Component {
         await this.context.handleSavedSearch(fipsArray, e)
     }
 
-    render() {
+    listSaves = () => { 
         console.log(this.context.userSaves.length)
         console.log(this.context.userSaves)
-        return(
-            <>
-            <h1>{this.context.user_name}'s Dashboard</h1>
-            {this.context.userSaves.length
-            ?
-            <>
-            {this.context.userSaves.map(save => {
+        if (this.context.userSaves.length > 0) {
+        this.context.userSaves.map(save => {
             return (
                 <div className="userSave" key={save.save_name}>
-                    {save.save_name} - {save.state_names.replaceAll('"', '').replaceAll('[', '').replaceAll(']', '').replaceAll(',', ', ')}
+                    {save.save_name} - {save.state_name.replaceAll('"', '').replaceAll('[', '').replaceAll(']', '').replaceAll(',', ', ')}
                     <button type="submit" onClick={(e) => this.runSearch(save.fips, e)}>Run this search</button>
                     <button type="submit" onClick={(e) => this.context.deleteSave(save.save_name, e)}>Delete this save</button>
                     <form className="update-save" onSubmit={(e) => this.context.updateSaveName(e, save.save_name)}>
@@ -46,12 +53,24 @@ export default class UserSaves extends React.Component {
                         </fieldset>
                     </form>
                 </div>
-            )})}
-            </>
-            :
-            <p>You do not have any saved searches. Save a search and they will be in your dashboard.</p>
-            }
+            )
+        })
+        } else {
+            return (
+                <p>You do not have any saved searches.</p>
+            )
+        }
+    }
+    
+    render() {
+        return (
+            <>
+            <h1>{this.context.user_name}'s Dashboard</h1>
+            {this.listSaves()}
             </>
         )
     }
 }
+
+
+

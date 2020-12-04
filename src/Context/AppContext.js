@@ -16,7 +16,6 @@ const AppContext = React.createContext({
     updateSaveName: () => {},
     deleteSave: () => {},
     handleSavedSearch: () => {},
-    setUserSaves: () => {},
     saveSearch: () => {},
     setSaveName: () => {},
     loginUser: () => {},
