@@ -60,7 +60,6 @@ export default class UserSaves extends React.Component {
     null
     
     render() {
-        console.log('userSaves: ', this.context.userSaves)
         return (
             <>
             <h1>{this.context.user_name}'s Dashboard</h1>
