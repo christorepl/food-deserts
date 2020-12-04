@@ -7,7 +7,6 @@ export default class RenderResults extends React.Component {
 
     render() {
         const { stateResults } = this.context
-        // stateResults[0]
 
         let statesResults = stateResults.map(state => {
             return (

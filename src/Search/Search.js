@@ -15,6 +15,7 @@ export default class StateSelection extends React.Component {
                     <h1>Select one or more US States </h1>
                     <button type="submit">Perform search</button>
                     <ReactMultiSelectCheckboxes
+                        required
                         options={MenuOptions}
                         value={this.context.selectedStates}
                         onChange={this.context.handleStateSelection}
@@ -22,7 +23,16 @@ export default class StateSelection extends React.Component {
                 </form>
                 {this.context.stateResults.length > 0
                 ?
+                <>
                 <SaveSearchButton />
+                {this.context.selectMessage
+                ?
+                this.context.selectMessage
+                :
+                <>
+                </>
+                }
+                </>
                 :
                 <>
                 </>

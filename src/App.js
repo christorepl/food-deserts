@@ -28,12 +28,14 @@ export default class App extends React.Component{
   static contextType = AppContext;
 
   state = {
+    selectMessage: null,
     statesData: [],
     userSaves: [],
     allStates: [],
     saveData: [],
     selectedStates: [],
     stateResults: [],
+    new_save_name: null,
     isAuthenticated: false,
     saveName: null,
     user_name: null,
@@ -43,6 +45,22 @@ export default class App extends React.Component{
 
   toastifyParams = {autoClose: 2500, hideProgressBar: true, position: "bottom-left", pauseOnHover: false, pauseOnFocusLoss: false}
 
+  async populateUserSaves () {
+    try {
+      const response = await fetch(API_ENDPOINT + "api/save/user_save/", {
+          method: "GET",
+          headers: {jwt_token: localStorage.jwt_token},
+      })
+      
+      const parseRes = await response.json()
+      // console.log(parseRes)
+      this.setUserSaves(parseRes)
+      this.setName(parseRes[0].user_name)
+      // console.log('userSaves:', this.context.userSaves)
+  } catch (err) {
+      console.error(err.message)
+  }}
+
   async checkAuth () {
     try {
       const response = await fetch(API_ENDPOINT + "auth/verify", {
@@ -50,7 +68,12 @@ export default class App extends React.Component{
         headers: {jwt_token: localStorage.jwt_token}
       })
       const parseRes = await response.json()
-      parseRes === true ? this.setState({isAuthenticated: true}) : this.setState({isAuthenticated: false})
+      if(parseRes === true) {
+        this.setState({isAuthenticated: true})
+        await this.populateUserSaves()
+      } else {
+        this.setState({isAuthenticated: false})
+      }
     } catch (error) {
       console.error(error.message)
     }
@@ -68,23 +91,98 @@ export default class App extends React.Component{
   }
 
   async componentDidMount () {
-    const { password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
-    this.setState({isAuthenticated, user_name, saveName, email, password, userSaves, allStates, statesData, saveData, stateResults, selectedStates})
+    console.log('app did mount')
+    const { new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
+    this.setState({new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated})
     this.checkAuth()
     this.updateCovidData()
   }
   
-  setUserSaves = (userSaves) => {
-    this.setState(userSaves)
-    // console.log(userSaves)
+  deleteSave = async(save_name, e) => {
+    e.preventDefault()
+    console.log(save_name)
+    const body =  { save_name }
+
+    try {
+      const response = await fetch(API_ENDPOINT + "api/save/user_save/" + save_name, {
+          method: "DELETE",
+          headers: {jwt_token: localStorage.jwt_token},
+          body
+      })
+      
+      const parseRes = await response.json()
+      /////toastify response\\\\\\\\\\\\\\\\\\\\\\\\
+      this.context.setUserSaves(parseRes)
+  } catch (err) {
+      console.error(err.message)
+  }
   }
 
-  saveSearch = (e) => {
-    e.preventDefault();
-    const { stateResults, saveName } = this.state
-    console.log(stateResults, saveName)
+
+  setUpdatedSaveName = new_save_name => {
+    this.setState({new_save_name})
   }
-  
+
+  updateSaveName = async(e, save_name) => {
+    e.preventDefault();
+    const { new_save_name } = this.state 
+    console.log('new save name: ', new_save_name, ' old name: ', save_name)
+    const body = { new_save_name }
+    console.log(body)
+    try {
+      const response = await fetch(API_ENDPOINT + "api/save/user_save/" + save_name, {
+          method: "PUT",
+          headers: {
+            "Content-Type" : "application/json",
+            "Access-Control-Allow-Origin" : "http://localhost:3000",
+            jwt_token: localStorage.jwt_token
+          },
+          body: body
+      })
+      
+      const parseRes = await response.json()
+      console.log(parseRes)
+      /////toastify response\\\\\\\\\\\\\\\\\\\\\\\\
+      // this.context.setUserSaves(parseRes)
+    } catch (err) {
+        console.error(err.message)
+    }
+
+  }
+
+  setUserSaves = (userSaves) => {
+    this.setState({userSaves})
+  }
+
+  saveSearch = async(e) => {
+    e.preventDefault();
+    
+    try {
+      
+      const save_name = this.state.saveName
+      const state_names = this.state.selectedStates.map(state => state.label)
+      const fips = this.state.selectedStates.map(state => state.value)
+      const body =  { save_name, state_names, fips }
+      console.log(state_names, save_name, fips)
+    
+      const response = await fetch(API_ENDPOINT + "api/save/user_save", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        jwt_token: localStorage.jwt_token
+      },
+        body: JSON.stringify(body)
+      })
+
+      const parseRes = await response.json()
+      console.log(parseRes)
+      //toastify with parseRes\\\\\\\\\\\\\\\\\\\\\\\\\
+      
+    } catch(err) {
+      console.error(err.message)
+    }
+  }
+
   setSaveName = saveName => {
     this.setState({saveName})
   }
@@ -105,17 +203,29 @@ export default class App extends React.Component{
   }
   
   handleStateSelection = selectedStates => {
-    this.setState({
-      selectedStates
-    })
+    //whenever a user selects a state in the menu, this array is updated and used by the
+    this.setState({selectedStates})
+  }
+
+  handleSavedSearch = (selectedStates, e) => {
+    //whenever a user selects a state in the menu, this array is updated and used by the
+    this.setState({selectedStates})
+    this.fetchFips(e)
   }
   
   fetchFips = async(e) => {
     e.preventDefault()
-    //create an array that contains the fips code for each state the user wants to search
-    const statesToSearch = this.state.selectedStates.map(state => state.value)
+    this.setState({selectMessage: null})
 
-   const queryURL = API_ENDPOINT + "api/state/search?fips=" + statesToSearch
+    //create an array that contains the fips code for each state the user wants to search
+    let queryURL
+    const statesToSearch = this.state.selectedStates.map(state => state.value)
+    console.log('fetch1', statesToSearch)
+    statesToSearch.length === 0
+    ?
+    this.setState({selectMessage: 'You must select one or more states.'})
+    :
+    queryURL = API_ENDPOINT + "api/state/search?fips=" + statesToSearch
 
     try {
       const response = await fetch(queryURL)
@@ -127,11 +237,12 @@ export default class App extends React.Component{
   }
 
 
-  loginUser = (attempt) => {
+  loginUser = async(attempt) => {
     // logs in the user
     if (attempt === 'login'){
       toast.success('Login successful', this.toastifyParams)
       this.setState({ isAuthenticated: true })
+      this.populateUserSaves()
     } else if (attempt === 'create') {
       toast.success('Account creation successful! You are now logged in.', this.toastifyParams)
       this.setState({ isAuthenticated: true})
@@ -143,13 +254,16 @@ export default class App extends React.Component{
 
   logout = (e) => {
     e.preventDefault()
-    localStorage.removeItem("jwt_token")
+    localStorage.removeItem('jwt_token')
     toast.info('Logout successful', this.toastifyParams)
-    this.setState({ isAuthenticated: false })
+    this.setState({ isAuthenticated: false, user_name: null, userSaves: [], statesData: [], selectedStates: [], saveData: [], saveName: null, email: null, password: null, stateResults: []})
+
   }
 
   render() {
     const value = {
+      new_save_name: this.state.new_save_name,
+      selectMessage: this.state.selectMessage,
       isAuthenticated: this.state.isAuthenticated,
       allStates: this.state.allStates,
       userSaves: this.state.userSaves,
@@ -163,6 +277,10 @@ export default class App extends React.Component{
       stateResults: this.state.stateResults,
       createAccount: this.createAccount,
       toastNotifications: this.toastNotifications,
+      setUpdatedSaveName: this.setUpdatedSaveName,
+      updateSaveName: this.updateSaveName,
+      deleteSave: this.deleteSave,
+      handleSavedSearch: this.handleSavedSearch,
       setUserSaves: this.setUserSaves,
       saveSearch: this.saveSearch,
       setSaveName: this.setSaveName,
