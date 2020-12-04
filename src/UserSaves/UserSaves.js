@@ -37,7 +37,7 @@ export default class UserSaves extends React.Component {
     }
 
     listSaves = 
-    this.context.isAuthenticated
+    this.context.userSaves[0].fips
     ?
     this.context.userSaves.map(save => {
         return (
