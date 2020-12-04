@@ -58,19 +58,9 @@ export default class UserSaves extends React.Component {
     })
     :
     null
-
-    // listSaves = this.context.userSaves.map(save => {
-    //     return (
-    //         <div className="userSave" key={save.save_name}>
-    //             {save.save_name} - {save.state_names.replaceAll('"', '').replaceAll('[', '').replaceAll(']', '').replaceAll(',', ', ')}
-    //             <button type="submit" onClick={(e) => this.runSearch(save.fips, e)}>Run this search</button>
-    //             <button type="submit" onClick={(e) => this.context.deleteSave(save.save_name, e)}>Delete this save</button>
-    //         </div>
-    //     )
-    // })
-    
     
     render() {
+        console.log('userSaves: ', this.context.userSaves)
         return (
             <>
             <h1>{this.context.user_name}'s Dashboard</h1>
