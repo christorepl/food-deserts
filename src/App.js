@@ -135,11 +135,11 @@ class App extends React.Component{
         body: JSON.stringify(body)
       })
       const parseRes = await response.json()
-
+      
       if(typeof(parseRes) === 'string') {
         toast.info(parseRes, this.toastifyParams)
       } else {
-        this.setState({userSaves: parseRes})
+        this.populateUserSaves()
         toast.success('Save name updated. Redirecting you back to your dashboard...', this.toastifyParams)
         this.props.history.push('/saved-search')
       }
