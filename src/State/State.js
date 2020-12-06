@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
 
-///need to fetch from API_ENDPOINT/api/state/all for this to work
+///need to fetch from API_BASE_URL/api/state/all for this to work
 
 
 

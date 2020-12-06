@@ -1,7 +1,7 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, withRouter } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import API_ENDPOINT from './config'
+import API_BASE_URL from './config'
 import Header from './Header/Header'
 import About from './About/About'
 import Footer from './Footer/Footer'
@@ -16,19 +16,18 @@ import Charts from './Charts/Charts'
 import State from './State/State'
 import StatePage from './StatePage/StatePage'
 import Saved from './SavedList/SavedList'
-import 'react-toastify/dist/ReactToastify.css'
+import SavePage from './SavePage/SavePage'
 
 //IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY
-//IMPLEMENT A FEATURE THAT ALLOWS USERS TO SORT THE DATA IN DIFFERENT WAYS [ascending/ descending on X data point, alphabetically, etc] [easy in psql, harder in react
-//IMPLEMENT A FEATURE so that in the chart view of the search results, the charts initially are smaller but each section'd off chart contains a link to view a bigger version of that chart
 
 toast.configure()
 
-export default class App extends React.Component{
+class App extends React.Component{
   static contextType = AppContext;
 
   state = {
     selectMessage: null,
+    currentSaveResults: [],
     statesData: [],
     userSaves: [],
     allStates: [],
@@ -44,31 +43,41 @@ export default class App extends React.Component{
   }
 
   toastifyParams = {autoClose: 2500, hideProgressBar: true, position: "bottom-left", pauseOnHover: false, pauseOnFocusLoss: false}
+  
+  async componentDidMount () {
+    const { currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
+    this.setState({ currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated })
+    this.checkAuth()
+    this.updateCovidData()
+    this.setName(this.state.user_name)
+  }
 
   async populateUserSaves () {
     try {
-      const response = await fetch(API_ENDPOINT + "api/save/user_save/", {
+      const response = await fetch(API_BASE_URL + "api/save/saved_search/", {
           method: "GET",
           headers: {jwt_token: localStorage.jwt_token},
       })
       
       const parseRes = await response.json()
-      this.setName(parseRes[0].user_name)
-      if (parseRes[0].save_name) {
+      parseRes[0].save_name
+      ?
       this.setState({userSaves: parseRes})
-      }
-  } catch (err) {
+      :
+      this.setState({userSaves: []})
+    } catch (err) {
       console.error(err.message)
   }}
 
   async checkAuth () {
     try {
-      const response = await fetch(API_ENDPOINT + "auth/verify", {
+      const response = await fetch(API_BASE_URL + "auth/verify", {
         method: "GET",
         headers: {jwt_token: localStorage.jwt_token}
       })
       const parseRes = await response.json()
-      if(parseRes === true) {
+      if(parseRes.status === true) {
+        this.setState({user_name: parseRes.user_name})
         this.setState({isAuthenticated: true})
         await this.populateUserSaves()
       } else {
@@ -81,73 +90,62 @@ export default class App extends React.Component{
 
   async updateCovidData () {
     try {
-      const response = await fetch(API_ENDPOINT + 'api/state/all')
+      const response = await fetch(API_BASE_URL + 'api/state/all')
       const allStates = await response.json()
       this.setState({allStates})
   } catch (error) {
       console.error(error.message)
-  }
+  }}
 
-  }
-
-  async componentDidMount () {
-    console.log('app did mount')
-    const { new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
-    this.setState({new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated})
-    this.checkAuth()
-    this.updateCovidData()
-  }
   
   deleteSave = async(save_name, e) => {
     e.preventDefault()
-    console.log(save_name)
     const body =  { save_name }
 
     try {
-      const response = await fetch(API_ENDPOINT + "api/save/user_save/" + save_name, {
+      const response = await fetch(API_BASE_URL + "api/save/saved_search/" + save_name, {
           method: "DELETE",
           headers: {jwt_token: localStorage.jwt_token},
           body
       })
-      
       const parseRes = await response.json()
-      /////toastify response\\\\\\\\\\\\\\\\\\\\\\\\
-      this.setState({userSaves: parseRes})
+      toast.info(parseRes, this.toastifyParams)
+      this.populateUserSaves()
+      this.props.history.push('/saved-search')
   } catch (err) {
       console.error(err.message)
   }
   }
-
 
   setUpdatedSaveName = new_save_name => {
     this.setState({new_save_name})
   }
 
   updateSaveName = async(e, save_name) => {
-    e.preventDefault();
-    const { new_save_name } = this.state 
-    console.log('new save name: ', new_save_name, ' old name: ', save_name)
+    e.preventDefault()
+    const { new_save_name } = this.state
     const body = { new_save_name }
-    console.log(body)
     try {
-      const response = await fetch(API_ENDPOINT + "api/save/user_save/" + save_name, {
-          method: "PUT",
-          headers: {
-            "Content-Type" : "application/json",
-            "Access-Control-Allow-Origin" : "http://localhost:3000",
-            jwt_token: localStorage.jwt_token
-          },
-          body: body
+      const response = await fetch(API_BASE_URL + 'api/save/saved_search/' + save_name, {
+        method: 'PUT',
+        headers: {
+          "Content-Type" : "application/json",
+          jwt_token: localStorage.jwt_token
+        },
+        body: JSON.stringify(body)
       })
-      /////////FIX ME???\\\\\\\\\\\\\
       const parseRes = await response.json()
-      console.log(parseRes)
-      /////toastify response\\\\\\\\\\\\\\\\\\\\\\\\
-      this.setState({userSaves: parseRes})
-    } catch (err) {
-        console.error(err.message)
-    }
 
+      if(typeof(parseRes) === 'string') {
+        toast.info(parseRes, this.toastifyParams)
+      } else {
+        this.setState({userSaves: parseRes})
+        toast.success('Save name updated. Redirecting you back to your dashboard...', this.toastifyParams)
+        this.props.history.push('/saved-search')
+      }
+    } catch (err) {
+      console.error(err.message)
+    }
   }
 
   saveSearch = async(e) => {
@@ -159,9 +157,8 @@ export default class App extends React.Component{
       const state_names = this.state.selectedStates.map(state => state.label)
       const fips = this.state.selectedStates.map(state => state.value)
       const body =  { save_name, state_names, fips }
-      console.log(state_names, save_name, fips)
     
-      const response = await fetch(API_ENDPOINT + "api/save/user_save", {
+      const response = await fetch(API_BASE_URL + "api/save/saved_search", {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
@@ -171,10 +168,12 @@ export default class App extends React.Component{
       })
 
       const parseRes = await response.json()
-      console.log(parseRes)
+      if (typeof(parseRes) === 'string') {
+        toast.info(parseRes, this.toastifyParams)
+      } else {
       this.populateUserSaves()
-      //toastify with success notification\\\\\\\\\\\\\\\\\\\\\\\\\
-      
+      toast.success('Save successful', this.toastifyParams)
+      }
     } catch(err) {
       console.error(err.message)
     }
@@ -203,12 +202,6 @@ export default class App extends React.Component{
     //whenever a user selects a state in the menu, this array is updated and used by the
     this.setState({selectedStates})
   }
-
-  handleSavedSearch = (selectedStates, e) => {
-    //whenever a user selects a state in the menu, this array is updated and used by the
-    this.setState({selectedStates})
-    this.fetchFips(e)
-  }
   
   fetchFips = async(e) => {
     e.preventDefault()
@@ -217,12 +210,11 @@ export default class App extends React.Component{
     //create an array that contains the fips code for each state the user wants to search
     let queryURL
     const statesToSearch = this.state.selectedStates.map(state => state.value)
-    console.log('fetch1', statesToSearch)
     statesToSearch.length === 0
     ?
     this.setState({selectMessage: 'You must select one or more states.'})
     :
-    queryURL = API_ENDPOINT + "api/state/search?fips=" + statesToSearch
+    queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch
 
     try {
       const response = await fetch(queryURL)
@@ -233,16 +225,35 @@ export default class App extends React.Component{
     }
   }
 
+  runSaveSearch = async(fips) => {
+    //because the psql table sends up the fips as a string, we must turn it into an array so the fetch function works properly with the given fips
+    const fipsString = fips.replaceAll('"', '').replaceAll('{', '').replaceAll('}', '').replaceAll('[', '').replaceAll(']', '')
+    const fipsIds = fipsString.split(',')
+    let fipsArray = []
+    for (let i = 0; i < fipsIds.length; i++){
+        fipsArray.push({"value": fipsIds[i]})
+    }
+    let queryURL
+    const statesToSearch = fipsArray.map(state => parseInt(state.value))
+    queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch
+    try {
+      const response = await fetch(queryURL)
+      const currentSaveResults = await response.json()
+      this.setState({currentSaveResults})
+    } catch (error) {
+      console.error(error.message)
+    } 
+  }
 
-  loginUser = async(attempt) => {
+  loginUser = async(attempt, user_name) => {
     // logs in the user
     if (attempt === 'login'){
       toast.success('Login successful', this.toastifyParams)
-      this.setState({ isAuthenticated: true })
+      this.setState({ isAuthenticated: true, user_name })
       this.populateUserSaves()
     } else if (attempt === 'create') {
       toast.success('Account creation successful! You are now logged in.', this.toastifyParams)
-      this.setState({ isAuthenticated: true})
+      this.setState({ isAuthenticated: true, user_name })
     } else {
       toast.info(attempt, this.toastifyParams)
       this.setState({ isAuthenticated: false })
@@ -254,7 +265,7 @@ export default class App extends React.Component{
     localStorage.removeItem('jwt_token')
     toast.info('Logout successful', this.toastifyParams)
     this.setState({ isAuthenticated: false, user_name: null, userSaves: [], statesData: [], selectedStates: [], saveData: [], saveName: null, email: null, password: null, stateResults: []})
-
+    this.props.history.push('/')
   }
 
   render() {
@@ -273,11 +284,11 @@ export default class App extends React.Component{
       selectedStates: this.state.selectedStates,
       stateResults: this.state.stateResults,
       createAccount: this.createAccount,
-      toastNotifications: this.toastNotifications,
+      currentSaveResults: this.state.currentSaveResults,
+      runSaveSearch: this.runSaveSearch,
       setUpdatedSaveName: this.setUpdatedSaveName,
       updateSaveName: this.updateSaveName,
       deleteSave: this.deleteSave,
-      handleSavedSearch: this.handleSavedSearch,
       saveSearch: this.saveSearch,
       setSaveName: this.setSaveName,
       loginUser: this.loginUser,
@@ -291,21 +302,23 @@ export default class App extends React.Component{
     return(
       <div>
       <AppContext.Provider value={value}>
-      <Route exact path="/"><Redirect to="/home" /></Route>
+      <Route exact path="/">
+        <Redirect to="/home" />
+      </Route>
       <Route
         path="/"
         component={Header}
       />
       <Route 
-        path="/charts"
+        exact path="/charts"
         component={Charts}
       />
       <Route
-        path="/state-selection"
+        exact path="/state-selection"
         component={State}
       />
       <Route 
-        path="/state/:fips"
+        exact path="/state/:fips"
         component={StatePage}
       />
       <Route
@@ -337,8 +350,12 @@ export default class App extends React.Component{
         component={Login}
       />
       <Route 
-        exact path="/saved-searches"
+        exact path="/saved-search"
         component={Saved}
+      />
+      <Route
+        exact path="/saved-search/:save_name"
+        component={SavePage}
       />
       </AppContext.Provider>
       <Footer />
@@ -346,3 +363,5 @@ export default class App extends React.Component{
     )
   }
 }
+
+export default withRouter(App)

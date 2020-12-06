@@ -2,13 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
 
-export default class RenderResults extends React.Component {
+export default class RenderSaveResults extends React.Component {
     static contextType = AppContext
-
+    
+    async componentDidMount () { 
+        this.context.runSaveSearch(this.props.currentSave.fips)
+    }
+        
     render() {
-        const { stateResults } = this.context
-
-        let statesResults = stateResults.map(state => {
+        const statesResults = this.context.currentSaveResults.map(state => {
             return (
                 <div className="state-container" key={`container-${state[0].state_name}-${state[0].fips}`}>
                     <h1>{state[0].state_name}</h1>
@@ -48,24 +50,11 @@ export default class RenderResults extends React.Component {
                 </div>
             )
         })
-        
-       return (
-           <>
-            {statesResults.length 
-            ?
+        return (
             <>
-            <Link to="/charts">
-            <button type="button">
-            Go to Charts
-            </button>
-            </Link>
+                {this.props.currentSave.save_name}
+                {statesResults}
             </>
-            :
-            <>
-            </>
-            }
-            {statesResults}
-           </>
-       )
+        )
     }
 }

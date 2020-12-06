@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import AppContext from '../Context/AppContext'
-import API_ENDPOINT from '../config'
+import API_BASE_URL from '../config'
 
 export default class CreateAccount extends React.Component {
     static contextType = AppContext
@@ -13,19 +13,20 @@ export default class CreateAccount extends React.Component {
           const { email, user_name, password } = this.context
           const body = { email, user_name, password }
         
-          const response = await fetch(API_ENDPOINT + "auth/register", {
+          const response = await fetch(API_BASE_URL + "auth/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)
           })
     
           const parseRes = await response.json()
-    
+          const new_user_name = parseRes.new_user_name
+          
           // localStorage.setItem("jwt_token", parseRes.jwt_token)
           
           if(parseRes.jwt_token) {
             localStorage.setItem("jwt_token", parseRes.jwt_token)
-            this.context.loginUser('create')
+            this.context.loginUser('create', new_user_name)
         }  else {
             this.context.loginUser(parseRes)
         }
@@ -43,7 +44,7 @@ export default class CreateAccount extends React.Component {
                 {!this.context.isAuthenticated 
                 ?
                 <>
-                <p>point of making an account? create account page here....</p> 
+                <p>Making an account will allow users to save searches so they can quickly repeat searches instead od having to select states again. Users can delete saved searches and change the name of their saved searches.</p>
                 <h1>Create Account</h1>
                 <form className="create-account" onSubmit={e => this.createAccount(e)}>
                     <label htmlFor="user_name">Name:</label>
@@ -56,7 +57,7 @@ export default class CreateAccount extends React.Component {
                 </form>
                 </>
                 : 
-                <Redirect to="/saved-searches"/>}
+                <Redirect to="/saved-search"/>}
             </div>
         )
     }

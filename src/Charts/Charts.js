@@ -24,7 +24,6 @@ export default class Charts extends React.Component {
         for (let i = 0; i < covidInfections.length; i++) {
             covidRates.push(new Intl.NumberFormat().format(covidInfections[i]/population[i] * 100))
         }
-        console.log(covidRates)
         let covidDeathRate = []
         for (let i =0; i < covidInfections.length; i++) {
             covidDeathRate.push(new Intl.NumberFormat().format(covidDeaths[i]/covidInfections[i] * 100))

@@ -122,7 +122,7 @@ export default class StatePage extends React.Component {
             <div className="statePage">
                 <div className="statePageContainer">
                 <h1>{currentState.state_name}</h1>
-                    <div className="raceContainer">
+                    <div className="container">
                         <h3>Racial Demographics:</h3>
                         <li key={`black${currentState.fips}`}>Black: {currentState.black}%</li>
                         <li key={`white${currentState.fips}`}>White: {currentState.white}%</li>
@@ -131,7 +131,7 @@ export default class StatePage extends React.Component {
                         <li key={`other${currentState.fips}`}>Hispanic: {currentState.other}%</li>
                         <li key={`mixed${currentState.fips}`}>Hispanic: {currentState.mixed_race}%</li>
                     </div>
-                    <div className="povertyContainer">
+                    <div className="container">
                         <h3>Covid:</h3>
                         <li key={`covid_infections${currentState.fips}`}>Number of confirmed COVID cases: {new Intl.NumberFormat().format(currentState.covid_infections)}</li>
                         <li key={`covid_rate${currentState.fips}`}>Rate of COVID infections: {new Intl.NumberFormat().format((currentState.covid_infections/currentState.pop)*100)}%</li>
@@ -139,16 +139,16 @@ export default class StatePage extends React.Component {
                         <li key={`covid_fatality_rate${currentState.fips}`}>Fatality rate of COVID: {new Intl.NumberFormat().format((currentState.covid_deaths/currentState.covid_infections)*100)}%</li>
                     </div>
 
-                <div className="electionContainer">
+                <div className="container">
                 <h3>Election Results:</h3>
                         <li key={`trump${currentState.fips}`}>Donald Trump: {currentState.trump}%</li>
                         <li key={`biden${currentState.fips}`}>Joe Biden: {currentState.biden}%</li>
                 </div>
-                <div className="povertyContainer">
+                <div className="container">
                         <h3>Poverty Rate:</h3>
                         <li key={`poverty${currentState.fips}`}>Poverty Rate: {currentState.poverty_rate}%</li>
                     </div>
-                    <div className="foodInsecurityContainer">
+                    <div className="container">
                         <h3>Food Insecurity Rate:</h3>
                         <li key={`foodInsecurity${currentState.fips}`}>Household Food Insecurity Rate: {currentState.food_insecurity_rate}%</li>
                     </div>

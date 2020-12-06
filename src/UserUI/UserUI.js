@@ -29,7 +29,7 @@ export default class CheckLogin extends React.Component {
                         Logout
                     </span>
                 </Link>
-                <Link to="/saved-searches">
+                <Link to="/saved-search">
                     <span className="sign-up-saved">
                         View Saved Searches
                     </span>

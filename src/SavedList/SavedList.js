@@ -1,6 +1,5 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import API_ENDPOINT from '../config'
 import AppContext from '../Context/AppContext'
 import UserSaves from '../UserSaves/UserSaves'
 

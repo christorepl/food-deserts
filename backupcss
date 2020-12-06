@@ -213,7 +213,7 @@ h3 {
   flex: 1 0 45%
 }
 
-.raceContainer {
+.container {
   margin: 5px;
   display: flex;
   flex-flow: column nowrap;
@@ -223,7 +223,7 @@ h3 {
   border-radius: 5px;
 }
 
-.electionContainer {
+.container {
   margin: 5px;
   display: flex;
   flex-flow: column nowrap;
@@ -233,7 +233,7 @@ h3 {
   border-radius: 5px;
 }
 
-.povertyContainer {
+.container {
   margin: 5px;
   display: flex;
   flex-flow: column nowrap;
@@ -243,7 +243,7 @@ h3 {
   border-radius: 5px;
 }
 
-.foodInsecurityContainer {
+.container {
   margin: 5px;
   display: flex;
   flex-flow: column nowrap;
