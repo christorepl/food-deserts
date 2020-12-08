@@ -40,6 +40,9 @@ export default class State extends React.Component {
             fill: 'yellow',
             clickHandler: () => this.props.history.push('/state/9') 
         },
+        'DC2' : {
+            fill: 'fuchsia'
+        },
         'DE': {
             fill: 'red',
             clickHandler: () => this.props.history.push('/state/10') 
