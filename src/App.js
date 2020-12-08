@@ -2,23 +2,22 @@ import React from 'react'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import API_BASE_URL from './config'
-import Header from './Header/Header'
-import About from './About/About'
-import Footer from './Footer/Footer'
-import AdditionalResources from './AdditionalResources/AdditionalResources'
-import Contact from './Contact/Contact'
-import CreateAccount from './CreateAccount/CreateAccount'
-import Login from './Login/Login'
+import Header from './Components/Header/Header'
+import About from './Components/About/About'
+import Footer from './Components/Footer/Footer'
+import AdditionalResources from './Components/AdditionalResources/AdditionalResources'
+import Contact from './Components/Contact/Contact'
+import CreateAccount from './Components/CreateAccount/CreateAccount'
+import Login from './Components/Login/Login'
 import AppContext from './Context/AppContext'
-import Search from './Search/Search'
-import Home from './Home/Home'
-import Charts from './Charts/Charts'
-import State from './State/State'
-import StatePage from './StatePage/StatePage'
-import Saved from './SavedList/SavedList'
-import SavePage from './SavePage/SavePage'
-
-//IMPLEMENT A FEATURE THAT SHOWS THE RANKING OF THE DATA POINT NUMERICALLY
+import Search from './Components/Search/Search'
+import Home from './Components/Home/Home'
+import Charts from './Components/Charts/Charts'
+import ChartsSave from './Components/ChartsSave/ChartsSave'
+import State from './Components/State/State'
+import StatePage from './Components/StatePage/StatePage'
+import Saved from './Components/SavedList/SavedList'
+import SavePage from './Components/SavePage/SavePage'
 
 toast.configure()
 
@@ -39,10 +38,16 @@ class App extends React.Component{
     saveName: null,
     user_name: null,
     email: null,
-    password: null
+    password: null,
   }
 
-  toastifyParams = {autoClose: 2500, hideProgressBar: true, position: "bottom-left", pauseOnHover: false, pauseOnFocusLoss: false}
+  toastifyParams = {
+    autoClose: 2500, 
+    hideProgressBar: true, 
+    position: "bottom-left",
+    pauseOnHover: false,
+    pauseOnFocusLoss: false
+  }
   
   async componentDidMount () {
     const { currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
@@ -97,7 +102,7 @@ class App extends React.Component{
       console.error(error.message)
   }}
 
-  
+
   deleteSave = async(save_name, e) => {
     e.preventDefault()
     const body =  { save_name }
@@ -285,6 +290,9 @@ class App extends React.Component{
       stateResults: this.state.stateResults,
       createAccount: this.createAccount,
       currentSaveResults: this.state.currentSaveResults,
+      displayMenu: this.state.displayMenu,
+      closeMenu: this.closeMenu,
+      showMenu: this.showMenu,
       runSaveSearch: this.runSaveSearch,
       setUpdatedSaveName: this.setUpdatedSaveName,
       updateSaveName: this.updateSaveName,
@@ -312,6 +320,10 @@ class App extends React.Component{
       <Route 
         exact path="/charts"
         component={Charts}
+      />
+      <Route
+        exact path="/save-charts"
+        component={ChartsSave}
       />
       <Route
         exact path="/state-selection"

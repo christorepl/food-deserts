@@ -1,0 +1,1 @@
+<li class="ranking-list" key={`ranking${currentState.ranking_black}`}>Ranking: {currentState.ranking_black}/51</li>

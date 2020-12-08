@@ -1,9 +1,32 @@
 header {
   margin: 10px;
-  background-color: rgb(95, 162, 217);
+  background-color: rgba(164, 165, 81, 0.664);
   padding: 20px;
   display: flex;
   justify-content: center;
+}
+
+.dc-footer {
+  font-size: 14px;
+  text-align: center;
+}
+
+.dc-footer a {
+  text-decoration: none;
+}
+
+path {
+  pointer-events: all;
+}
+
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}
+
+body{
+  background-repeat: repeat;
+  background-color: rgb(215, 233, 211);
 }
 
 .other-note {
@@ -70,7 +93,7 @@ header {
 
 .sign-in-out {
   display: flex;
-  background-color: rgb(20, 60, 93);
+  background-color: rgb(211, 163, 112);
   border-radius: 5px 0px 0px 5px;
   color: white;
   padding: 8px;
@@ -78,27 +101,27 @@ header {
 
 .sign-up-saved {
   display: flex;
-  background-color: rgb(20, 104, 132);
+  background-color: rgb(104, 120, 109);
   border-radius: 0px 5px 5px 0px;
   color: white;
   padding: 8px;
 }
 
-#results-list {
-  display: flex;
-  flex-flow: row wrap;
+h1 {
+  color: rgb(87, 75, 82);
   text-align: center;
-  width: 95%;
-  margin: 0 auto;
-  padding: 0;
+  font-size: 24px;
 }
 
-h1 {
-  color: purple;
+.state-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .state-container {
-  background-color: rgba(110, 107, 107, 0.354);
+  background-color: rgba(175, 222, 220, 0.644);
+  color: rgb(87, 75, 82);
   display: flex;
   width: 100%;
   flex-flow: column nowrap;
@@ -109,7 +132,24 @@ h1 {
   align-items: center;
   border-style: inset;
   border-radius: 5px;
-  border-color: gray;
+  border-color: rgba(119, 104, 113);
+  flex: 1 0 45%
+}
+
+.state-page-container {
+  background-color: rgba(175, 222, 220, 0.644);
+  color: rgb(87, 75, 82);
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 10px;
+  align-items: center;
+  border-style: inset;
+  border-radius: 5px;
+  border-color: rgba(119, 104, 113);
   flex: 1 0 45%
 }
 
@@ -125,24 +165,13 @@ li {
   text-align: center;
 }
 
-.stateData {
-  list-style: none;
-}
-
-
-/* here*/
-body{
-  background-repeat: repeat;
-  background-color: lightblue;
-}
 
 button:hover {
   cursor: pointer;
 }
 
-.statePageContainer {
+.state-page-container {
   background-color: rgba(110, 107, 107, 0.354);
-  display: flex;
   list-style: none;
   margin-bottom: 15px;
   padding-bottom: 10px;
@@ -150,23 +179,22 @@ button:hover {
   border-radius: 5px;
   border-color: gray;
   width: 100%;
-  flex-flow: column wrap;
-  flex: 1 0 45%
 }
 
-.statePage {
+.state-selection-click {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.state-page {
   display: flex;
   flex: row wrap;
 }
 
-canvas {
-  flex: 1 !important;
-  display: flex !important;
-  width: 100% !important;
-  height: 80% !important;
-}
-
-.stateChartContainer {
+.state-chart-container {
   display: flex;
   height: 100%
 }
@@ -197,20 +225,47 @@ canvas {
 
 .buttons{
   text-align: center;
-  margin-top: 15px;
+  margin: 15px;
+  position: center
 }
 
-#results-list {
+.state-buttons {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin: 5;
+  background-color: white;
+  display: flex;
+  flex: 1;
+  flex-flow: column wrap;
+}
+
+.state-buttons a:link{
+  text-decoration: none;
+}
+
+.state-menu {
   display: flex;
   flex-flow: row wrap;
-  text-align: center;
-  width: 95%;
-  margin: 0 auto;
-  padding: 0;
+  align-content: center;
 }
 
-h3 {
-  font-weight: 800;
+.state-menu a{
+  text-decoration: none;
+}
+
+.state-menu a:visited {
+  color: red
+}
+
+.state-menu a:active {
+  color: rgb(255, 55, 245)
+}
+
+.state-menu a:hover{
+  color: rgb(255, 55, 245)
 }
 
 .stateContainer {
@@ -225,6 +280,12 @@ h3 {
   width: 100%;
   flex-flow: column wrap;
   flex: 1 0 45%
+}
+
+.ranking-list {
+  list-style: none;
+  font-size: 8.75pt;
+  color: rgb(73, 73, 73)
 }
 
 .container {
@@ -259,12 +320,13 @@ h2 {
 }
 
 footer {
-  font-size: 10pt;
+  font-size: 9pt;
   padding-top: 20px;
   padding-left: 15px;
   padding-bottom: 10px;
   text-align: center;
 }
+
 /* 
 @media only screen and (min-width: 600px) {
   .stateContainer {
