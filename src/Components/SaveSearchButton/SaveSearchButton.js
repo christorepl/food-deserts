@@ -12,11 +12,14 @@ export default class SaveSearchButton extends React.Component {
                 </>
                 :
                 <form className="forms" onSubmit={e => this.context.saveSearch(e)}>
-                <label htmlFor="save-name">Name of Save:</label>
-                <input type="text" name="save-name" onChange={e => this.context.setSaveName(e.target.value)} required/>
-                <button type="submit">
-                    Save this Search
-                </button>
+                <fieldset>
+                    <legend>Save this Search</legend>
+                    <label htmlFor="save-name">Name of Save:</label>
+                    <input type="text" name="save-name" onChange={e => this.context.setSaveName(e.target.value)} required/>
+                    <button type="submit">
+                        Save
+                    </button>
+                </fieldset>
                 </form>
                 }
             </>

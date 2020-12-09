@@ -108,6 +108,30 @@ h1 {
   font-size: 24px;
 }
 
+.delete-p{
+  text-align: center;
+}
+
+.delete-save-form {
+  height: 100px;
+  position: relative;
+  border-style: inset;
+  border-radius: 15px;
+  border-color: rgba(128, 128, 128, 0.418);
+}
+
+.delete-save-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.charts-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .select-box {
   width: 50%;
   margin: auto;
@@ -126,6 +150,33 @@ h1 {
   font-size: 22px;
   color: black;
   text-decoration: underline;
+}
+
+.addtl h3 {
+  text-align: center;
+  font-size: 22px;
+}
+
+.addtl h2 {
+  text-align: center;
+  font-size: 16px;
+}
+
+.addtl li {
+  list-style: none;
+  list-style-position: inside;
+}
+
+.addtl a:link{
+  color: seagreen;
+}
+
+.addtl a:hover{
+  color: blue;
+}
+
+.addtl a:active {
+  color: purple;
 }
 
 .state-container li {
@@ -155,8 +206,8 @@ h1 {
   padding: 10px;
   padding-bottom: 10px;
   border-style: inset;
-  border-radius: 5px;
-  border-color: gray;
+  border-radius: 15px;
+  border-color: rgba(128, 128, 128, 0.418);
   flex: 1 2 40%;
 }
 
@@ -178,8 +229,8 @@ h1 {
   margin-top: 10px;
   padding-bottom: 10px;
   border-style: inset;
-  border-radius: 5px;
-  border-color: gray;
+  border-radius: 15px;
+  border-color: rgba(128, 128, 128, 0.418);
   flex: 1 0 50%;
 }
 
@@ -227,10 +278,10 @@ button:hover {
 }
 
 .forms {
-  background-color: rgba(255, 255, 255, 0.384);
+  background-color: rgba(255, 255, 255, 0.158);
   border-style: inset;
-  border-color: gray;
-  border-radius: 10px;
+  border-color: rgba(128, 128, 128, 0.226);
+  border-radius: 15px;
   text-align: center;
   margin: 20px;
   padding: 10px;
@@ -240,27 +291,22 @@ input {
   margin: 10px;
 }
 
+legend {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto
+}
+
 .buttons{
   padding: 10px;
   text-align: center;
   margin: 15px;
-  position: center
 }
 
 .ranking-list {
   list-style: none;
   font-size: 8.75pt;
   color: rgb(73, 73, 73)
-}
-
-.container {
-  margin: 5px;
-  display: flex;
-  flex-flow: column nowrap;
-  text-align: center;
-  border-style: solid;
-  padding: 20px;
-  border-radius: 5px;
 }
 
 ul {

@@ -18,16 +18,21 @@ export default class SavePage extends React.Component {
     
     saveData = 
     <div className='save-data'>
-        {this.currentSave.save_name}    
-        <button type="submit" onClick={(e) => this.context.deleteSave(this.currentSave.save_name, e)}>Delete this save</button>
-        <form className="forms" onSubmit={(e) => this.context.updateSaveName(e, this.currentSave.save_name)}>
+        <h1>{this.currentSave.save_name}</h1>
             <fieldset>
-                <legend>Change Save Name</legend>
+                    <legend>Edit Save</legend>
+                <form className="forms" onSubmit={(e) => this.context.updateSaveName(e, this.currentSave.save_name)}>
                     <label htmlFor="new_save_name">New Save Name</label>
                     <input type="text" name="new_save_name" onChange={e => this.context.setUpdatedSaveName(e.target.value)} required/>
                 <button type="submit">Submit</button>
+                </form>
+                <div className="delete-save-form">
+                    <p className="delete-p">If you wish to delete your save, click the button below</p>
+                    <div className="delete-save-button">
+                        <button type="submit" onClick={(e) => this.context.deleteSave(this.currentSave.save_name, e)}>Delete this save</button>
+                    </div>
+                </div>
             </fieldset>
-        </form>
     </div>
 
     render() {

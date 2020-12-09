@@ -44,13 +44,6 @@ export default class StateSelection extends React.Component {
                 ?
                 <>
                 <SaveSearchButton />
-                {this.context.selectMessage
-                ?
-                this.context.selectMessage
-                :
-                <>
-                </>
-                }
                 </>
                 :
                 <>

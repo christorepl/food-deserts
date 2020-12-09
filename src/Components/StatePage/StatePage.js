@@ -53,7 +53,7 @@ export default class StatePage extends React.Component {
         }
         
         const covidDeathChartData = {
-            labels: ['Fatality Rate', 'Survival Rate'],
+            labels: ['COVID Fatality Rate', 'COVID Survival Rate'],
             datasets: [
                 {
                     label: 'COVID Fatality Rate',

@@ -142,7 +142,7 @@ class App extends React.Component{
       const parseRes = await response.json()
       
       if(typeof(parseRes) === 'string') {
-        toast.info(parseRes, this.toastifyParams)
+        toast.error(parseRes, this.toastifyParams)
       } else {
         this.populateUserSaves()
         toast.success('Save name updated. Redirecting you back to your dashboard...', this.toastifyParams)
@@ -213,20 +213,21 @@ class App extends React.Component{
     this.setState({selectMessage: null})
 
     //create an array that contains the fips code for each state the user wants to search
-    let queryURL
-    const statesToSearch = this.state.selectedStates.map(state => state.value)
-    statesToSearch.length === 0
-    ?
-    this.setState({selectMessage: 'You must select one or more states.'})
-    :
-    queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch
 
-    try {
-      const response = await fetch(queryURL)
-      const stateResults = await response.json()
-      this.setState({stateResults})
-    } catch (error) {
-      console.error(error.message)
+    if(!this.state.selectedStates.length) {
+      await this.setState({selectMessage: 'You must select one or more states.'})
+      toast.error(this.state.selectMessage, this.toastifyParams)
+    } else {
+      let statesToSearch = this.state.selectedStates.map(state => state.value)
+      let queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch
+      try {
+        const response = await fetch(queryURL)
+        const stateResults = await response.json()
+        this.setState({stateResults})
+        toast.success('Search successful!', this.toastifyParams)
+      } catch (error) {
+        console.error(error.message)
+      }
     }
   }
 
@@ -260,7 +261,7 @@ class App extends React.Component{
       toast.success('Account creation successful! You are now logged in.', this.toastifyParams)
       this.setState({ isAuthenticated: true, user_name })
     } else {
-      toast.info(attempt, this.toastifyParams)
+      toast.error(attempt, this.toastifyParams)
       this.setState({ isAuthenticated: false })
     }
   }
