@@ -56,7 +56,7 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/13') 
         },
         'HI': {
-            fill: 'blue',
+            fill: 'rgb(168, 51, 185)',
             clickHandler: () => this.props.history.push('/state/15') 
         },
         'ID': {
@@ -92,7 +92,7 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/23') 
         },
         'MD': {
-            fill: 'darkblue',
+            fill: 'rgb(17, 157, 164)',
             clickHandler: () => this.props.history.push('/state/24') 
         },
         'MA': {
@@ -104,7 +104,7 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/26') 
         },
         'MN': {
-            fill: 'fuchsia',
+            fill: 'rgba(138, 176, 171)',
             clickHandler: () => this.props.history.push('/state/27') 
         },
         'MS': {
@@ -168,7 +168,7 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/42') 
         },
         'RI': {
-            fill: 'peachpuff',
+            fill: 'fuchsia',
             clickHandler: () => this.props.history.push('/state/44') 
         },
         'SC': {
@@ -204,11 +204,11 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/53') 
         },
         'WV': {
-            fill: 'sienna',
+            fill: 'rgb(31, 32, 65)',
             clickHandler: () => this.props.history.push('/state/54') 
         },
         'WI': {
-            fill: 'slateblue',
+            fill: 'rgb(38, 65, 60)',
             clickHandler: () => this.props.history.push('/state/55') 
         },
         'WY': {
