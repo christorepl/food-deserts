@@ -1,6 +1,9 @@
 import React from 'react'
-import AppContext from '../../Context/AppContext'
+import { Link } from 'react-router-dom'
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes'
+import Select from 'react-select'
+import Async from 'react-select'
+import AppContext from '../../Context/AppContext'
 import MenuOptions from '../MenuOptions/MenuOptions'
 import SaveSearchButton from '../SaveSearchButton/SaveSearchButton'
 import RenderResults from '../RenderResults/RenderResults'
@@ -11,15 +14,31 @@ export default class StateSelection extends React.Component {
     render() {
         return(
             <>
-                <form className="ui-form" onSubmit={(e) => this.context.fetchFips(e)}>
+                <form className="forms" onSubmit={(e) => this.context.fetchFips(e)}>
                     <h1>Select one or more US States </h1>
-                    <button type="submit">Perform search</button>
-                    <ReactMultiSelectCheckboxes
-                        required
-                        options={MenuOptions}
-                        value={this.context.selectedStates}
-                        onChange={this.context.handleStateSelection}
-                    />
+                    <button type="submit" className="buttons">Submit</button>
+                    <div className="select-box">
+                        <Select
+                            required
+                            placeholder={'Type a state name or use the dropdown arrow'}
+                            isMulti={true}
+                            closeMenuOnSelect={false}
+                            isSearchable={true}
+                            options={MenuOptions}
+                            value={this.context.selectedStates}
+                            onChange={this.context.handleStateSelection}
+                        />
+                    </div>
+                    {this.context.stateResults.length
+                    ?
+                    <Link to="/charts">
+                        <button type="button" className="buttons">
+                            View Charts
+                        </button>
+                    </Link>
+                    :
+                    null
+                    }
                 </form>
                 {this.context.stateResults.length > 0
                 ?
@@ -37,7 +56,9 @@ export default class StateSelection extends React.Component {
                 <>
                 </>
                 }
-                <RenderResults />
+                <div className="search-results">
+                    <RenderResults />
+                </div>
             </>
         )
     }

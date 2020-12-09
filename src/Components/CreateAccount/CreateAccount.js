@@ -46,13 +46,16 @@ export default class CreateAccount extends React.Component {
                 <>
                 <p>Making an account will allow users to save searches so they can quickly repeat searches instead od having to select states again. Users can delete saved searches and change the name of their saved searches.</p>
                 <h1>Create Account</h1>
-                <form className="create-account" onSubmit={e => this.createAccount(e)}>
+                <form className="forms" onSubmit={e => this.createAccount(e)}>
                     <label htmlFor="user_name">Name:</label>
                     <input type="text" name="user_name" onChange={e => this.context.setName(e.target.value)} required/>
+                    <br/>
                     <label htmlFor="email">E-mail Address:</label>
-                    <input type="email" name="email" onChange={e => this.context.setEmail(e.target.value)}required/>
+                    <input type="email" name="email" onChange={e => this.context.setEmail(e.target.value)} required/>
+                    <br/>
                     <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" onChange={e => this.context.setPassword(e.target.value)}required/>
+                    <input type="password" name="password" onChange={e => this.context.setPassword(e.target.value)} required/>
+                    <br/>
                     <button className="buttons" type="submit">Create Account</button>
                 </form>
                 </>

@@ -14,7 +14,9 @@ export default class AdditionalResources extends React.Component {
                 <li>US Census Data - https://data.census.gov/cedsci/</li>
                 <li>Food desert map - https://www.ers.usda.gov/data-products/food-access-research-atlas/go-to-the-atlas/</li>
                 <li>interactive app with weekly updates on food insecurity rates - https://www.ipr.northwestern.edu/state-food-insecurity.html</li>
+                <li>App that goes in depth into worldwide COVID numbers - https://ncov2019.live/</li>
 
+                https://nyulangone.org/news/racial-disparities-covid-19-related-deaths-exist-beyond-income-differences-large-us-cities
 
                DATA SOURCES:
                <li>race - https://statisticalatlas.com/United-States/Race-and-Ethnicity</li>

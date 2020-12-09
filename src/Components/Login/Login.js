@@ -42,8 +42,10 @@ export default class Login extends React.Component {
             <form className="forms" onSubmit={e => this.onSubmitLogin(e)}>
             <label htmlFor="email">E-mail Address:</label>
                <input type="email" name="email" required onChange={e => this.context.setEmail(e.target.value)}/>
+               <br/>
                <label htmlFor="password">Password:</label>
                <input type="password" name="password" required onChange={e => this.context.setPassword(e.target.value)}/>
+               <br/>
                <button type="submit" className="buttons">Login</button>
             </form>
             :

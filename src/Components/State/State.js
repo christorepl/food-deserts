@@ -222,10 +222,10 @@ export default class State extends React.Component {
     
         return(
             <>
+            <h1>Select a state from the map below</h1>
             <div className="state-selection">
                 <USAMap customize={this.statesFilling()} onClick={this.mapHandler}/>
             </div>
-                <p className="dc-footer"><Link to="state/11">Click here for Washington, DC</Link></p>
             </>
         )
     }

@@ -10,15 +10,6 @@ header {
   cursor: pointer
 }
 
-.dc-footer {
-  font-size: 14px;
-  text-align: center;
-}
-
-.dc-footer a {
-  text-decoration: none;
-}
-
 path {
   pointer-events: all;
 }
@@ -117,97 +108,110 @@ h1 {
   font-size: 24px;
 }
 
+.select-box {
+  width: 50%;
+  margin: auto;
+}
+
 .state-selection {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+.inspect-link {
+  font-size: 10pt
+}
+
+.state-container h3 {
+  font-size: 22px;
+  color: black;
+  text-decoration: underline;
+}
+
+.state-container li {
+  color: black;
+}
+
+.search-results {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .state-container {
-  background-color: rgba(175, 222, 220, 0.644);
-  color: rgb(87, 75, 82);
+  background-color: rgba(255, 255, 255, 0.354);
   display: flex;
-  width: 100%;
+  text-align: center;
+  list-style: none;
   flex-flow: column nowrap;
   justify-items: center;
   justify-content: center;
-  align-content: center;
-  padding-bottom: 10px;
   align-items: center;
+  align-content: center;
+  margin: 10px;
+  padding: 10px;
+  padding-bottom: 10px;
   border-style: inset;
   border-radius: 5px;
-  border-color: rgba(119, 104, 113);
-  flex: 1 0 45%
+  border-color: gray;
+  flex: 1 2 40%;
+}
+
+.state-page {
+  display: grid;
+  flex: row wrap;
 }
 
 .state-page-container {
-  background-color: rgba(175, 222, 220, 0.644);
-  color: rgb(87, 75, 82);
+  background-color: rgba(255, 255, 255, 0.354);
   display: flex;
-  width: 100%;
-  flex-flow: column nowrap;
+  text-align: center;
+  list-style: none;
+  flex-flow: column wrap;
   justify-items: center;
   justify-content: center;
-  align-content: center;
-  padding-bottom: 10px;
   align-items: center;
+  align-content: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
   border-style: inset;
   border-radius: 5px;
-  border-color: rgba(119, 104, 113);
-  flex: 1 0 45%
+  border-color: gray;
+  flex: 1 0 50%;
 }
 
-ul {
-  list-style-type: none;
-  list-style-position: inside;
+.state-chart-container {
+  flex: 0 1 100%
 }
 
-li {
-  font-weight: 650;
-  color: rgb(1, 1, 55);
-  padding-top: 10px;
-  text-align: center;
+.state-page-container h3 {
+  font-size: 22px;
+  color: black;
+  text-decoration: underline;
 }
 
+.state-page-container li {
+  color: black;
+}
 
 button:hover {
   cursor: pointer;
 }
 
-.state-page-container {
-  background-color: rgba(110, 107, 107, 0.354);
-  list-style: none;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-style: inset;
-  border-radius: 5px;
-  border-color: gray;
-  width: 100%;
-}
-
-.state-selection-click {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-}
-
-.state-page {
-  display: flex;
-  flex: row wrap;
-}
-
-.state-chart-container {
-  display: flex;
-  height: 100%
-}
+/* .state-chart-container {
+  display: grid;
+  height: 50%
+} */
 
 .container {
   max-width: 600px;
   margin: 0 auto;
   font-weight: bolder;
   padding: 15px;
+  display: flex;
 }
 
 .container h1, .container p{
@@ -223,67 +227,24 @@ button:hover {
 }
 
 .forms {
-  border-style: solid;
+  background-color: rgba(255, 255, 255, 0.384);
+  border-style: inset;
+  border-color: gray;
+  border-radius: 10px;
   text-align: center;
+  margin: 20px;
+  padding: 10px;
+}
+
+input {
+  margin: 10px;
 }
 
 .buttons{
+  padding: 10px;
   text-align: center;
   margin: 15px;
   position: center
-}
-
-.state-buttons {
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  margin: 5;
-  background-color: white;
-  display: flex;
-  flex: 1;
-  flex-flow: column wrap;
-}
-
-.state-buttons a:link{
-  text-decoration: none;
-}
-
-.state-menu {
-  display: flex;
-  flex-flow: row wrap;
-  align-content: center;
-}
-
-.state-menu a{
-  text-decoration: none;
-}
-
-.state-menu a:visited {
-  color: red
-}
-
-.state-menu a:active {
-  color: rgb(255, 55, 245)
-}
-
-.state-menu a:hover{
-  color: rgb(255, 55, 245)
-}
-
-.stateContainer {
-  background-color: rgba(110, 107, 107, 0.354);
-  display: flex;
-  list-style: none;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-style: inset;
-  border-radius: 5px;
-  border-color: gray;
-  width: 100%;
-  flex-flow: column wrap;
-  flex: 1 0 45%
 }
 
 .ranking-list {
@@ -312,11 +273,6 @@ li {
   color: rgb(1, 1, 55);
   padding-top: 10px;
   text-align: center;
-}
-
-.list-info{
-  color: black;
-  font-weight: 400;
 }
 
 h2 {

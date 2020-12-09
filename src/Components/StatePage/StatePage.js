@@ -117,69 +117,20 @@ export default class StatePage extends React.Component {
             {currentState
             ?
             <div className="state-page">
-                <div className="state-page-container">
-                <h1>{currentState.state_name}</h1>
-                    <div className="container">
-                        <h3>Racial Demographics:</h3>
-                        <li key={`black${currentState.fips}`}>Black: {currentState.black}%</li>
-                        <li className="ranking-list" key={`rankingblack${currentState.ranking_black}`}>Ranking: {currentState.ranking_black}/51</li>
-                        <li key={`white${currentState.fips}`}>White: {currentState.white}%</li>
-                        <li className="ranking-list" key={`rankingwhite${currentState.ranking_white}`}>Ranking: {currentState.ranking_white}/51</li>
-                        <li key={`asian${currentState.fips}`}>Asian: {currentState.asian}%</li>
-                        <li className="ranking-list" key={`rankingasian${currentState.ranking_asian}`}>Ranking: {currentState.ranking_asian}/51</li>
-                        <li key={`hispanic${currentState.fips}`}>Hispanic: {currentState.hispanic}%</li>
-                        <li className="ranking-list" key={`rankinghispanic${currentState.ranking_hispanic}`}>Ranking: {currentState.ranking_hispanic}/51</li>
-                        <li key={`other${currentState.fips}`}>Other: {currentState.other}%</li>
-                        <li className="ranking-list" key={`rankingother${currentState.ranking_other}`}>Ranking: {currentState.ranking_other}/51</li>
-                        <li key={`mixed${currentState.fips}`}>Mixed Race: {currentState.mixed_race}%</li>
-                        <li className="ranking-list" key={`rankingmixed${currentState.ranking_mixed}`}>Ranking: {currentState.ranking_mixed}/51</li>
-
-                    </div>
-                    <div className="container">
-                        <h3>Covid:</h3>
-                        <li key={`covid_infections${currentState.fips}`}>Number of confirmed COVID cases: {new Intl.NumberFormat().format(currentState.covid_infections)}</li>
-                        <li className="ranking-list" key={`ranking${currentState.ranking_covid_infections}`}>Ranking: {currentState.ranking_covid_infections}/51</li>
-                        <li key={`covid_rate${currentState.fips}`}>Rate of COVID infections: {currentState.covid_rate}%</li>
-                        <li className="ranking-list" key={`rankingcr${currentState.ranking_covid_infections_rate}`}>Ranking: {currentState.ranking_covid_infections_rate}/51</li>
-                        <li key={`covid_deaths${currentState.fips}`}>Number of COVID-related deaths: {new Intl.NumberFormat().format(currentState.covid_deaths)}</li>
-                        <li className="ranking-list" key={`rankingcd${currentState.ranking_covid_deaths}`}>Ranking: {currentState.ranking_covid_deaths}/51</li>
-                        <li key={`covid_fatality_rate${currentState.fips}`}>Fatality rate of COVID: {currentState.covid_fatality_rate}%</li>
-                        <li className="ranking-list" key={`rankingcfr${currentState.ranking_covid_fatality_rate}`}>Ranking: {currentState.ranking_covid_fatality_rate}/51</li>
-                    </div>
-
-                <div className="container">
-                <h3>Election Results:</h3>
-                        <li key={`trump${currentState.fips}`}>Donald Trump: {currentState.trump}%</li>
-                        <li className="ranking-list" key={`rankingrepub${currentState.ranking_repub}`}>Ranking: {currentState.ranking_repub}/51</li>
-                        <li key={`biden${currentState.fips}`}>Joe Biden: {currentState.biden}%</li>
-                        <li className="ranking-list" key={`rankingdem${currentState.ranking_dem}`}>Ranking: {currentState.ranking_dem}/51</li>
-                </div>
-                <div className="container">
-                        <h3>Poverty Rate:</h3>
-                        <li key={`poverty${currentState.fips}`}>Poverty Rate: {currentState.poverty_rate}%</li>
-                        <li className="ranking-list" key={`rankingpov${currentState.ranking_pov}`}>Ranking: {currentState.ranking_pov}/51</li>
-                    </div>
-                    <div className="container">
-                        <h3>Food Insecurity Rate:</h3>
-                        <li key={`foodInsecurity${currentState.fips}`}>Household Food Insecurity Rate: {currentState.food_insecurity_rate}%</li>
-                        <li className="ranking-list" key={`rankingfi${currentState.ranking_fi}`}>Ranking: {currentState.ranking_fi}/51</li>
-                    </div>
-                </div>
-                <div className="charts">
-                    <div className="covid-chart">
+                <div className="state-chart-container">
                     <Pie
                         data={covidInfectionChartData}
-                        height={50}
+                        height={70}
                         options={{ maintainAspectRatio: true }}
                     />
                     <Pie
                         data={covidDeathChartData}
-                        height={50}
+                        height={60}
                         options={{ maintainAspectRatio: true }}
                     />
                     <Pie
                         data={foodInsecurityChartData}
-                        height={50}
+                        height={60}
                         options={{ maintainAspectRatio: true }}
                     />
                     <Pie
@@ -197,7 +148,42 @@ export default class StatePage extends React.Component {
                         height={50}
                         options={{ maintainAspectRatio: true }}
                     />
-                    </div>
+                </div>
+                <div className="state-page-container">
+                <h1>{currentState.state_name}</h1>
+                        <h3>Racial Demographics:</h3>
+                        <li key={`black${currentState.fips}`}>Black: {currentState.black}%</li>
+                        <li className="ranking-list" key={`rankingblack${currentState.ranking_black}`}>Ranking: {currentState.ranking_black}/51</li>
+                        <li key={`white${currentState.fips}`}>White: {currentState.white}%</li>
+                        <li className="ranking-list" key={`rankingwhite${currentState.ranking_white}`}>Ranking: {currentState.ranking_white}/51</li>
+                        <li key={`asian${currentState.fips}`}>Asian: {currentState.asian}%</li>
+                        <li className="ranking-list" key={`rankingasian${currentState.ranking_asian}`}>Ranking: {currentState.ranking_asian}/51</li>
+                        <li key={`hispanic${currentState.fips}`}>Hispanic: {currentState.hispanic}%</li>
+                        <li className="ranking-list" key={`rankinghispanic${currentState.ranking_hispanic}`}>Ranking: {currentState.ranking_hispanic}/51</li>
+                        <li key={`other${currentState.fips}`}>Other: {currentState.other}%</li>
+                        <li className="ranking-list" key={`rankingother${currentState.ranking_other}`}>Ranking: {currentState.ranking_other}/51</li>
+                        <li key={`mixed${currentState.fips}`}>Mixed Race: {currentState.mixed_race}%</li>
+                        <li className="ranking-list" key={`rankingmixed${currentState.ranking_mixed}`}>Ranking: {currentState.ranking_mixed}/51</li>
+                        <h3>COVID:</h3>
+                        <li key={`covid_infections${currentState.fips}`}>Number of confirmed COVID cases: {new Intl.NumberFormat().format(currentState.covid_infections)}</li>
+                        <li className="ranking-list" key={`ranking${currentState.ranking_covid_infections}`}>Ranking: {currentState.ranking_covid_infections}/51</li>
+                        <li key={`covid_rate${currentState.fips}`}>Rate of COVID infections: {currentState.covid_rate}%</li>
+                        <li className="ranking-list" key={`rankingcr${currentState.ranking_covid_rate}`}>Ranking: {currentState.ranking_covid_rate}/51</li>
+                        <li key={`covid_deaths${currentState.fips}`}>Number of COVID-related deaths: {new Intl.NumberFormat().format(currentState.covid_deaths)}</li>
+                        <li className="ranking-list" key={`rankingcd${currentState.ranking_covid_deaths}`}>Ranking: {currentState.ranking_covid_deaths}/51</li>
+                        <li key={`covid_fatality_rate${currentState.fips}`}>Fatality rate of COVID: {currentState.covid_fatality_rate}%</li>
+                        <li className="ranking-list" key={`rankingcfr${currentState.ranking_covid_fatality_rate}`}>Ranking: {currentState.ranking_covid_fatality_rate}/51</li>
+                <h3>Election Results:</h3>
+                        <li key={`trump${currentState.fips}`}>Donald Trump: {currentState.trump}%</li>
+                        <li className="ranking-list" key={`rankingrepub${currentState.ranking_repub}`}>Ranking: {currentState.ranking_repub}/51</li>
+                        <li key={`biden${currentState.fips}`}>Joe Biden: {currentState.biden}%</li>
+                        <li className="ranking-list" key={`rankingdem${currentState.ranking_dem}`}>Ranking: {currentState.ranking_dem}/51</li>
+                        <h3>Poverty Rate:</h3>
+                        <li key={`poverty${currentState.fips}`}>Poverty Rate: {currentState.poverty_rate}%</li>
+                        <li className="ranking-list" key={`rankingpov${currentState.ranking_pov}`}>Ranking: {currentState.ranking_pov}/51</li>
+                        <h3>Food Insecurity Rate:</h3>
+                        <li key={`foodInsecurity${currentState.fips}`}>Household Food Insecurity Rate: {currentState.food_insecurity_rate}%</li>
+                        <li className="ranking-list" key={`rankingfi${currentState.ranking_fi}`}>Ranking: {currentState.ranking_fi}/51</li>
                 </div>
             </div>
             :

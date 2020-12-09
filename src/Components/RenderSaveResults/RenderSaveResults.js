@@ -19,7 +19,7 @@ export default class RenderSaveResults extends React.Component {
                 <div className="state-container" key={`container-${state[0].state_name}-${state[0].fips}`}>
                     <h1>{state[0].state_name}</h1>
                     <Link to={`/state/${state[0].fips}`}>
-                    <p>Inspect this state's data closer</p>
+                    <p className="inspect-link">Inspect this state's data closer</p>
                     </Link>
                     <h2>Total population: {new Intl.NumberFormat().format(state[0].pop)}</h2>
                     <div className="container">
@@ -72,8 +72,8 @@ export default class RenderSaveResults extends React.Component {
         return (
             <>
                 <Link to="/save-charts">
-                <button type="button">
-                Go to Charts
+                <button type="button" className="buttons">
+                View Charts
                 </button>
                 </Link>
                 {this.props.currentSave.save_name}
