@@ -43,7 +43,7 @@ export default class UserSaves extends React.Component {
     })
 
 
-    ///capitalize the first letter of each 'word' in a user's Name
+    ///capitalize the first letter of each 'word' in a user's name
     //during testing most users did not capitalize the first letter in their name
     user_name = this.context.user_name
     splitName = this.user_name.split(" ");

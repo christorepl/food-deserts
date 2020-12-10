@@ -208,7 +208,7 @@ h1 {
   border-style: inset;
   border-radius: 15px;
   border-color: rgba(128, 128, 128, 0.418);
-  flex: 1 2 40%;
+  flex: 1 1 30%;
 }
 
 .state-page {
