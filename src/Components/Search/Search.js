@@ -16,7 +16,7 @@ export default class StateSelection extends React.Component {
             <>
                 <form className="forms" onSubmit={(e) => this.context.fetchFips(e)}>
                     <h1>Select one or more US States </h1>
-                    <button type="submit" className="buttons">Submit</button>
+                    <button type="submit" >Submit</button>
                     <div className="select-box">
                         <Select
                             required
@@ -32,7 +32,7 @@ export default class StateSelection extends React.Component {
                     {this.context.stateResults.length
                     ?
                     <Link to="/charts">
-                        <button type="button" className="buttons">
+                        <button type="button" >
                             View Charts
                         </button>
                     </Link>

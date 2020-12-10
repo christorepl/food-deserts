@@ -56,7 +56,7 @@ export default class CreateAccount extends React.Component {
                     <label htmlFor="password">Password:</label>
                     <input type="password" name="password" onChange={e => this.context.setPassword(e.target.value)} required/>
                     <br/>
-                    <button className="buttons" type="submit">Create Account</button>
+                    <button  type="submit">Create Account</button>
                 </form>
                 </>
                 : 

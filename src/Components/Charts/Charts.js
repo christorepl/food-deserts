@@ -204,6 +204,7 @@ export default class Charts extends React.Component {
 
         return(
             <div className="charts">
+                <p className="data-disclaimer">All data points are represented as a percentage</p>
                 <div className="chart">
                 <Bar
                     data={electionChartData}

@@ -11,7 +11,7 @@ export default class AdditionalResources extends React.Component {
                     <li><a href="https://www.kingcounty.gov/depts/health/covid-19/data/impacts.aspx">King County, Washington page on the economic impact of COVID-19</a></li>
                     <li><a href="https://www.click2houston.com/food/2020/09/03/500k-houstonians-live-in-food-deserts-with-little-to-no-access-to-healthy-food-and-the-problem-has-worsened-due-to-covid-19/">News article about surge in food deserts in Houston due to COVID</a></li>
                 </ul>
-                
+                <hr/>
                 <h3>Relevant news articles</h3>
                 <ul>
                     <li><a href="https://foodbankonline.org/2020/06/02/the-impact-of-covid-19-on-food-deserts/">The Impact of COVID-19 On Food Deserts</a></li>
@@ -23,9 +23,7 @@ export default class AdditionalResources extends React.Component {
                     <li><a href="https://www.urban.org/urban-wire/two-american-experiences-racial-divide-poverty">Two American Experiences: The racial divide of poverty</a></li>
                     <li><a href="https://www.aljazeera.com/news/2020/4/8/navajo-nation-fears-of-hunger-as-covid-19-lockdown-to-intensify">Navajo Nation: Fears of hunger as COVID-19 lockdown to intensify</a></li>
                </ul>
-
-
-
+                <hr/>
                 <h3>Applications and websites that explore related and similar data</h3>
                 <ul>
                     <li><a href="https://www.pbs.org/video/tpt-co-productions-food-justice/">Food Justice - a PBS special</a></li>
@@ -39,7 +37,7 @@ export default class AdditionalResources extends React.Component {
                     <li><a href="https://www.apa.org/pi/ses/resources/publications/minorities">Compilation of data on Racial Minorities & Socioeconomic Status</a></li>
                 </ul>
 
-
+                <hr/>
                <h3>Data Sources</h3>
                <ul>
                     <li><a href="https://statisticalatlas.com/United-States/Race-and-Ethnicity">Racial Data</a></li>
@@ -49,7 +47,7 @@ export default class AdditionalResources extends React.Component {
                     <li><a href="https://rapidapi.com/Spiderpig86/api/coronavirus-us-api?endpoint=apiendpoint_bf2347c9-63f3-41f0-ade7-8a493512f99c">COVID-19 Data</a></li>
                     <li><a href="https://www.wusa9.com/elections-2020-map">2020 Election Results [taken from Associated Press]</a></li>
                 </ul>
-
+                <hr/>
                 <h3>The US Census, "Other", and Native Populations</h3>
                 <ul>
                     <li><a href="https://www.census.gov/programs-surveys/acs/technical-documentation/race-ethnicity-aian.html">US Census Documentation on Native Populations</a></li>
@@ -59,7 +57,7 @@ export default class AdditionalResources extends React.Component {
                     <li><a href="https://www.usnews.com/news/healthiest-communities/articles/2020-10-30/native-americans-fear-census-undercount-despite-government-optimism">Native American Fear Census Undercount Despite Government Optimism</a></li>
                 </ul>
 
-
+                <hr/>
                 <h3>Well, what can I do about this?</h3>
                 <h2>Donate to families living in poverty, in food deserts, and suffering under COVID. In addition to the sources below, a quick search will find more local organizations that seek to end hunger and the existence of food deserts</h2>
                     <ul>

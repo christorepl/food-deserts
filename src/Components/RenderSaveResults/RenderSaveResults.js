@@ -62,7 +62,7 @@ export default class RenderSaveResults extends React.Component {
             <>
             <div className="charts-button">
                 <Link to="/save-charts">
-                <button type="button" className="buttons">
+                <button type="button" >
                     View Charts
                 </button>
                 </Link>

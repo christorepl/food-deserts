@@ -10,6 +10,18 @@ header {
   justify-content: center;
 }
 
+.take-me {
+  text-align: center;
+}
+
+.why-header {
+  text-align: center
+}
+
+.take-me a:link{
+  color: rgb(103, 105, 42)
+}
+
 .DC2:hover {
   cursor: pointer
 }
@@ -67,7 +79,7 @@ body{
 
 .help-menu a:hover {
   color: white;
-  background-color: blue
+  background-color: rgb(90, 138, 116)
 }
 
 .help-menu a:active {
@@ -131,6 +143,7 @@ h1 {
 }
 
 .charts-button {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,16 +170,27 @@ h1 {
 }
 
 .addtl h3 {
-  text-align: center;
+  text-align: left;
   font-size: 22px;
 }
 
-.addtl h2 {
+button {
+  background-color: rgba(86, 245, 139, 0.733);
+  border-radius: 12px;
+  padding: 10px;
   text-align: center;
+  margin-bottom: 20px;
+  border: .5px solid rgb(30, 66, 55);
+  transition-duration: 2s;
+}
+
+.addtl h2 {
+  text-align: left;
   font-size: 16px;
 }
 
 .addtl li {
+  text-align: left;
   list-style: none;
   list-style-position: inside;
 }
