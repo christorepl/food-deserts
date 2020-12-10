@@ -1,7 +1,11 @@
 header {
-  margin: 10px;
-  background-color: rgb(164, 165, 81);
-  padding: 20px;
+  background-color: rgba(164, 165, 81, 0.664);
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  background-color: rgba(164, 165, 81, 0.664);
   display: flex;
   justify-content: center;
 }
@@ -153,26 +157,22 @@ h1 {
 }
 
 .addtl h3 {
-  color: rgb(78, 74, 74);
-  text-align: left;
+  text-align: center;
   font-size: 22px;
 }
 
 .addtl h2 {
-  color: rgb(66, 55, 55);
-  text-align: left;
+  text-align: center;
   font-size: 16px;
 }
 
 .addtl li {
-  color: rgb(66, 55, 55);
-  text-align: left;
   list-style: none;
   list-style-position: inside;
 }
 
 .addtl a:link{
-  color: rgb(13, 88, 46);
+  color: seagreen;
 }
 
 .addtl a:hover{
@@ -357,6 +357,8 @@ footer {
 .rc-table-cell {
   border: 2px inset rgba(218, 159, 147, 0.521)
 }
+
+
 
 /* 
 @media only screen and (min-width: 600px) {

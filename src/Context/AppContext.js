@@ -14,6 +14,8 @@ const AppContext = React.createContext({
     password: null,
     selectedStates: [],
     currentSaveResults: [],
+    toggle: false,
+    Toggle: () => {},
     runSaveSearch: () => {},
     updateSaveName: () => {},
     deleteSave: () => {},

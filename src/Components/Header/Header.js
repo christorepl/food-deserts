@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AppContext from '../../Context/AppContext'
 import UserUI from '../UserUI/UserUI'
+import logo from '../../imgs/logo.png'
 
 export default class Header extends React.Component {
     static contextType = AppContext
@@ -11,6 +12,10 @@ export default class Header extends React.Component {
     render() {
     
         return (
+          <>
+          <div className="logo">
+              <img src={logo} alt="logo with a red fist, crossed fork and knife, with the words 'food justice now'"/>
+          </div>
             <header>
             <div className="background">
               <span className="title">Learning about Food Justice: Race, Poverty, Political Leanings and COVID-19</span>
@@ -41,7 +46,8 @@ export default class Header extends React.Component {
               </nav>
               <nav className="membership"><UserUI /></nav>
             </div>
-          </header>      
+          </header>
+          </>      
         )
     }
 }

@@ -49,7 +49,7 @@ export default class Login extends React.Component {
                <button type="submit" className="buttons">Login</button>
             </form>
             :
-            <Redirect to="/saved-search"/>
+            <Redirect to="/home"/>
             }
             </>
         )

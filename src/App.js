@@ -18,7 +18,6 @@ import State from './Components/State/State'
 import StatePage from './Components/StatePage/StatePage'
 import Saved from './Components/SavedList/SavedList'
 import SavePage from './Components/SavePage/SavePage'
-import NavBar from './Components/NavBar/NavBar'
 
 toast.configure()
 
@@ -274,7 +273,7 @@ class App extends React.Component{
     this.setState({ isAuthenticated: false, user_name: null, userSaves: [], statesData: [], selectedStates: [], saveData: [], saveName: null, email: null, password: null, stateResults: []})
     this.props.history.push('/')
   }
-
+  
   render() {
     const value = {
       new_save_name: this.state.new_save_name,
@@ -292,9 +291,6 @@ class App extends React.Component{
       stateResults: this.state.stateResults,
       createAccount: this.createAccount,
       currentSaveResults: this.state.currentSaveResults,
-      displayMenu: this.state.displayMenu,
-      closeMenu: this.closeMenu,
-      showMenu: this.showMenu,
       runSaveSearch: this.runSaveSearch,
       setUpdatedSaveName: this.setUpdatedSaveName,
       updateSaveName: this.updateSaveName,
@@ -312,7 +308,6 @@ class App extends React.Component{
     return(
       <div>
       <AppContext.Provider value={value}>
-      {/* <NavBar /> */}
       <Route exact path="/">
         <Redirect to="/home" />
       </Route>
