@@ -31,7 +31,7 @@ export default class RenderSaveResults extends React.Component {
                         <li className="ranking-list" key={`rankingasian${currentState.ranking_asian}`}>Ranking: {currentState.ranking_asian}/51</li>
                         <li key={`hispanic${state[0].fips}`}>Hispanic: {state[0].hispanic}%</li>
                         <li className="ranking-list" key={`rankinghispanic${currentState.ranking_hispanic}`}>Ranking: {currentState.ranking_hispanic}/51</li>
-                        <li key={`other${state[0].fips}`}>Other: {state[0].other}%</li>
+                        <li key={`other${state[0].fips}`}>Other Race: {state[0].other}%</li>
                         <li className="ranking-list" key={`rankingother${currentState.ranking_other}`}>Ranking: {currentState.ranking_other}/51</li>
                         <li key={`mixed${state[0].fips}`}>Mixed Race: {state[0].mixed_race}%</li>
                         <li className="ranking-list" key={`rankingmixed${currentState.ranking_mixed}`}>Ranking: {currentState.ranking_mixed}/51</li>

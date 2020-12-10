@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { Pie } from 'react-chartjs-2'
+import { Pie, Bar } from 'react-chartjs-2'
 import AppContext from '../../Context/AppContext'
 
 toast.configure()
@@ -65,9 +65,9 @@ export default class StatePage extends React.Component {
             ]
         }
         
-        let foodInsecurity = currentState.food_insecurity_rate
-        let foodInsecurityRatio = 100 - foodInsecurity
-        const foodInsecurityData = [foodInsecurity, foodInsecurityRatio]
+        // let foodInsecurity = currentState.food_insecurity_rate
+        // let foodInsecurityRatio = 100 - foodInsecurity
+        const foodInsecurityData = [currentState.food_insecurity_rate, 100 - currentState.food_insecurity_rate]
 
         const foodInsecurityChartData = {
             labels: ['Food insecure households', 'Food secure households'],
@@ -85,7 +85,7 @@ export default class StatePage extends React.Component {
         const raceData = [currentState.black, currentState.white, currentState.hispanic, currentState.asian, currentState.other, currentState.mixed_race]
 
         const raceChartData = {
-            labels: ['Black', 'White', 'Hispanic', 'Asian', 'Other', 'Mixed Race'],
+            labels: ['Black', 'White', 'Hispanic', 'Asian', 'Other Race', 'Mixed Race'],
             datasets: [
                 {
                     label: 'Race Demographics',
@@ -112,12 +112,133 @@ export default class StatePage extends React.Component {
             ]
         }
 
+        const povertyRateData = [currentState.poverty_rate]
+        const foodInsecurityRateData = [currentState.food_insecurity_rate]
+        const covidRateData = [covid_rate]
+        const covidFRateData = [covid_fatality_rate]
+        const bData = [currentState.black]
+        const wData = [currentState.white]
+        const aData = [currentState.asian]
+        const hData = [currentState.hispanic]
+        const mData = [currentState.mixed_race]
+        const oData = [currentState.other]
+        const tData = [currentState.trump]
+        const biData = [currentState.biden]
+
+        
+        ///data for each dataset should have ONE data point - ie one data array each for white, black, trump, biden,
+        const compiledChartData = {
+            labels: [`${currentState.state_name} Data`],
+            datasets: [
+                {
+                    label: 'Poverty Rate',
+                    data: povertyRateData,
+                    backgroundColor: ['seagreen'],
+                    borderColor: ['black'],
+                    borderWidth: [.5,.5]
+                },
+                {
+                    label: 'Black',
+                    data: bData,
+                    backgroundColor: ['purple'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },
+                {
+                    label: 'White',
+                    data: wData,
+                    backgroundColor: ['orange'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },                {
+                    label: 'Asian',
+                    data: aData,
+                    backgroundColor: ['darkblue'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },                {
+                    label: 'Hispanic',
+                    data: hData,
+                    backgroundColor: ['gray'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },                {
+                    label: 'Mixed Race',
+                    data: mData,
+                    backgroundColor: ['green'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },                {
+                    label: 'Other Race',
+                    data: oData,
+                    backgroundColor: ['magenta'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },
+                {
+                    label: 'Food Insecurity Rate',
+                    data: foodInsecurityRateData,
+                    backgroundColor: ['slateblue'],
+                    borderColor: ['black'],
+                    borderWidth: [.5,.5]
+                },
+                {
+                    label: 'COVID Infection Rate',
+                    data: covidRateData,
+                    backgroundColor: ['yellow'],
+                    borderColor: ['black'],
+                    borderWidth: [.5,.5]
+                },
+                {
+                    label: 'COVID Fatality Rate',
+                    data: covidFRateData,
+                    backgroundColor: ['brown'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },
+                {
+                    label: 'Trump Vote Rate',
+                    data: tData,
+                    backgroundColor: ['red'],
+                    borderColor: ['black'],
+                    borderWidth: [.5,.5]
+                },
+                {
+                    label: 'Biden Vote Rate',
+                    data: biData,
+                    backgroundColor: ['blue'],
+                    borderColor: ['black'],
+                    borderWidth: [.5]
+
+                },
+            ]
+        }
+
+        console.log()
+
         return (
             <>
             {currentState
             ?
             <div className="state-page">
+                <h1>{currentState.state_name}</h1>
+                <p className="data-disclaimer">All data points are represented as a percentage</p>
                 <div className="state-chart-container">
+                    <Bar
+                        data={compiledChartData}
+                        height={60}
+                        options={{ 
+                        maintainAspectRatio: true,
+                        scales: {yAxes: [{ticks:{beginAtZero: true}}]}
+                    }}
+                    />
                     <Pie
                         data={covidInfectionChartData}
                         height={70}
@@ -150,7 +271,6 @@ export default class StatePage extends React.Component {
                     />
                 </div>
                 <div className="state-page-container">
-                <h1>{currentState.state_name}</h1>
                         <h3>Racial Demographics:</h3>
                         <li key={`black${currentState.fips}`}>Black: {currentState.black}%</li>
                         <li className="ranking-list" key={`rankingblack${currentState.ranking_black}`}>Ranking: {currentState.ranking_black}/51</li>
@@ -160,7 +280,7 @@ export default class StatePage extends React.Component {
                         <li className="ranking-list" key={`rankingasian${currentState.ranking_asian}`}>Ranking: {currentState.ranking_asian}/51</li>
                         <li key={`hispanic${currentState.fips}`}>Hispanic: {currentState.hispanic}%</li>
                         <li className="ranking-list" key={`rankinghispanic${currentState.ranking_hispanic}`}>Ranking: {currentState.ranking_hispanic}/51</li>
-                        <li key={`other${currentState.fips}`}>Other: {currentState.other}%</li>
+                        <li key={`other${currentState.fips}`}>Other Race: {currentState.other}%</li>
                         <li className="ranking-list" key={`rankingother${currentState.ranking_other}`}>Ranking: {currentState.ranking_other}/51</li>
                         <li key={`mixed${currentState.fips}`}>Mixed Race: {currentState.mixed_race}%</li>
                         <li className="ranking-list" key={`rankingmixed${currentState.ranking_mixed}`}>Ranking: {currentState.ranking_mixed}/51</li>

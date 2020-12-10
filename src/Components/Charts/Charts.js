@@ -42,7 +42,7 @@ export default class Charts extends React.Component {
                 {
                     label: 'Fatality Rate of C19 Infection',
                     data: covidDeathRate,
-                    backgroundColor: 'green',
+                    backgroundColor: 'brown',
                     borderColor: 'black',
                     borderWidth: .5
                 }
@@ -56,7 +56,7 @@ export default class Charts extends React.Component {
                 {
                     label: 'Rate of food insecure households',
                     data: foodInsecurity,
-                    backgroundColor: 'green',
+                    backgroundColor: 'slateblue',
                     borderColor: 'black',
                     borderWidth: .5
                 }
@@ -69,7 +69,7 @@ export default class Charts extends React.Component {
                 {
                     label: 'Rate of Poverty',
                     data: poverty,
-                    backgroundColor: 'orange',
+                    backgroundColor: 'seagreen',
                     borderColor: 'black',
                     borderWidth: .5
                 }
@@ -82,14 +82,14 @@ export default class Charts extends React.Component {
                 {
                     label: 'Rate of Poverty',
                     data: poverty,
-                    backgroundColor: 'purple',
+                    backgroundColor: 'seagreen',
                     borderColor: 'black',
                     borderWidth: .5
                 },
                 {
                     label: 'Rate of food insecure Households',
                     data: foodInsecurity,
-                    backgroundColor: 'black',
+                    backgroundColor: 'slateblue',
                     borderColor: 'black',
                     borderWidth: .5
                 }
@@ -157,7 +157,7 @@ export default class Charts extends React.Component {
                     borderWidth: .5
                 },
                 {
-                    label: 'Other',
+                    label: 'Other Race',
                     data: other,
                     backgroundColor: 'magenta',
                     borderColor: 'black',

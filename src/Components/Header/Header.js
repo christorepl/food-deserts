@@ -13,7 +13,7 @@ export default class Header extends React.Component {
         return (
             <header>
             <div className="background">
-              <span className="title">Food Security, Race, Poverty and Voting Tendencies in the U.S.</span>
+              <span className="title">Learning about Food Justice: Race, Poverty, Political Leanings and COVID-19</span>
               <nav className="help-menu">
                 <Link to='/'>
                   <div className="help-item">Home</div>
