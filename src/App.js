@@ -18,6 +18,7 @@ import State from './Components/State/State'
 import StatePage from './Components/StatePage/StatePage'
 import Saved from './Components/SavedList/SavedList'
 import SavePage from './Components/SavePage/SavePage'
+import NavBar from './Components/NavBar/NavBar'
 
 toast.configure()
 
@@ -311,6 +312,7 @@ class App extends React.Component{
     return(
       <div>
       <AppContext.Provider value={value}>
+      {/* <NavBar /> */}
       <Route exact path="/">
         <Redirect to="/home" />
       </Route>

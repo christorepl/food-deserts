@@ -1,6 +1,6 @@
 header {
   margin: 10px;
-  background-color: rgba(164, 165, 81, 0.664);
+  background-color: rgb(164, 165, 81);
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -153,22 +153,26 @@ h1 {
 }
 
 .addtl h3 {
-  text-align: center;
+  color: rgb(78, 74, 74);
+  text-align: left;
   font-size: 22px;
 }
 
 .addtl h2 {
-  text-align: center;
+  color: rgb(66, 55, 55);
+  text-align: left;
   font-size: 16px;
 }
 
 .addtl li {
+  color: rgb(66, 55, 55);
+  text-align: left;
   list-style: none;
   list-style-position: inside;
 }
 
 .addtl a:link{
-  color: seagreen;
+  color: rgb(13, 88, 46);
 }
 
 .addtl a:hover{
