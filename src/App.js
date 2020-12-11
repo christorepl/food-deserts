@@ -376,7 +376,6 @@ class App extends React.Component{
         component={SavePage}
       />
       </AppContext.Provider>
-      <Footer />
       </div>
     )
   }
