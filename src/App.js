@@ -2,10 +2,7 @@ import React from 'react'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import API_BASE_URL from './config'
-import About from './Components/About/About'
-import Footer from './Components/Footer/Footer'
 import AdditionalResources from './Components/AdditionalResources/AdditionalResources'
-import Contact from './Components/Contact/Contact'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import Login from './Components/Login/Login'
 import AppContext from './Context/AppContext'
@@ -348,16 +345,8 @@ class App extends React.Component{
         component={Search}
         />
       <Route
-        exact path="/about"
-        component={About}
-      />
-      <Route
         exact path="/addtl"
         component={AdditionalResources}
-      />
-      <Route
-        exact path="/contact"
-        component={Contact}
       />
       <Route
         exact path="/create-account"
