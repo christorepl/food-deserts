@@ -233,7 +233,7 @@ export default class StatePage extends React.Component {
                 <div className="state-chart-container">
                     <Bar
                         data={compiledChartData}
-                        height={150}
+                        height={100}
                         options={{ 
                         maintainAspectRatio: true,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
