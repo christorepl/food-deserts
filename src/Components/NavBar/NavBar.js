@@ -69,7 +69,7 @@ export default class NavBar extends React.Component {
                         </Link>
                     </div>
                     <div className="nav-logo">
-                        <img src={logo} alt="a digitally rendered logo of a clenched fist with the phrase 'food justice now' in stencil lettering below it, against a backdrop of a crossed fork and knife "/>
+                        <img src={logo} alt="a clenched fist with the phrase 'food justice now' in stencil lettering below it, against a backdrop of a crossed fork and knife"/>
                     </div>
                 </div>
                     <nav className={toggleClass}>
