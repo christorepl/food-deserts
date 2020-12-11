@@ -235,7 +235,7 @@ export default class StatePage extends React.Component {
                         data={compiledChartData}
                         height={150}
                         options={{ 
-                        maintainAspectRatio: true,
+                        maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
                     }}
                     />
