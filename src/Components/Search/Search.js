@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes'
 import Select from 'react-select'
-import Async from 'react-select'
 import AppContext from '../../Context/AppContext'
 import MenuOptions from '../MenuOptions/MenuOptions'
 import SaveSearchButton from '../SaveSearchButton/SaveSearchButton'

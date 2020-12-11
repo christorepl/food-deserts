@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import API_BASE_URL from './config'
-import Header from './Components/Header/Header'
 import About from './Components/About/About'
 import Footer from './Components/Footer/Footer'
 import AdditionalResources from './Components/AdditionalResources/AdditionalResources'
@@ -18,6 +17,8 @@ import State from './Components/State/State'
 import StatePage from './Components/StatePage/StatePage'
 import Saved from './Components/SavedList/SavedList'
 import SavePage from './Components/SavePage/SavePage'
+import NavBar from './Components/NavBar/NavBar'
+import Logout from './Components/Logout/Logout'
 
 toast.configure()
 
@@ -25,6 +26,7 @@ class App extends React.Component{
   static contextType = AppContext;
 
   state = {
+    navbarToggle: false,
     selectMessage: null,
     currentSaveResults: [],
     statesData: [],
@@ -50,8 +52,8 @@ class App extends React.Component{
   }
   
   async componentDidMount () {
-    const { currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
-    this.setState({ currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated })
+    const { navbarToggle, currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated } = this.context
+    this.setState({ navbarToggle, currentSaveResults, new_save_name, selectMessage, password, email, user_name, saveName, stateResults, userSaves, selectedStates, saveData, statesData, allStates, isAuthenticated })
     this.checkAuth()
     this.updateCovidData()
     this.setName(this.state.user_name)
@@ -266,14 +268,23 @@ class App extends React.Component{
     }
   }
 
-  logout = (e) => {
-    e.preventDefault()
+  logout = () => {
     localStorage.removeItem('jwt_token')
     toast.info('Logout successful', this.toastifyParams)
     this.setState({ isAuthenticated: false, user_name: null, userSaves: [], statesData: [], selectedStates: [], saveData: [], saveName: null, email: null, password: null, stateResults: []})
     this.props.history.push('/')
   }
   
+  NavBarToggle = (bool) => {
+    if(bool) {
+      console.log('bool passed', bool)
+      this.setState({navbarToggle: bool})
+    } else {
+      console.log('no bool')
+      this.setState({navbarToggle: !this.state.navbarToggle})
+    }
+  }
+
   render() {
     const value = {
       new_save_name: this.state.new_save_name,
@@ -291,6 +302,8 @@ class App extends React.Component{
       stateResults: this.state.stateResults,
       createAccount: this.createAccount,
       currentSaveResults: this.state.currentSaveResults,
+      navbarToggle: this.state.navbarToggle,
+      NavBarToggle: this.NavBarToggle,
       runSaveSearch: this.runSaveSearch,
       setUpdatedSaveName: this.setUpdatedSaveName,
       updateSaveName: this.updateSaveName,
@@ -311,9 +324,10 @@ class App extends React.Component{
       <Route exact path="/">
         <Redirect to="/home" />
       </Route>
-      <Route
-        path="/"
-        component={Header}
+      <NavBar/>
+      <Route 
+      path="/logout"
+      component={Logout}
       />
       <Route 
         exact path="/charts"

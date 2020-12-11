@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
 import AppContext from '../../Context/AppContext'
 import USAMap from 'react-usa-map'
 
@@ -222,7 +221,6 @@ export default class State extends React.Component {
     
         return(
             <>
-            <h1>Select a state from the map below</h1>
             <div className="state-selection">
                 <USAMap customize={this.statesFilling()} onClick={this.mapHandler}/>
             </div>
