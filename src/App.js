@@ -67,6 +67,7 @@ class App extends React.Component{
       })
       
       const parseRes = await response.json()
+      console.log(parseRes)
       parseRes[0].save_name
       ?
       this.setState({userSaves: parseRes})

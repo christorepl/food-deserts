@@ -71,11 +71,3 @@ export default class UserSaves extends React.Component {
         )
     }
 }
-
-
-// {this.context.userSaves.map(save => {
-//     return (
-//         <div className="user-save" key={save.save_name}>
-//         <li><Link to={`/saved-search/${save.save_name}`}>{save.save_name} - {save.state_names?.replaceAll('"', '').replaceAll('[', '').replaceAll(']', '').replaceAll(',', ', ')}</Link></li>
-//         </div>
-//     )})}
