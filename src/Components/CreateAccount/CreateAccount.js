@@ -48,12 +48,15 @@ export default class CreateAccount extends React.Component {
                 <h1>Create Account</h1>
                 <form className="forms" onSubmit={e => this.createAccount(e)}>
                     <label htmlFor="user_name">Name:</label>
+                    <br/>
                     <input type="text" name="user_name" onChange={e => this.context.setName(e.target.value)} required/>
                     <br/>
                     <label htmlFor="email">E-mail Address:</label>
+                    <br/>
                     <input type="email" name="email" onChange={e => this.context.setEmail(e.target.value)} required/>
                     <br/>
                     <label htmlFor="password">Password:</label>
+                    <br/>
                     <input type="password" name="password" onChange={e => this.context.setPassword(e.target.value)} required/>
                     <br/>
                     <button  type="submit">Create Account</button>
