@@ -29,15 +29,15 @@ export default class UserSaves extends React.Component {
 
     data = this.context.userSaves.map(save => {
 
-        // const formatDate = (dateString) => {
-        // const options = { year: "numeric", month: "long", day: "numeric" }
-        // return new Date(dateString).toLocaleDateString(undefined, options)
-        // }
+        const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+        }
         return (
         {
             save_name: <Link to={`/saved-search/${save.save_name}`}>{save.save_name}</Link>,
             state_names: save.state_names.replaceAll('"', '').replaceAll('[', '').replaceAll(']', '').replaceAll(',', ', '),
-            modified: save.modified
+            modified: formatDate(save.modified)
         }
         )
     })
@@ -54,6 +54,7 @@ export default class UserSaves extends React.Component {
 
 
     render() {
+        console.log('USER SAVES:   ', this.context.userSaves)
         return(
             <>
             <h1>{this.formattedName}'s Saved Searches</h1>
