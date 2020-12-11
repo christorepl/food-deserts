@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 import * as AiIcons from 'react-icons/ai'
 import * as SiIcons from 'react-icons/si'
-import * as GrIcons from 'react-icons/gr'
 import AppContext from '../../Context/AppContext'
 import logo from '../../imgs/logo.png'
 

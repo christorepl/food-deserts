@@ -147,7 +147,14 @@ h1 {
 }
 
 .inspect-link {
-  font-size: 10pt
+  font-size: 10pt;
+  color: black
+}
+
+.inspect-link a:link{
+  font-size: 10pt;
+  color: black;
+  text-decoration: none
 }
 
 .state-container h3 {
@@ -162,13 +169,20 @@ h1 {
 }
 
 button {
-  background-color: rgba(86, 245, 139, 0.733);
+  background-color: rgb(192, 192, 192);
   border-radius: 12px;
   padding: 10px;
+  margin-top: 10px;
   text-align: center;
   margin-bottom: 20px;
   border: .5px solid rgb(30, 66, 55);
   transition-duration: 2s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  transition-duration: 4s;
 }
 
 .addtl h2 {
@@ -263,9 +277,6 @@ button {
   color: black;
 }
 
-button:hover {
-  cursor: pointer;
-}
 
 /* .state-chart-container {
   display: grid;
@@ -312,12 +323,6 @@ legend {
   margin-right: auto
 }
 
-.buttons{
-  padding: 10px;
-  text-align: center;
-  margin: 15px;
-}
-
 .ranking-list {
   list-style: none;
   font-size: 8.75pt;
@@ -333,6 +338,7 @@ legend {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%
 }
 
 ul {

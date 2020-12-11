@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import * as AiIcons from 'react-icons/ai'
 import AppContext from '../../Context/AppContext'
 
 export default class RenderSaveResults extends React.Component {
@@ -18,9 +19,12 @@ export default class RenderSaveResults extends React.Component {
             return (
                     <div className="state-container" key={`container-${state[0].state_name}-${state[0].fips}`}>
                         <h1>{state[0].state_name}</h1>
-                        <Link to={`/state/${state[0].fips}`}>
-                        <p className="inspect-link">Inspect this state's data closer</p>
-                        </Link>
+                        <div className="inspect-link">
+                            <Link to={`/state/${state[0].fips}`}>
+                            <AiIcons.AiOutlineSearch/>
+                            <p className="inspect-link">Inspect this state's data closer</p>
+                            </Link>
+                        </div>
                         <h2>Total population: {new Intl.NumberFormat().format(state[0].pop)}</h2>
                             <h3>Racial Demographics:</h3>
                             <li key={`black${state[0].fips}`}>Black: {state[0].black}%</li>
