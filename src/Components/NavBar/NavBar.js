@@ -19,6 +19,16 @@ export default class NavBar extends React.Component {
                 className: 'nav-text'
             },
             {
+                title: !this.context.isAuthenticated ? 'Login' : 'Logout',
+                path: !this.context.isAuthenticated ? '/login' : '/logout',
+                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineLogin/> : <AiIcons.AiOutlineLogout/>,
+            },
+            {
+                title: !this.context.isAuthenticated ? 'Create Account' : 'My Saves',
+                path: !this.context.isAuthenticated ? '/create-account' : '/saved-search',
+                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineUserAdd/> : <AiIcons.AiOutlineUser/>,
+            },
+            {
                 title: 'Search',
                 path: '/search',
                 icon: <AiIcons.AiOutlineSearch/>,
@@ -29,31 +39,23 @@ export default class NavBar extends React.Component {
                 icon: <SiIcons.SiOpenstreetmap/>
             },
             {
-                title: !this.context.isAuthenticated ? 'Create Account' : 'My Saves',
-                path: !this.context.isAuthenticated ? '/create-account' : '/saved-search',
-                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineUserAdd/> : <AiIcons.AiOutlineUser/>,
-            },
-            {
-                title: !this.context.isAuthenticated ? 'Login' : 'Logout',
-                path: !this.context.isAuthenticated ? '/login' : '/logout',
-                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineLogin/> : <AiIcons.AiOutlineLogout/>,
-            },
-            {
-                title: 'About',
-                path: '/about',
-                icon: <AiIcons.AiOutlineQuestionCircle/>,
-            },
-            {
-                title: 'Contact',
-                path: '/contact',
-                icon: <AiIcons.AiOutlineContacts/>,
-            },
-            {
                 title: 'Additional Resources',
                 path: '/addtl',
                 icon: <AiIcons.AiOutlineFile/>
             }
+        ]
         
+        const NavBarContact = [
+            {
+                title: 'My LinkedIn',
+                path: 'https://www.linkedin.com/in/christopheredwardobrien/',
+                icon: <AiIcons.AiOutlineLinkedin/>,
+            },
+            {
+                title: 'My GitHub',
+                path: 'https://github.com/christorepl',
+                icon: <AiIcons.AiOutlineGithub/>
+            }
         ]
 
         const toggleClass = this.context.navbarToggle ? 'nav-menu active' : 'nav-menu'
@@ -67,7 +69,7 @@ export default class NavBar extends React.Component {
                         </Link>
                     </div>
                     <div className="nav-logo">
-                        <img src={logo} alt="a digital image of a clenched fist with the phrase 'food justice now' in stencil lettering below it, against a backdrop of a crossed fork and knife "/>
+                        <img src={logo} alt="a digitally rendered logo of a clenched fist with the phrase 'food justice now' in stencil lettering below it, against a backdrop of a crossed fork and knife "/>
                     </div>
                 </div>
                     <nav className={toggleClass}>
@@ -84,6 +86,16 @@ export default class NavBar extends React.Component {
                                                 {item.icon}
                                             <span>{item.title}</span>
                                         </Link>
+                                    </li>
+                                )
+                            })}
+                            {NavBarContact.map((item, i) => {
+                                return (
+                                    <li key={'contact' + i} className="nav-text">
+                                        <a href={item.path}>
+                                            {item.icon}
+                                        <span>{item.title}</span>
+                                        </a>
                                     </li>
                                 )
                             })}

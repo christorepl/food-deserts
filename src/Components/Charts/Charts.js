@@ -199,8 +199,6 @@ export default class Charts extends React.Component {
                 }
             ]
         }
-        
-
 
         return(
             <div className="charts">

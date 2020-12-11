@@ -14,11 +14,9 @@ export default class StateSelection extends React.Component {
             <>
                 <form className="forms" onSubmit={(e) => this.context.fetchFips(e)}>
                     <h1>Select one or more US States </h1>
-                    <button type="submit" >Submit</button>
                     <div className="select-box">
                         <Select
                             required
-                            placeholder={'Type a state name or use the dropdown arrow'}
                             isMulti={true}
                             closeMenuOnSelect={false}
                             isSearchable={true}
@@ -27,6 +25,7 @@ export default class StateSelection extends React.Component {
                             onChange={this.context.handleStateSelection}
                         />
                     </div>
+                    <button type="submit" >Submit</button>
                     {this.context.stateResults.length
                     ?
                     <Link to="/charts">

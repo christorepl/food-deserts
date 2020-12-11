@@ -18,7 +18,7 @@ export default class RenderResults extends React.Component {
                     <div className="inspect-link">
                         <Link to={`/state/${state[0].fips}`}>
                         <AiIcons.AiOutlineSearch/>
-                        <p className="inspect-link">Inspect this state's data closer</p>
+                        <p className="inspect-link">Inspect this state's data more closely</p>
                         </Link>
                     </div>
                     <h2>Total population: {new Intl.NumberFormat().format(state[0].pop)}</h2>
