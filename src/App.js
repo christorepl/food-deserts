@@ -67,7 +67,6 @@ class App extends React.Component{
       })
       
       const parseRes = await response.json()
-      console.log(parseRes)
       parseRes[0].save_name
       ?
       this.setState({userSaves: parseRes})
@@ -276,14 +275,8 @@ class App extends React.Component{
     this.props.history.push('/')
   }
   
-  NavBarToggle = (bool) => {
-    if(bool) {
-      console.log('bool passed', bool)
-      this.setState({navbarToggle: bool})
-    } else {
-      console.log('no bool')
-      this.setState({navbarToggle: !this.state.navbarToggle})
-    }
+  NavBarToggle = () => {
+  this.setState({navbarToggle: !this.state.navbarToggle})
   }
 
   render() {

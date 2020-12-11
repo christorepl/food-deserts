@@ -334,11 +334,8 @@ legend {
   text-align: center;
 }
 
-.save-table {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%
+.rc-table {
+  display: none;
 }
 
 ul {
@@ -363,16 +360,6 @@ footer {
   padding-left: 15px;
   padding-bottom: 10px;
   text-align: center;
-}
-
-.rc-table {
-  border: 3px outset rgba(235, 212, 203, 0.473);
-  text-align: center
-}
-
-
-.rc-table-cell {
-  border: 2px inset rgba(218, 159, 147, 0.521)
 }
 
 .navbar {
@@ -474,20 +461,87 @@ span {
   box-sizing: border-box;
   font-family: Roboto
 }
-/* 
-@media only screen and (min-width: 600px) {
-  .stateContainer {
-    background-color: rgba(110, 107, 107, 0.354);
-    display: flex;
-    width: 100%;
-    flex-flow: column nowrap;
-  flex: 1 0 45%
+
+
+.responsiveTable {
+  width: 100%;
+  border-style: solid;
+  border-collapse: collapse;
 }
-} */
+
+.responsiveTable td .tdBefore {
+  display: none;
+}
+
+.responsiveTable th {
+  background-color: black;
+  color: white;
+}
+
+.responsiveTable th,
+.responsiveTable td {
+  border: 1px solid black;
+}
 
 
-/* @media all and (min-width: 800px) {
-  .membership {
-    justify-content: right;
+@media screen and (max-width: 40em) {
+  /*
+    Force table elements to not behave like tables anymore
+    Hide table headers (but not display: none;, for accessibility)
+  */
+
+  .responsiveTable table,
+  .responsiveTable thead,
+  .responsiveTable tbody,
+  .responsiveTable th,
+  .responsiveTable td,
+  .responsiveTable tr {
+    display: block;
   }
-} */
+
+
+  .pivoted {
+    border-style: solid;
+  }
+
+  .responsiveTable thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    border-bottom: 2px solid #333;
+  }
+
+  .responsiveTable tbody tr {
+    border: 1px solid #000;
+    padding: .25em;
+  }
+
+  .responsiveTable td.pivoted {
+    /* Behave like a "row" */
+    border: none !important;
+    position: relative;
+    padding-left: calc(50% + 10px) !important;
+    text-align: left !important;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+
+  .responsiveTable td .tdBefore {
+    /* Now like a table header */
+    position: absolute;
+    display: block;
+    
+
+    /* Top/left values mimic padding */
+    left: 1rem;
+    width: calc(50% - 20px);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    text-align: left !important;
+    font-weight: 600;
+    
+  }
+}
+
+
+

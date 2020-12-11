@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Table from "rc-table"
+// import Table from "rc-table"
+import UserSavesTable from '../UserSavesTable/UserSavesTable'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import AppContext from '../../Context/AppContext'
 
 export default class UserSaves extends React.Component {
@@ -54,16 +56,16 @@ export default class UserSaves extends React.Component {
 
 
     render() {
-        console.log('USER SAVES:   ', this.context.userSaves)
         return(
             <>
             <h1>{this.formattedName}'s Saved Searches</h1>
             {this.context.userSaves.length
             ?
+            <>
             <div className="save-table">
-                {/* /////////////TABLE HERE\\\\\\\\\\\\\\\\ */}
-                <Table columns={this.columns} data={this.data} />
+                <UserSavesTable/>
             </div>
+            </>
             :
             <p>You do not have any saved searches. Save a search and they will be stored on this page.</p>
             }
