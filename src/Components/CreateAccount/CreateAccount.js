@@ -44,7 +44,6 @@ export default class CreateAccount extends React.Component {
                 {!this.context.isAuthenticated 
                 ?
                 <>
-                <p>Making an account will allow users to save searches so they can quickly repeat searches instead od having to select states again. Users can delete saved searches and change the name of their saved searches.</p>
                 <h1>Create Account</h1>
                 <form className="forms" onSubmit={e => this.createAccount(e)}>
                     <label htmlFor="user_name">Name:</label>
