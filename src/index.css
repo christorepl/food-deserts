@@ -111,10 +111,6 @@ h1 {
   font-size: 24px;
 }
 
-.delete-p{
-  text-align: center;
-}
-
 fieldset {
   border-radius: 15px;
   border: 1px solid white;
@@ -291,16 +287,14 @@ button:hover {
   display: flex;
 }
 
-.container h1, .container p{
-  color: black;
-}
-
 .container h1 {
   font-size: 20px;
 }
 
-.container p {
+p {
   font-size: 12px;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
 
 .forms {

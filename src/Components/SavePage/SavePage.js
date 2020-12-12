@@ -27,7 +27,7 @@ export default class SavePage extends React.Component {
                 <button type="submit">Submit</button>
                 </form>
                 <div className="forms">
-                    <p className="delete-p">If you wish to delete your save, click the button below</p>
+                    <p>If you wish to delete your save, click the button below</p>
                     <div className="delete-save-button">
                         <button type="submit" onClick={(e) => this.context.deleteSave(this.currentSave.save_name, e)}>Delete this save</button>
                     </div>
