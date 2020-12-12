@@ -12,7 +12,7 @@ export default class State extends React.Component {
     statesFilling = () => {
       return {
           'AL': {
-              fill: 'blue',
+              fill: 'red',
               clickHandler: () => this.props.history.push('/state/1') 
           },
           'AK': {
@@ -20,46 +20,46 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/2') 
         },
         'AZ': {
-            fill: 'orange',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/4') 
         },
         'AR': {
-            fill: 'green',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/5') 
         },
         'CA': {
-            fill: 'turquoise',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/6') 
         },
         'CO': {
-            fill: 'teal',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/8') 
         },
         'CT': {
-            fill: 'yellow',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/9') 
         },
         'DC2' : {
-            fill: 'fuchsia'
+            fill: 'blue'
         },
         'DE': {
             fill: 'red',
             clickHandler: () => this.props.history.push('/state/10') 
         },
         'FL': {
-            fill: 'orange',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/12') 
         },
         'GA': {
-            fill: 'brown',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/13') 
         },
         'HI': {
-            fill: 'rgb(168, 51, 185)',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/15') 
         },
         'ID': {
-            fill: 'purple',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/16') 
         },
         'IL': {
@@ -67,11 +67,11 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/17') 
         },
         'IN': {
-            fill: 'green',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/18') 
         },
         'IA': {
-            fill: 'aqua',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/19') 
         },
         'KS': {
@@ -79,139 +79,139 @@ export default class State extends React.Component {
             clickHandler: () => this.props.history.push('/state/20') 
         },
         'KY': {
-            fill: 'coral',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/21') 
         },
         'LA': {
-            fill: 'crimson',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/22') 
         },
         'ME': {
-            fill: 'burlywood',
+            fill: 'purple',
             clickHandler: () => this.props.history.push('/state/23') 
         },
         'MD': {
-            fill: 'rgb(17, 157, 164)',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/24') 
         },
         'MA': {
-            fill: 'darkcyan',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/25') 
         },
         'MI': {
-            fill: 'blueviolet',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/26') 
         },
         'MN': {
-            fill: 'rgba(138, 176, 171)',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/27') 
         },
         'MS': {
-            fill: 'greenyellow',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/28') 
         },
         'MO': {
-            fill: 'indianred',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/29') 
         },
         'MT': {
-            fill: 'lawngreen',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/30') 
         },
         'NE': {
-            fill: 'lightcoral',
+            fill: 'purple',
             clickHandler: () => this.props.history.push('/state/31') 
         },
         'NV': {
-            fill: 'maroon',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/32') 
         },
         'NH': {
-            fill: 'mediumspringgreen',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/33') 
         },
         'NJ': {
-            fill: 'navy',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/34') 
         },
         'NM': {
-            fill: 'olive',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/35') 
         },
         'NY': {
-            fill: 'olivedrab',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/36') 
         },
         'NC': {
-            fill: 'orchid',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/37') 
         },
         'ND': {
-            fill: 'orangered',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/38') 
         },
         'OH': {
-            fill: 'firebrick',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/39') 
         },
         'OK': {
-            fill: 'indigo',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/40') 
         },
         'OR': {
-            fill: 'midnightblue',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/41') 
         },
         'PA': {
-            fill: 'palevioletred',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/42') 
         },
         'RI': {
-            fill: 'fuchsia',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/44') 
         },
         'SC': {
-            fill: 'plum',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/45') 
         },
         'SD': {
-            fill: 'peru',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/46') 
         },
         'TN': {
-            fill: 'rebeccapurple',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/47') 
         },
         'TX': {
-            fill: 'rosybrown',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/48') 
         },
         'UT': {
-            fill: 'sandybrown',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/49') 
         },
         'VT': {
-            fill: 'salmon',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/50') 
         },
         'VA': {
-            fill: 'saddlebrown',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/51') 
         },
         'WA': {
-            fill: 'seagreen',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/53') 
         },
         'WV': {
-            fill: 'rgb(31, 32, 65)',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/54') 
         },
         'WI': {
-            fill: 'rgb(38, 65, 60)',
+            fill: 'blue',
             clickHandler: () => this.props.history.push('/state/55') 
         },
         'WY': {
-            fill: 'steelblue',
+            fill: 'red',
             clickHandler: () => this.props.history.push('/state/56') 
         },
       }
