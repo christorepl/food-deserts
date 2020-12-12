@@ -35,26 +35,8 @@ export default class TableExample extends React.Component {
             )
             })
             }
-
-
-
-            {/* {this.context.userSaves.map(save => {
-                return(
-                    <Tr>
-                        <Td>{save.save_name}</Td>
-                        <Td>{save.modified}</Td>
-                        <Td>{save.state_names}</Td>
-                    </Tr>
-                )
-            })} */}
         </Tbody>
       </Table>
     );
   }
 }
-
-<Tr>
-    <Td>save name</Td>
-    <Td>modified</Td>
-    <Td>states</Td>
-</Tr>

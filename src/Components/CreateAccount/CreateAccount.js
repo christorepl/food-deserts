@@ -40,7 +40,7 @@ export default class CreateAccount extends React.Component {
 
     render() {
         return(
-            <div className="ui-info">
+            <div>
                 {!this.context.isAuthenticated 
                 ?
                 <>

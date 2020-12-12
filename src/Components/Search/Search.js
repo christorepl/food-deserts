@@ -25,7 +25,7 @@ export default class StateSelection extends React.Component {
                             onChange={this.context.handleStateSelection}
                         />
                     </div>
-                    <button type="submit" >Submit</button>
+                    <button type="submit" className="search-submit-button">Submit</button>
                     {this.context.stateResults.length
                     ?
                     <Link to="/charts">
