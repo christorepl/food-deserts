@@ -206,7 +206,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar
                     data={electionChartData}
-                    height={100}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
