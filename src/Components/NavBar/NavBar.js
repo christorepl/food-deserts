@@ -92,7 +92,7 @@ export default class NavBar extends React.Component {
                             {NavBarContact.map((item, i) => {
                                 return (
                                     <li key={'contact' + i} className="nav-text">
-                                        <a href={item.path}>
+                                        <a href={item.path} target="_blank" rel="noopener noreferrer">
                                             {item.icon}
                                         <span>{item.title}</span>
                                         </a>

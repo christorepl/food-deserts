@@ -12,7 +12,6 @@ export default class StatePage extends React.Component {
     
     
     render() {
-        // window.addEventListener('click', () => this.context.closeMenu())
         const currentState = this.context.allStates.find(states => parseInt(states.fips) === parseInt(this.props.match.params.fips));
 
         let electionData = [currentState.trump, currentState.biden]
@@ -62,8 +61,6 @@ export default class StatePage extends React.Component {
             ]
         }
         
-        // let foodInsecurity = currentState.food_insecurity_rate
-        // let foodInsecurityRatio = 100 - foodInsecurity
         const foodInsecurityData = [currentState.food_insecurity_rate, 100 - currentState.food_insecurity_rate]
 
         const foodInsecurityChartData = {
@@ -123,7 +120,6 @@ export default class StatePage extends React.Component {
         const biData = [currentState.biden]
 
         
-        ///data for each dataset should have ONE data point - ie one data array each for white, black, trump, biden,
         const compiledChartData = {
             labels: [`${currentState.state_name} Data`],
             datasets: [
@@ -231,7 +227,7 @@ export default class StatePage extends React.Component {
                 <div className="state-chart-container">
                     <Bar
                         data={compiledChartData}
-                        height={500}
+                        height={350}
                         options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
