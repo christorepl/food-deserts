@@ -3,11 +3,22 @@ import { Redirect } from 'react-router-dom'
 import { Pie, Bar } from 'react-chartjs-2'
 import AppContext from '../../Context/AppContext'
 
+toast.configure();
+
 export default class StatePage extends React.Component {
     static contextType = AppContext
+
+    toastifyParams = {
+        autoClose: 2500, 
+        hideProgressBar: true, 
+        position: "bottom-left",
+        pauseOnHover: false,
+        pauseOnFocusLoss: false
+      }
+    
     
     redirectMessage = () => {
-       alert('That page does not exist. Redirected to states index page.')
+       toast.error('That page does not exist. Redirected to states index page.', this.toastifyParams)
     }
     
     

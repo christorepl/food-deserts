@@ -16,7 +16,9 @@ import Saved from './Components/SavedList/SavedList'
 import SavePage from './Components/SavePage/SavePage'
 import NavBar from './Components/NavBar/NavBar'
 import Logout from './Components/Logout/Logout'
+import { toast } from "react-toastify";
 
+toast.configure();
 
 class App extends React.Component{
   static contextType = AppContext;
@@ -37,6 +39,14 @@ class App extends React.Component{
     user_name: null,
     email: null,
     password: null,
+  }
+
+  toastifyParams = {
+    autoClose: 2500, 
+    hideProgressBar: true, 
+    position: "bottom-left",
+    pauseOnHover: false,
+    pauseOnFocusLoss: false
   }
 
   async componentDidMount () {
@@ -104,7 +114,7 @@ class App extends React.Component{
           body
       })
       const parseRes = await response.json()
-      alert(parseRes)
+      toast.info(parseRes, this.toastifyParams)
       this.populateUserSaves()
       this.props.history.push('/saved-search')
   } catch (err) {
@@ -132,10 +142,10 @@ class App extends React.Component{
       const parseRes = await response.json()
       
       if(typeof(parseRes) === 'string') {
-       alert(parseRes)
+       toast.error(parseRes, this.toastifyParams)
       } else {
         this.populateUserSaves()
-        alert('Save name updated. Redirecting you back to your dashboard...')
+        toast.success('Save name updated. Redirecting you back to your dashboard...', this.toastifyParams)
         this.props.history.push('/saved-search')
       }
     } catch (err) {
@@ -164,10 +174,10 @@ class App extends React.Component{
 
       const parseRes = await response.json()
       if (typeof(parseRes) === 'string') {
-        alert(parseRes)
+        toast.info(parseRes, this.toastifyParams)
       } else {
       this.populateUserSaves()
-      alert('Save successful')
+      toast.success('Save successful', this.toastifyParams)
       }
     } catch(err) {
       console.error(err.message)
@@ -206,7 +216,7 @@ class App extends React.Component{
 
     if(!this.state.selectedStates.length) {
       await this.setState({selectMessage: 'You must select one or more states.'})
-      alert(this.state.selectMessage)
+      toast.error(this.state.selectMessage, this.toastifyParams)
     } else {
       let statesToSearch = this.state.selectedStates.map(state => state.value)
       let queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch
@@ -214,7 +224,7 @@ class App extends React.Component{
         const response = await fetch(queryURL)
         const stateResults = await response.json()
         this.setState({stateResults})
-        alert('Search successful!')
+        toast.success('Search successful!', this.toastifyParams)
       } catch (error) {
         console.error(error.message)
       }
@@ -244,21 +254,21 @@ class App extends React.Component{
   loginUser = async(attempt, user_name) => {
     // logs in the user
     if (attempt === 'login'){
-      alert('Login successful')
+      toast.success('Login successful', this.toastifyParams)
       this.setState({ isAuthenticated: true, user_name })
       this.populateUserSaves()
     } else if (attempt === 'create') {
-      alert('Account creation successful! You are now logged in.')
+      toast.success('Account creation successful! You are now logged in.', this.toastifyParams)
       this.setState({ isAuthenticated: true, user_name })
     } else {
-      alert(attempt)
+      toast.error(attempt, this.toastifyParams)
       this.setState({ isAuthenticated: false })
     }
   }
 
   logout = () => {
     localStorage.removeItem('jwt_token')
-    alert('Logout successful')
+    toast.info('Logout successful', this.toastifyParams)
     this.setState({ isAuthenticated: false, user_name: null, userSaves: [], statesData: [], selectedStates: [], saveData: [], saveName: null, email: null, password: null, stateResults: []})
     this.props.history.push('/')
   }
