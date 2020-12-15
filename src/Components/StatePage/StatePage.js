@@ -1,5 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import { toast } from "react-toastify";
 import { Pie, Bar } from 'react-chartjs-2'
 import AppContext from '../../Context/AppContext'
 
@@ -12,8 +13,8 @@ export default class StatePage extends React.Component {
         autoClose: 2500, 
         hideProgressBar: true, 
         position: "bottom-left",
-        pauseOnHover: false,
-        pauseOnFocusLoss: false
+        pauseOnHover: true,
+        pauseOnFocusLoss: true
       }
     
     
@@ -221,11 +222,9 @@ export default class StatePage extends React.Component {
                     borderColor: ['black'],
                     borderWidth: [.5]
 
-                },
+                }
             ]
         }
-
-        console.log()
 
         return (
             <>
@@ -238,9 +237,9 @@ export default class StatePage extends React.Component {
                 <div className="state-chart-container">
                     <Bar
                         data={compiledChartData}
-                        height={350}
+                        height={500}
                         options={{ 
-                        maintainAspectRatio: false,
+                        maintainAspectRatio: true,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
                     }}
                     />
@@ -249,42 +248,42 @@ export default class StatePage extends React.Component {
                     <Pie
                         data={covidInfectionChartData}
                         height={200}
-                        options={{ maintainAspectRatio: false }}
+                        options={{ maintainAspectRatio: true }}
                     />
                 </div>
                 <div className="state-chart-container">
                     <Pie
                         data={covidDeathChartData}
                         height={200}
-                        options={{ maintainAspectRatio: false }}
+                        options={{ maintainAspectRatio: true }}
                     />
                 </div>
                 <div className="state-chart-container">
                     <Pie
                         data={foodInsecurityChartData}
                         height={200}
-                        options={{ maintainAspectRatio: false }}
+                        options={{ maintainAspectRatio: true }}
                     />
                 </div>
                 <div className="state-chart-container">
                     <Pie
                         data={raceChartData}
                         height={200}
-                        options={{ maintainAspectRatio: false }}
+                        options={{ maintainAspectRatio: true }}
                     />
                 </div>
                 <div className="state-chart-container">
                     <Pie
                         data={povertyChartData}
                         height={200}
-                        options={{ maintainAspectRatio: false }}
+                        options={{ maintainAspectRatio: true }}
                     />
                 </div>
                 <div className="state-chart-container">
                     <Pie 
                         data={electionChartData}
                         height={200}
-                        options={{ maintainAspectRatio: false }}
+                        options={{ maintainAspectRatio: true }}
                     />
                 </div>
             </div>

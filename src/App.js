@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Redirect, withRouter } from 'react-router-dom'
+import { toast } from "react-toastify";
 import API_BASE_URL from './config'
 import AdditionalResources from './Components/AdditionalResources/AdditionalResources'
 import Footer from './Components/Footer/Footer'
@@ -16,7 +17,6 @@ import Saved from './Components/SavedList/SavedList'
 import SavePage from './Components/SavePage/SavePage'
 import NavBar from './Components/NavBar/NavBar'
 import Logout from './Components/Logout/Logout'
-import { toast } from "react-toastify";
 
 toast.configure();
 
