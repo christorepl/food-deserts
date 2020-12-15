@@ -206,7 +206,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar
                     data={electionChartData}
-                    height={400}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
@@ -216,7 +216,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar 
                     data={raceChartData}
-                    height={400}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
@@ -226,7 +226,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                     <Bar
                         data={covidChartData}
-                        height={400}
+                        height={200}
                         options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
@@ -236,7 +236,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar
                     data={povertyChartData}
-                    height={300}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
@@ -246,7 +246,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar
                     data={foodChartData}
-                    height={300}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
@@ -256,7 +256,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar
                     data={raceVsElectionChartData}
-                    height={400}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
@@ -266,7 +266,7 @@ export default class Charts extends React.Component {
                 <div className="chart">
                 <Bar
                     data={povertyVsFoodChartData}
-                    height={350}
+                    height={200}
                     options={{ 
                         maintainAspectRatio: false,
                         scales: {yAxes: [{ticks:{beginAtZero: true}}]}
