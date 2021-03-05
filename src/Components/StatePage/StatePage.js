@@ -6,10 +6,6 @@ import AppContext from "../../Context/AppContext";
 export default class StatePage extends React.Component {
   static contextType = AppContext;
 
-  redirectMessage = () => {
-    // toast.error('That page does not exist. Redirected to states index page.', this.toastifyParams)
-  };
-
   render() {
     const currentState = this.context.allStates.find(
       (states) =>
@@ -250,9 +246,9 @@ export default class StatePage extends React.Component {
               <div className="state-chart-container">
                 <Bar
                   data={compiledChartData}
-                  height={500}
+                  height={400}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                     scales: {
                       yAxes: [
                         {
@@ -268,54 +264,54 @@ export default class StatePage extends React.Component {
               <div className="state-chart-container">
                 <Pie
                   data={covidInfectionChartData}
-                  height={200}
+                  height={150}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                   }}
                 />
               </div>
               <div className="state-chart-container">
                 <Pie
                   data={covidDeathChartData}
-                  height={200}
+                  height={150}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                   }}
                 />
               </div>
               <div className="state-chart-container">
                 <Pie
                   data={foodInsecurityChartData}
-                  height={200}
+                  height={150}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                   }}
                 />
               </div>
               <div className="state-chart-container">
                 <Pie
                   data={raceChartData}
-                  height={200}
+                  height={150}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                   }}
                 />
               </div>
               <div className="state-chart-container">
                 <Pie
                   data={povertyChartData}
-                  height={200}
+                  height={150}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                   }}
                 />
               </div>
               <div className="state-chart-container">
                 <Pie
                   data={electionChartData}
-                  height={200}
+                  height={150}
                   options={{
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                   }}
                 />
               </div>
@@ -483,7 +479,8 @@ export default class StatePage extends React.Component {
           </div>
         ) : (
           <>
-            {this.redirectMessage()} <Redirect to="/states" />
+            {alert("There is no US state with that fips code. Redirecting...")}{" "}
+            <Redirect to="/states" />
           </>
         )}
       </>
