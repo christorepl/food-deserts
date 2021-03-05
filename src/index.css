@@ -148,7 +148,7 @@ fieldset {
 }
 
 .search-submit-button {
-  margin-top: 3.5rem  
+  margin-top: 3.5rem
 }
 
 .state-selection {
@@ -161,7 +161,7 @@ fieldset {
   color: black
 }
 
-.inspect-link a:link{
+.inspect-link a:link {
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -209,11 +209,11 @@ button:hover {
   list-style-position: inside;
 }
 
-.addtl a:link{
+.addtl a:link {
   color: seagreen;
 }
 
-.addtl a:hover{
+.addtl a:hover {
   color: blue;
 }
 
@@ -284,7 +284,7 @@ button:hover {
 
 .state-chart-container {
   flex: 0 1 100%
-}  
+}
 
 .state-page-container h3 {
   font-size: 22px;
@@ -421,7 +421,7 @@ footer p {
 }
 
 .nav-text {
-  color:white;
+  color: white;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -474,7 +474,8 @@ span {
   margin-left: 16px
 }
 
-.home, .login, . {
+.home,
+.login {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -496,12 +497,9 @@ span {
     margin: 0;
     color: white
   }
-  
+
   .responsiveTable td {
     border: 1px inset black;
     border-collapse: collapse;
   }
-
-
-  
 }

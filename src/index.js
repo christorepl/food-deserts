@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import {
+  BrowserRouter
+} from 'react-router-dom'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import './index.css';
-import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 
 ReactDOM.render(
   <BrowserRouter>
-      <App/>
+    <App/>
   </BrowserRouter>,
   document.getElementById('root')
-);
+)
