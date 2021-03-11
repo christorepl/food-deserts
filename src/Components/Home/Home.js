@@ -10,7 +10,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="homepage">
-        <h3> Food Justice Now! </h3>
+        <Notification />
         <p>
           Food insecurity is an all too often overlooked issue in the United
           States.Racial minorities already had the highest rates of poverty and

@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { IconContext } from "react-icons";
 import * as AiIcons from "react-icons/ai";
 import * as SiIcons from "react-icons/si";
 import AppContext from "../../Context/AppContext";
 import logo from "../../imgs/logo.png";
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
   static contextType = AppContext;
 
   render() {
@@ -87,6 +87,7 @@ export default class NavBar extends React.Component {
             </div>
             <div className="nav-logo">
               <img
+                onClick={() => this.props.history.push("/")}
                 src={logo}
                 alt="a clenched fist with the phrase 'food justice now' in stencil lettering below it, against a backdrop of a crossed fork and knife"
               />
@@ -131,3 +132,5 @@ export default class NavBar extends React.Component {
     );
   }
 }
+
+export default withRouter(NavBar);

@@ -20,7 +20,7 @@ header {
   width: 80%;
   margin: 0 auto;
   font-size: 20px;
-  text-align: center
+  text-align: center;
 }
 
 .homepage p {
@@ -28,7 +28,7 @@ header {
 }
 
 .DC2:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
 path {
@@ -36,7 +36,7 @@ path {
 }
 
 path:hover {
-  opacity: 0.50;
+  opacity: 0.5;
   cursor: pointer;
 }
 
@@ -74,7 +74,7 @@ body {
 
 .help-menu a:hover {
   color: white;
-  background-color: rgb(90, 138, 116)
+  background-color: rgb(90, 138, 116);
 }
 
 .help-menu a:active {
@@ -132,7 +132,7 @@ fieldset {
 
 .delete-save-button {
   display: flex;
-  justify-content: space-evenly
+  justify-content: space-evenly;
 }
 
 .charts-button {
@@ -148,7 +148,7 @@ fieldset {
 }
 
 .search-submit-button {
-  margin-top: 3.5rem
+  margin-top: 3.5rem;
 }
 
 .state-selection {
@@ -158,7 +158,7 @@ fieldset {
 
 .inspect-link {
   font-size: 10pt;
-  color: black
+  color: black;
 }
 
 .inspect-link a:link {
@@ -167,7 +167,7 @@ fieldset {
   align-items: center;
   font-size: 10pt;
   color: black;
-  text-decoration: none
+  text-decoration: none;
 }
 
 .state-container h3 {
@@ -274,7 +274,7 @@ button:hover {
   display: flex;
   flex-flow: column wrap;
   flex: 1 2 50%;
-  margin: 10px 10px 10px 10px
+  margin: 10px 10px 10px 10px;
 }
 
 .state-charts-container {
@@ -283,7 +283,7 @@ button:hover {
 }
 
 .state-chart-container {
-  flex: 0 1 100%
+  flex: 0 1 100%;
 }
 
 .state-page-container h3 {
@@ -319,7 +319,6 @@ p {
   padding: 10px;
 }
 
-
 input {
   margin: 10px;
 }
@@ -327,13 +326,13 @@ input {
 legend {
   width: auto;
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
 }
 
 .ranking-list {
   list-style: none;
   font-size: 8.75pt;
-  color: rgb(73, 73, 73)
+  color: rgb(73, 73, 73);
 }
 
 .data-disclaimer {
@@ -369,7 +368,7 @@ footer {
   left: 0;
   right: 0;
   text-align: center;
-  background-color: white
+  background-color: white;
 }
 
 footer p {
@@ -393,7 +392,7 @@ footer p {
   display: flex;
   margin: 0 auto;
   height: 140px;
-  align-content: flex-end
+  align-content: flex-end;
 }
 
 .navbar-icons {
@@ -427,7 +426,7 @@ footer p {
   justify-content: flex-start;
   align-items: center;
   list-style: none;
-  height: 60px
+  height: 60px;
 }
 
 .nav-text a {
@@ -446,19 +445,19 @@ footer p {
 .page {
   margin-top: 6rem;
   margin-bottom: 3rem;
-  color: black
+  color: black;
 }
 
 .nav-text a:hover {
-  background-color: rgba(158, 152, 152, 0.322)
+  background-color: rgba(158, 152, 152, 0.322);
 }
 
 .nav-text a:active {
-  background-color: rgba(128, 128, 128, 0.171)
+  background-color: rgba(128, 128, 128, 0.171);
 }
 
 .nav-menu-items {
-  width: 100%
+  width: 100%;
 }
 
 .navbar-toggle {
@@ -471,7 +470,7 @@ footer p {
 }
 
 span {
-  margin-left: 16px
+  margin-left: 16px;
 }
 
 .home,
@@ -488,6 +487,105 @@ span {
   font-family: Roboto;
 }
 
+.notification-container {
+  font-size: 14px;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 10000;
+  bottom: 18px;
+  right: 10px;
+  animation: notification-in-right 0.7s;
+}
+
+.notification {
+  background: #fff;
+  transition: 0.3s ease;
+  position: relative;
+  pointer-events: auto;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 20px;
+  margin-bottom: 15px;
+  width: 300px;
+  max-height: 100px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #999;
+  color: #000;
+  opacity: 0.9;
+}
+
+.notification:hover {
+  box-shadow: 0 0 12px #fff;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.notification-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 6px;
+  width: 300px;
+  height: 18px;
+}
+
+.notification-message {
+  margin: 0;
+  color: white;
+  text-align: left;
+  height: 18px;
+  margin-left: -1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification-icon {
+  float: left;
+  margin-right: 15px;
+  font-size: 36px;
+  color: white;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: rgb(92, 184, 92);
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.box {
+  width: 365px;
+  color: #fff;
+  padding: 20px 15px 10px 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 24px;
+}
+
+@keyframes notification-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    translate: translateX(0);
+  }
+}
 
 @media screen and (min-width: 40em) {
   .responsiveTable th {
@@ -495,7 +593,7 @@ span {
     border-collapse: collapse;
     background-color: black;
     margin: 0;
-    color: white
+    color: white;
   }
 
   .responsiveTable td {

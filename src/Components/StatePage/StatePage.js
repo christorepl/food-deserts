@@ -6,13 +6,12 @@ import AppContext from "../../Context/AppContext";
 export default class StatePage extends React.Component {
   static contextType = AppContext;
 
-  render() {
-    const currentState = this.context.allStates.find(
-      (states) =>
-        parseInt(states.fips) === parseInt(this.props.match.params.fips)
-    );
+  currentState = this.context.allStates.find(
+    (states) => parseInt(states.fips) === parseInt(this.props.match.params.fips)
+  );
 
-    let electionData = [currentState.trump, currentState.biden];
+  render() {
+    let electionData = [this.currentState.trump, this.currentState.biden];
 
     const electionChartData = {
       labels: ["Trump", "Biden"],
@@ -27,7 +26,7 @@ export default class StatePage extends React.Component {
       ],
     };
 
-    const { covid_rate, covid_fatality_rate } = currentState;
+    const { covid_rate, covid_fatality_rate } = this.currentState;
 
     let covidInfectionData = [parseInt(covid_rate), 100 - parseInt(covid_rate)];
 
@@ -60,8 +59,8 @@ export default class StatePage extends React.Component {
     };
 
     const foodInsecurityData = [
-      currentState.food_insecurity_rate,
-      100 - currentState.food_insecurity_rate,
+      this.currentState.food_insecurity_rate,
+      100 - this.currentState.food_insecurity_rate,
     ];
 
     const foodInsecurityChartData = {
@@ -78,12 +77,12 @@ export default class StatePage extends React.Component {
     };
 
     const raceData = [
-      currentState.black,
-      currentState.white,
-      currentState.hispanic,
-      currentState.asian,
-      currentState.other,
-      currentState.mixed_race,
+      this.currentState.black,
+      this.currentState.white,
+      this.currentState.hispanic,
+      this.currentState.asian,
+      this.currentState.other,
+      this.currentState.mixed_race,
     ];
 
     const raceChartData = {
@@ -114,8 +113,8 @@ export default class StatePage extends React.Component {
     };
 
     const povertyData = [
-      currentState.poverty_rate,
-      100 - currentState.poverty_rate,
+      this.currentState.poverty_rate,
+      100 - this.currentState.poverty_rate,
     ];
 
     const povertyChartData = {
@@ -131,21 +130,21 @@ export default class StatePage extends React.Component {
       ],
     };
 
-    const povertyRateData = [currentState.poverty_rate];
-    const foodInsecurityRateData = [currentState.food_insecurity_rate];
+    const povertyRateData = [this.currentState.poverty_rate];
+    const foodInsecurityRateData = [this.currentState.food_insecurity_rate];
     const covidRateData = [covid_rate];
     const covidFRateData = [covid_fatality_rate];
-    const bData = [currentState.black];
-    const wData = [currentState.white];
-    const aData = [currentState.asian];
-    const hData = [currentState.hispanic];
-    const mData = [currentState.mixed_race];
-    const oData = [currentState.other];
-    const tData = [currentState.trump];
-    const biData = [currentState.biden];
+    const bData = [this.currentState.black];
+    const wData = [this.currentState.white];
+    const aData = [this.currentState.asian];
+    const hData = [this.currentState.hispanic];
+    const mData = [this.currentState.mixed_race];
+    const oData = [this.currentState.other];
+    const tData = [this.currentState.trump];
+    const biData = [this.currentState.biden];
 
     const compiledChartData = {
-      labels: [`${currentState.state_name} Data`],
+      labels: [`${this.currentState.state_name} Data`],
       datasets: [
         {
           label: "Poverty Rate",
@@ -236,9 +235,9 @@ export default class StatePage extends React.Component {
 
     return (
       <>
-        {currentState ? (
+        {this.currentState ? (
           <div className="state-page">
-            <h1> {currentState.state_name} </h1>
+            <h1> {this.currentState.state_name} </h1>
             <p className="data-disclaimer">
               All data points are represented as a percentage
             </p>
@@ -319,159 +318,162 @@ export default class StatePage extends React.Component {
             <div className="state-page-container">
               <div className="state-page-data-container">
                 <h3> Racial Demographics : </h3>
-                <li key={`black${currentState.fips}`}>
-                  Black: {currentState.black} %
+                <li key={`black${this.currentState.fips}`}>
+                  Black: {this.currentState.black} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingblack${currentState.ranking_black}`}
+                  key={`rankingblack${this.currentState.ranking_black}`}
                 >
-                  Ranking: {currentState.ranking_black}
+                  Ranking: {this.currentState.ranking_black}
                   /51
                 </li>
-                <li key={`white${currentState.fips}`}>
-                  White: {currentState.white} %
+                <li key={`white${this.currentState.fips}`}>
+                  White: {this.currentState.white} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingwhite${currentState.ranking_white}`}
+                  key={`rankingwhite${this.currentState.ranking_white}`}
                 >
-                  Ranking: {currentState.ranking_white}
+                  Ranking: {this.currentState.ranking_white}
                   /51
                 </li>
-                <li key={`asian${currentState.fips}`}>
-                  Asian: {currentState.asian} %
+                <li key={`asian${this.currentState.fips}`}>
+                  Asian: {this.currentState.asian} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingasian${currentState.ranking_asian}`}
+                  key={`rankingasian${this.currentState.ranking_asian}`}
                 >
-                  Ranking: {currentState.ranking_asian}
+                  Ranking: {this.currentState.ranking_asian}
                   /51
                 </li>
-                <li key={`hispanic${currentState.fips}`}>
-                  Hispanic: {currentState.hispanic} %
+                <li key={`hispanic${this.currentState.fips}`}>
+                  Hispanic: {this.currentState.hispanic} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankinghispanic${currentState.ranking_hispanic}`}
+                  key={`rankinghispanic${this.currentState.ranking_hispanic}`}
                 >
-                  Ranking: {currentState.ranking_hispanic}
+                  Ranking: {this.currentState.ranking_hispanic}
                   /51
                 </li>
-                <li key={`other${currentState.fips}`}>
-                  Other Race: {currentState.other} %
+                <li key={`other${this.currentState.fips}`}>
+                  Other Race: {this.currentState.other} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingother${currentState.ranking_other}`}
+                  key={`rankingother${this.currentState.ranking_other}`}
                 >
-                  Ranking: {currentState.ranking_other}
+                  Ranking: {this.currentState.ranking_other}
                   /51
                 </li>
-                <li key={`mixed${currentState.fips}`}>
-                  Mixed Race: {currentState.mixed_race} %
+                <li key={`mixed${this.currentState.fips}`}>
+                  Mixed Race: {this.currentState.mixed_race} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingmixed${currentState.ranking_mixed}`}
+                  key={`rankingmixed${this.currentState.ranking_mixed}`}
                 >
-                  Ranking: {currentState.ranking_mixed}
+                  Ranking: {this.currentState.ranking_mixed}
                   /51
                 </li>
               </div>
               <div className="state-page-data-container">
                 <h3> COVID: </h3>
-                <li key={`covid_infections${currentState.fips}`}>
+                <li key={`covid_infections${this.currentState.fips}`}>
                   Number of confirmed COVID cases:
                   {new Intl.NumberFormat().format(
-                    currentState.covid_infections
+                    this.currentState.covid_infections
                   )}
                 </li>
                 <li
                   className="ranking-list"
-                  key={`ranking${currentState.ranking_covid_infections}`}
+                  key={`ranking${this.currentState.ranking_covid_infections}`}
                 >
-                  Ranking: {currentState.ranking_covid_infections}
+                  Ranking: {this.currentState.ranking_covid_infections}
                   /51
                 </li>
-                <li key={`covid_rate${currentState.fips}`}>
-                  Rate of COVID infections: {currentState.covid_rate} %
+                <li key={`covid_rate${this.currentState.fips}`}>
+                  Rate of COVID infections: {this.currentState.covid_rate} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingcr${currentState.ranking_covid_rate}`}
+                  key={`rankingcr${this.currentState.ranking_covid_rate}`}
                 >
-                  Ranking: {currentState.ranking_covid_rate}
+                  Ranking: {this.currentState.ranking_covid_rate}
                   /51
                 </li>
-                <li key={`covid_deaths${currentState.fips}`}>
+                <li key={`covid_deaths${this.currentState.fips}`}>
                   Number of COVID - related deaths:
-                  {new Intl.NumberFormat().format(currentState.covid_deaths)}
+                  {new Intl.NumberFormat().format(
+                    this.currentState.covid_deaths
+                  )}
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingcd${currentState.ranking_covid_deaths}`}
+                  key={`rankingcd${this.currentState.ranking_covid_deaths}`}
                 >
-                  Ranking: {currentState.ranking_covid_deaths}
+                  Ranking: {this.currentState.ranking_covid_deaths}
                   /51
                 </li>
-                <li key={`covid_fatality_rate${currentState.fips}`}>
-                  Fatality rate of COVID: {currentState.covid_fatality_rate} %
+                <li key={`covid_fatality_rate${this.currentState.fips}`}>
+                  Fatality rate of COVID:{" "}
+                  {this.currentState.covid_fatality_rate} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingcfr${currentState.ranking_covid_fatality_rate}`}
+                  key={`rankingcfr${this.currentState.ranking_covid_fatality_rate}`}
                 >
-                  Ranking: {currentState.ranking_covid_fatality_rate}
+                  Ranking: {this.currentState.ranking_covid_fatality_rate}
                   /51
                 </li>
               </div>
               <div className="state-page-data-container">
                 <h3> Election Results: </h3>
-                <li key={`trump${currentState.fips}`}>
-                  Donald Trump: {currentState.trump} %
+                <li key={`trump${this.currentState.fips}`}>
+                  Donald Trump: {this.currentState.trump} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingrepub${currentState.ranking_repub}`}
+                  key={`rankingrepub${this.currentState.ranking_repub}`}
                 >
-                  Ranking: {currentState.ranking_repub}
+                  Ranking: {this.currentState.ranking_repub}
                   /51
                 </li>
-                <li key={`biden${currentState.fips}`}>
-                  Joe Biden: {currentState.biden} %
+                <li key={`biden${this.currentState.fips}`}>
+                  Joe Biden: {this.currentState.biden} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingdem${currentState.ranking_dem}`}
+                  key={`rankingdem${this.currentState.ranking_dem}`}
                 >
-                  Ranking: {currentState.ranking_dem}
+                  Ranking: {this.currentState.ranking_dem}
                   /51
                 </li>
               </div>
               <div className="state-page-data-container">
                 <h3> Poverty Rate: </h3>
-                <li key={`poverty${currentState.fips}`}>
-                  Poverty Rate: {currentState.poverty_rate} %
+                <li key={`poverty${this.currentState.fips}`}>
+                  Poverty Rate: {this.currentState.poverty_rate} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingpov${currentState.ranking_pov}`}
+                  key={`rankingpov${this.currentState.ranking_pov}`}
                 >
-                  Ranking: {currentState.ranking_pov}
+                  Ranking: {this.currentState.ranking_pov}
                   /51
                 </li>
                 <h3> Food Insecurity Rate: </h3>
-                <li key={`foodInsecurity${currentState.fips}`}>
+                <li key={`foodInsecurity${this.currentState.fips}`}>
                   Household Food Insecurity Rate:
-                  {currentState.food_insecurity_rate} %
+                  {this.currentState.food_insecurity_rate} %
                 </li>
                 <li
                   className="ranking-list"
-                  key={`rankingfi${currentState.ranking_fi}`}
+                  key={`rankingfi${this.currentState.ranking_fi}`}
                 >
-                  Ranking: {currentState.ranking_fi}
+                  Ranking: {this.currentState.ranking_fi}
                   /51
                 </li>
               </div>
