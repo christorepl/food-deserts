@@ -402,7 +402,6 @@ class App extends React.Component {
   };
 
   onRenderNotification = (type, message) => {
-    console.log("on render notie");
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.setState(
