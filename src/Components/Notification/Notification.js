@@ -10,10 +10,6 @@ import AppContext from "../../Context/AppContext";
 export default class Notification extends React.Component {
   static contextType = AppContext;
   render() {
-    // const notificationDisplay = this.context.isNotificationHidden
-    //   ? "hidden-notification"
-    //   : "";
-
     const iconPicker = (type) => {
       switch (type) {
         case "INFO":
@@ -64,6 +60,7 @@ export default class Notification extends React.Component {
     };
 
     return (
+      //i know inline styling isn't preferred but for some reason this was the most reliable solution. using a toggle for the classname was buggy and produced undesirable results.
       <div className={`notification-container`} style={style}>
         <div
           key={`notification-${this.context.type}`}

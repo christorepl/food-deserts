@@ -6,7 +6,7 @@ import USAMap from "react-usa-map";
 class Map extends React.Component {
   static contextType = AppContext;
 
-  //the usa map plugin needs a workaround for clicking DC to work. if a state has its own clickHandler it uses that, all other states default to a defined function. for some reason the color works for DC2 but not the clickHandler
+  //the usa map plugin needs a workaround for clicking DC to work. if a state has its own clickHandler it uses that, all other states default to a defined function. for some reason the color works for DC2 but not the clickHandler. this function handles the onClick for DC.
   DCHandler = () => {
     this.props.history.push("/state/11");
   };

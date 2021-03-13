@@ -3,8 +3,6 @@ import { Redirect } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
 import RenderSaveResults from "../RenderSaveResults/RenderSaveResults";
 
-///GET RID OF 'RUN SEARCH' BUTTON AND REPLACE BY RENDERING THE SEARCH UNDER THE FORM
-
 export default class SavePage extends React.Component {
   static contextType = AppContext;
 

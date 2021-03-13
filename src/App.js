@@ -333,6 +333,7 @@ class App extends React.Component {
 
   runSaveSearch = async (fips) => {
     //because the psql table sends up the fips as a string, we must turn it into an array so the fetch function works properly with the given fips
+    //not the most elegant solution but it works
     const fipsString = fips
       .replaceAll('"', "")
       .replaceAll("{", "")
@@ -361,7 +362,6 @@ class App extends React.Component {
   };
 
   loginUser = async (attempt, user_name, type, msg) => {
-    // logs in the user
     if (attempt === "login" || attempt === "create") {
       this.notify(type, msg);
       this.setState({
@@ -406,7 +406,6 @@ class App extends React.Component {
       clearTimeout(this.timeout);
       this.setState(
         {
-          // isNotificationHidden: !this.state.isNotificationHidden,
           right: -500,
           type,
           message,
@@ -425,7 +424,6 @@ class App extends React.Component {
   renderNotification = (type, message) => {
     this.setState(
       {
-        // isNotificationHidden: !this.state.isNotificationHidden,
         right: 10,
         type,
         message,
@@ -433,7 +431,6 @@ class App extends React.Component {
       () => {
         this.timeout = setTimeout(() => {
           this.setState({
-            // isNotificationHidden: !this.state.isNotificationHidden,
             right: -500,
             type: null,
             message: null,
