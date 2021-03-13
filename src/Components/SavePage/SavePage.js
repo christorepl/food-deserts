@@ -29,7 +29,7 @@ export default class SavePage extends React.Component {
               type="text"
               name="new_save_name"
               onChange={(e) => this.context.setUpdatedSaveName(e.target.value)}
-              maxlength="30"
+              maxLength="30"
               required
             />
             <button type="submit">Submit</button>

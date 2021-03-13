@@ -481,7 +481,8 @@ export default class StatePage extends React.Component {
           </div>
         ) : (
           <>
-            {alert("There is no US state with that fips code. Redirecting...")}{" "}
+            alert("There is no US state with that fips code. You shouldn't be
+            here! Alerts are so ugly! Redirecting...")
             <Redirect to="/states" />
           </>
         )}

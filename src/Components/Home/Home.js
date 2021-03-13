@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Map from "../../Components/Map/Map";
 import AppContext from "../../Context/AppContext";
-import Notification from "../Notification/Notification";
 
 export default class Home extends React.Component {
   static contextType = AppContext;
@@ -10,7 +9,6 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="homepage">
-        <Notification />
         <p>
           Food insecurity is an all too often overlooked issue in the United
           States.Racial minorities already had the highest rates of poverty and

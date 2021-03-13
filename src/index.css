@@ -490,15 +490,15 @@ span {
 .notification-container {
   font-size: 14px;
   box-sizing: border-box;
+  transition: 0.5s ease;
   position: fixed;
   z-index: 10000;
   bottom: 18px;
-  right: 10px;
   animation: notification-in-right 0.7s;
 }
 
 .notification {
-  background: #fff;
+  background: rgb(255, 255, 255);
   transition: 0.3s ease;
   position: relative;
   pointer-events: auto;
@@ -509,13 +509,13 @@ span {
   width: 300px;
   max-height: 100px;
   border-radius: 5px;
-  box-shadow: 0 0 10px #999;
+  box-shadow: 0 0 10px rgb(153, 153, 153);
   color: #000;
   opacity: 0.9;
 }
 
 .notification:hover {
-  box-shadow: 0 0 12px #fff;
+  box-shadow: 0 0 12px rgb(255, 255, 255);
   opacity: 1;
   cursor: pointer;
 }
@@ -567,7 +567,7 @@ span {
 
 .box {
   width: 365px;
-  color: #fff;
+  color: rgb(255, 255, 255);
   padding: 20px 15px 10px 10px;
 }
 

@@ -23,13 +23,14 @@ export default class Login extends React.Component {
       });
 
       const parseRes = await response.json();
-      const user_name = parseRes.user_name;
+      const { type, msg, user_name } = parseRes;
+      this.notify(type, msg);
 
       if (parseRes.jwt_token) {
         localStorage.setItem("jwt_token", parseRes.jwt_token);
-        this.context.loginUser("login", user_name, parseRes.msg);
+        this.context.loginUser("login", user_name, type, msg);
       } else {
-        this.context.loginUser(null, null, parseRes.msg);
+        this.context.loginUser(null, null, type, msg);
       }
     } catch (err) {
       console.error(err.message);

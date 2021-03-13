@@ -26,13 +26,14 @@ export default class CreateAccount extends React.Component {
       });
 
       const parseRes = await response.json();
+      const { type, msg } = parseRes;
       const new_user_name = parseRes.new_user_name;
 
       if (parseRes.jwt_token) {
         localStorage.setItem("jwt_token", parseRes.jwt_token);
-        this.context.loginUser("create", new_user_name, parseRes.msg);
+        this.context.loginUser("create", new_user_name, type, msg);
       } else {
-        this.context.loginUser(null, null, parseRes.msg);
+        this.context.loginUser(null, null, type, msg);
       }
     } catch (err) {
       console.error(err.message);

@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
+import ee from "event-emitter";
 import API_BASE_URL from "./config";
 import AppContext from "./Context/AppContext";
-import { NotificationContextProvider } from "./Context/NotificationContext";
 import AdditionalResources from "./Components/AdditionalResources/AdditionalResources";
 import Footer from "./Components/Footer/Footer";
 import CreateAccount from "./Components/CreateAccount/CreateAccount";
@@ -17,34 +17,56 @@ import SavePage from "./Components/SavePage/SavePage";
 import NavBar from "./Components/NavBar/NavBar";
 import Logout from "./Components/Logout/Logout";
 import Map from "./Components/Map/Map";
+import Notification from "./Components/Notification/Notification";
+
+const emitter = new ee();
 
 class App extends React.Component {
   static contextType = AppContext;
 
-  state = {
-    navbarToggle: false,
-    selectMessage: null,
-    currentSaveResults: [],
-    statesData: [],
-    userSaves: [],
-    allStates: [],
-    saveData: [],
-    selectedStates: [],
-    stateResults: [],
-    new_save_name: null,
-    isAuthenticated: false,
-    saveName: null,
-    user_name: null,
-    email: null,
-    password: null,
+  constructor(props) {
+    super(props);
+    this.state = {
+      isNotificationHidden: true,
+      right: -500,
+      navbarToggle: false,
+      type: null,
+      message: null,
+      currentSaveResults: [],
+      statesData: [],
+      userSaves: [],
+      allStates: [],
+      saveData: [],
+      selectedStates: [],
+      stateResults: [],
+      new_save_name: null,
+      isAuthenticated: false,
+      saveName: null,
+      user_name: null,
+      email: null,
+      password: null,
+    };
+
+    this.timeout = null;
+
+    emitter.on("notification", (type, message) => {
+      this.onRenderNotification(type, message);
+    });
+  }
+
+  notify = (type, message) => {
+    emitter.emit("notification", type, message);
   };
 
   async componentDidMount() {
     const {
+      isNotificationHidden,
+      right,
+      type,
+      message,
       navbarToggle,
       currentSaveResults,
       new_save_name,
-      selectMessage,
       password,
       email,
       user_name,
@@ -58,10 +80,13 @@ class App extends React.Component {
       isAuthenticated,
     } = this.context;
     this.setState({
+      isNotificationHidden,
+      right,
+      type,
+      message,
       navbarToggle,
       currentSaveResults,
       new_save_name,
-      selectMessage,
       password,
       email,
       user_name,
@@ -158,8 +183,8 @@ class App extends React.Component {
         }
       );
       const parseRes = await response.json();
-      console.log(parseRes);
-      // toast.info(parseRes, this.toastifyParams)
+      const { type, msg } = parseRes;
+      this.notify(type, msg);
       this.populateUserSaves();
       this.props.history.push("/saved-search");
     } catch (err) {
@@ -192,12 +217,14 @@ class App extends React.Component {
         }
       );
       const parseRes = await response.json();
+      const { type, msg } = parseRes;
+      this.notify(type, msg);
 
-      if (typeof parseRes === "string") {
-        //  toast.error(parseRes, this.toastifyParams)
+      if (type === "WARNING" || "DANGER" || "INFO") {
+        this.notify(type, msg);
       } else {
         this.populateUserSaves();
-        // toast.success('Save name updated. Redirecting you back to your dashboard...', this.toastifyParams)
+        this.notify(type, msg);
         this.props.history.push("/saved-search");
       }
     } catch (err) {
@@ -228,11 +255,12 @@ class App extends React.Component {
       });
 
       const parseRes = await response.json();
-      if (typeof parseRes === "string") {
-        // toast.info(parseRes, this.toastifyParams)
+      const { type, msg } = parseRes;
+      if (type === "WARNING" || "DANGER" || "INFO") {
+        this.notify(type, msg);
       } else {
         this.populateUserSaves();
-        // toast.success('Save successful', this.toastifyParams)
+        this.notify(type, msg);
       }
     } catch (err) {
       console.error(err.message);
@@ -275,17 +303,15 @@ class App extends React.Component {
 
   fetchFips = async (e) => {
     e.preventDefault();
-    this.setState({
-      selectMessage: null,
-    });
 
     //create an array that contains the fips code for each state the user wants to search
 
     if (!this.state.selectedStates.length) {
-      await this.setState({
-        selectMessage: "You must select one or more states.",
-      });
-      // toast.error(this.state.selectMessage, this.toastifyParams)
+      this.notify(
+        "INFO",
+        "You must select at one or more states to run a search!"
+      );
+      return;
     } else {
       let statesToSearch = this.state.selectedStates.map(
         (state) => state.value
@@ -293,11 +319,12 @@ class App extends React.Component {
       let queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch;
       try {
         const response = await fetch(queryURL);
-        const stateResults = await response.json();
+        const parseRes = await response.json();
+        const { stateResults, type, msg } = parseRes;
         this.setState({
           stateResults,
         });
-        // toast.success('Search successful!', this.toastifyParams)
+        this.notify(type, msg);
       } catch (error) {
         console.error(error.message);
       }
@@ -333,18 +360,17 @@ class App extends React.Component {
     }
   };
 
-  loginUser = async (attempt, user_name, msg) => {
+  loginUser = async (attempt, user_name, type, msg) => {
     // logs in the user
     if (attempt === "login" || attempt === "create") {
-      console.log();
-      alert(msg);
+      this.notify(type, msg);
       this.setState({
         isAuthenticated: true,
         user_name,
       });
       this.populateUserSaves();
     } else {
-      alert(msg);
+      this.notify(type, msg);
       this.setState({
         isAuthenticated: false,
       });
@@ -353,7 +379,7 @@ class App extends React.Component {
 
   logout = () => {
     localStorage.removeItem("jwt_token");
-    // toast.info('Logout successful', this.toastifyParams)
+    this.notify("SUCCESS", "User is now logged out");
     this.setState({
       isAuthenticated: false,
       user_name: null,
@@ -375,10 +401,56 @@ class App extends React.Component {
     });
   };
 
+  onRenderNotification = (type, message) => {
+    console.log("on render notie");
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.setState(
+        {
+          // isNotificationHidden: !this.state.isNotificationHidden,
+          right: -500,
+          type,
+          message,
+        },
+        () => {
+          this.timeout = setTimeout(() => {
+            this.renderNotification(type, message);
+          }, 500);
+        }
+      );
+    } else {
+      this.renderNotification(type, message);
+    }
+  };
+
+  renderNotification = (type, message) => {
+    this.setState(
+      {
+        // isNotificationHidden: !this.state.isNotificationHidden,
+        right: 10,
+        type,
+        message,
+      },
+      () => {
+        this.timeout = setTimeout(() => {
+          this.setState({
+            // isNotificationHidden: !this.state.isNotificationHidden,
+            right: -500,
+            type: null,
+            message: null,
+          });
+        }, 3000);
+      }
+    );
+  };
+
   render() {
     const value = {
+      isNotificationHidden: this.state.isNotificationHidden,
+      right: this.state.right,
+      type: this.state.type,
+      message: this.state.message,
       new_save_name: this.state.new_save_name,
-      selectMessage: this.state.selectMessage,
       isAuthenticated: this.state.isAuthenticated,
       allStates: this.state.allStates,
       userSaves: this.state.userSaves,
@@ -410,30 +482,25 @@ class App extends React.Component {
     return (
       <div>
         <AppContext.Provider value={value}>
-          <NotificationContextProvider>
-            <Route exact path="/">
-              <Redirect to="/home" />
-            </Route>
-            <NavBar />
-            <div className="page">
-              <Route path="/logout" component={Logout} />
-              <Route exact path="/charts" component={Charts} />
-              <Route exact path="/save-charts" component={ChartsSave} />
-              <Route exact path="/state-selection" component={Map} />
-              <Route exact path="/state/:fips" component={StatePage} />
-              <Route exact path="/home" component={Home} />
-              <Route exacth path="/search" component={Search} />
-              <Route exact path="/addtl" component={AdditionalResources} />
-              <Route exact path="/create-account" component={CreateAccount} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/saved-search" component={SavedList} />
-              <Route
-                exact
-                path="/saved-search/:save_name"
-                component={SavePage}
-              />
-            </div>
-          </NotificationContextProvider>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <NavBar />
+          <Notification />
+          <div className="page">
+            <Route path="/logout" component={Logout} />
+            <Route exact path="/charts" component={Charts} />
+            <Route exact path="/save-charts" component={ChartsSave} />
+            <Route exact path="/state-selection" component={Map} />
+            <Route exact path="/state/:fips" component={StatePage} />
+            <Route exact path="/home" component={Home} />
+            <Route exacth path="/search" component={Search} />
+            <Route exact path="/addtl" component={AdditionalResources} />
+            <Route exact path="/create-account" component={CreateAccount} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/saved-search" component={SavedList} />
+            <Route exact path="/saved-search/:save_name" component={SavePage} />
+          </div>
         </AppContext.Provider>
         <Footer />
       </div>
