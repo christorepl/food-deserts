@@ -24,7 +24,6 @@ export default class Login extends React.Component {
 
       const parseRes = await response.json();
       const { type, msg, user_name } = parseRes;
-      this.notify(type, msg);
 
       if (parseRes.jwt_token) {
         localStorage.setItem("jwt_token", parseRes.jwt_token);
