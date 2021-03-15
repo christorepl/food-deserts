@@ -395,6 +395,10 @@ footer p {
   align-content: flex-end;
 }
 
+.nav-logo:hover {
+  cursor: pointer;
+}
+
 .navbar-icons {
   margin-left: 2rem;
   font-size: 2rem;

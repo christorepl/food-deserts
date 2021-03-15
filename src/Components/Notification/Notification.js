@@ -47,7 +47,7 @@ export default class Notification extends React.Component {
         case "WARNING":
           return "Sorry, but...";
         case "DANGER":
-          return "You can't do that! Or there was a server error...";
+          return "Server Error";
         case "SUCCESS":
           return "Task completed";
         default:

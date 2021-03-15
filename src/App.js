@@ -26,8 +26,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      isNotificationHidden: true,
       right: -500,
       navbarToggle: false,
       type: null,
@@ -60,7 +60,6 @@ class App extends React.Component {
 
   async componentDidMount() {
     const {
-      isNotificationHidden,
       right,
       type,
       message,
@@ -80,7 +79,6 @@ class App extends React.Component {
       isAuthenticated,
     } = this.context;
     this.setState({
-      isNotificationHidden,
       right,
       type,
       message,
@@ -352,7 +350,8 @@ class App extends React.Component {
     queryURL = API_BASE_URL + "api/state/search?fips=" + statesToSearch;
     try {
       const response = await fetch(queryURL);
-      const currentSaveResults = await response.json();
+      const parseRes = await response.json();
+      const currentSaveResults = parseRes.stateResults;
       this.setState({
         currentSaveResults,
       });
@@ -442,7 +441,6 @@ class App extends React.Component {
 
   render() {
     const value = {
-      isNotificationHidden: this.state.isNotificationHidden,
       right: this.state.right,
       type: this.state.type,
       message: this.state.message,

@@ -17,7 +17,6 @@ const AppContext = React.createContext({
   navbarToggle: false,
   type: null,
   message: null,
-  isNotificationHidden: true,
   right: -500,
   NavBarToggle: () => {},
   runSaveSearch: () => {},

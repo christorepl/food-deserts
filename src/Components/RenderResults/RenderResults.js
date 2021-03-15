@@ -21,7 +21,7 @@ export default class RenderResults extends React.Component {
             <Link to={`/state/${state[0].fips}`}>
               <AiIcons.AiOutlineSearch />
               <p className="inspect-link">
-                Inspect this state 's data more closely
+                Inspect this state's data more closely
               </p>
             </Link>
           </div>
