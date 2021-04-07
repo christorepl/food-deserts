@@ -575,13 +575,6 @@ span {
   padding: 20px 15px 10px 10px;
 }
 
-.close-button {
-  position: absolute;
-  top: 4px;
-  right: 8px;
-  font-size: 24px;
-}
-
 @keyframes notification-in-right {
   from {
     transform: translateX(100%);
