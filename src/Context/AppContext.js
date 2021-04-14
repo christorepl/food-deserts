@@ -6,7 +6,7 @@ const AppContext = React.createContext({
   allStates: [],
   saveData: [],
   stateResults: [],
-  new_save_name: null,
+  newSaveName: null,
   isAuthenticated: false,
   saveName: null,
   email: null,

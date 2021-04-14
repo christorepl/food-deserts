@@ -51,6 +51,7 @@ export default class CreateAccount extends React.Component {
               <input
                 type="text"
                 name="user_name"
+                value={this.context.user_name}
                 onChange={(e) => this.context.setName(e.target.value)}
                 required
               />
@@ -59,6 +60,7 @@ export default class CreateAccount extends React.Component {
               <input
                 type="email"
                 name="email"
+                value={this.context.email}
                 onChange={(e) => this.context.setEmail(e.target.value)}
                 required
               />
@@ -67,6 +69,7 @@ export default class CreateAccount extends React.Component {
               <input
                 type="password"
                 name="password"
+                value={this.context.password}
                 onChange={(e) => this.context.setPassword(e.target.value)}
                 required
               />

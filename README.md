@@ -203,9 +203,9 @@ Endpoint for saving a user's search
 
 ##### Request Body
 
-| Type | Fields                            | Description                                                                          |
-| ---- | --------------------------------- | ------------------------------------------------------------------------------------ |
-| JSON | user.id, save_name, new_save_name | JSON containing user's id, new name for user's save, and current name of user's save |
+| Type | Fields                          | Description                                                                          |
+| ---- | ------------------------------- | ------------------------------------------------------------------------------------ |
+| JSON | user.id, save_name, newSaveName | JSON containing user's id, new name for user's save, and current name of user's save |
 
 ##### Responses
 

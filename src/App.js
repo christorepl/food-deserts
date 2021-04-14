@@ -39,7 +39,7 @@ class App extends React.Component {
       saveData: [],
       selectedStates: [],
       stateResults: [],
-      new_save_name: null,
+      newSaveName: null,
       isAuthenticated: false,
       saveName: null,
       user_name: null,
@@ -65,7 +65,7 @@ class App extends React.Component {
       message,
       navbarToggle,
       currentSaveResults,
-      new_save_name,
+      newSaveName,
       password,
       email,
       user_name,
@@ -84,7 +84,7 @@ class App extends React.Component {
       message,
       navbarToggle,
       currentSaveResults,
-      new_save_name,
+      newSaveName,
       password,
       email,
       user_name,
@@ -190,17 +190,17 @@ class App extends React.Component {
     }
   };
 
-  setUpdatedSaveName = (new_save_name) => {
+  setUpdatedSaveName = (newSaveName) => {
     this.setState({
-      new_save_name,
+      newSaveName,
     });
   };
 
   updateSaveName = async (e, save_name) => {
     e.preventDefault();
-    const { new_save_name } = this.state;
+    const { newSaveName } = this.state;
     const body = {
-      new_save_name,
+      new_save_name: newSaveName,
     };
     try {
       const response = await fetch(
@@ -444,7 +444,7 @@ class App extends React.Component {
       right: this.state.right,
       type: this.state.type,
       message: this.state.message,
-      new_save_name: this.state.new_save_name,
+      newSaveName: this.state.newSaveName,
       isAuthenticated: this.state.isAuthenticated,
       allStates: this.state.allStates,
       userSaves: this.state.userSaves,

@@ -46,6 +46,7 @@ export default class Login extends React.Component {
               type="email"
               name="email"
               required
+              value={this.context.email}
               onChange={(e) => this.context.setEmail(e.target.value)}
             />
             <br />
@@ -54,6 +55,7 @@ export default class Login extends React.Component {
               type="password"
               name="password"
               required
+              value={this.context.password}
               onChange={(e) => this.context.setPassword(e.target.value)}
             />
             <br />

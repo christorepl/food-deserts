@@ -22,10 +22,11 @@ export default class SavePage extends React.Component {
             className="forms"
             onSubmit={(e) => this.context.updateSaveName(e, currentSaveName)}
           >
-            <label htmlFor="new_save_name">New Save Name</label>
+            <label htmlFor="newSaveName">New Save Name</label>
             <input
               type="text"
-              name="new_save_name"
+              name="newSaveName"
+              value={}
               onChange={(e) => this.context.setUpdatedSaveName(e.target.value)}
               maxLength="30"
               required
