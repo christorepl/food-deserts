@@ -16,6 +16,7 @@ export default class SaveSearchButton extends React.Component {
               <input
                 type="text"
                 name="save-name"
+                value={this.context.saveName}
                 onChange={(e) => this.context.setSaveName(e.target.value)}
                 maxLength="30"
                 required
