@@ -28,7 +28,7 @@ export default class Home extends React.Component {
           search.
         </p>
         <p>
-          Now that we have some perspective on the intent of this app,
+          Now that we have some perspective on the intent of this app,{" "}
           <Link to="/search">let's run a search</Link> or check out the map
           below!
         </p>
