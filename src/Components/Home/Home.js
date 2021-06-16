@@ -11,11 +11,11 @@ export default class Home extends React.Component {
       <div className="homepage">
         <p>
           Food insecurity is an all too often overlooked issue in the United
-          States.Racial minorities already had the highest rates of poverty and
+          States. Racial minorities already had the highest rates of poverty and
           food insecurity, and now they have the highest rates of COVID
-          infections and fatalities.The spread of COVID has highlighted America
-          's racial and economic structural inequalities, and this app allows
-          users to inspect the data relative to these intersections.
+          infections and fatalities. The spread of COVID has highlighted
+          America's racial and economic structural inequalities, and this app
+          allows users to inspect the data relative to these intersections.
         </p>
         <p>
           I recommend checking out the
